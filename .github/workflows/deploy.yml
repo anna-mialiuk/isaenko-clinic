@@ -12,6 +12,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
@@ -24,7 +25,13 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        timeout-minutes: 10
+        env:
+          HUSKY: 0
+          CI: true
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm ci --no-audit --no-fund --prefer-offline --loglevel verbose
 
       - name: Check project
         run: npm run lint
@@ -40,7 +47,7 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          ssh-keyscan -T 10 -H "$SSH_HOST" >> ~/.ssh/known_hosts
 
       - name: Upload build
         env:
@@ -48,10 +55,10 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+          ssh -o ConnectTimeout=10 -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
             "rm -rf /tmp/isaenko-deploy && mkdir -p /tmp/isaenko-deploy"
 
-          scp -i ~/.ssh/deploy_key -P "$SSH_PORT" -r dist/. \
+          scp -o ConnectTimeout=10 -i ~/.ssh/deploy_key -P "$SSH_PORT" -r dist/. \
             "$SSH_USER@$SSH_HOST:/tmp/isaenko-deploy/"
 
       - name: Publish website
@@ -60,7 +67,7 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          ssh -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" '
+          ssh -o ConnectTimeout=10 -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" '
             set -e
             test -f /tmp/isaenko-deploy/index.html
             rm -rf /var/www/html/*
