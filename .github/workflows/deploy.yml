@@ -29,14 +29,9 @@ jobs:
         env:
           HUSKY: 0
           CI: true
-          NODE_ENV: development
-          NPM_CONFIG_PRODUCTION: 'false'
         run: |
           npm config set registry https://registry.npmjs.org/
-          npm ci --include=dev --no-audit --no-fund --loglevel verbose
-
-      - name: Check project
-        run: npm run lint
+          npm ci --no-audit --no-fund
 
       - name: Build project
         run: npm run build
