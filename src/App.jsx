@@ -1,16 +1,15 @@
-import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import SeoManager from './components/SeoManager/SeoManager'
 
-const HomePage = lazy(() => import('./pages/HomePage'))
-const DirectionPage = lazy(() => import('./pages/DirectionPage/DirectionPage'))
-const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'))
-const TeamPage = lazy(() => import('./pages/TeamPage/TeamPage'))
-const HospitalPage = lazy(() => import('./pages/HospitalPage/HospitalPage'))
-const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'))
-const MultimodalPage = lazy(() => import('./pages/MultimodalPage/MultimodalPage'))
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
+import HomePage from './pages/HomePage'
+import DirectionPage from './pages/DirectionPage/DirectionPage'
+import AboutPage from './pages/AboutPage/AboutPage'
+import TeamPage from './pages/TeamPage/TeamPage'
+import HospitalPage from './pages/HospitalPage/HospitalPage'
+import ContactsPage from './pages/ContactsPage/ContactsPage'
+import MultimodalPage from './pages/MultimodalPage/MultimodalPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 import { directionRoutes } from './data/directionRoutes'
 import { getRoute } from './utils/getRoute'
@@ -48,20 +47,18 @@ function App() {
     <>
       <SeoManager />
 
-      <Suspense fallback={<div className="page-loading" aria-live="polite" />}>
-        <Routes>
-          <Route path="/" element={<HomePage variant="kharkiv" />} />
-          <Route path="/kyiv" element={<HomePage variant="kyiv" />} />
+      <Routes>
+        <Route path="/" element={<HomePage variant="kharkiv" />} />
+        <Route path="/kyiv" element={<HomePage variant="kyiv" />} />
 
-          {renderCityPageRoutes('kharkiv')}
-          {renderCityPageRoutes('kyiv')}
+        {renderCityPageRoutes('kharkiv')}
+        {renderCityPageRoutes('kyiv')}
 
-          {renderDirectionRoutes('kharkiv')}
-          {renderDirectionRoutes('kyiv')}
+        {renderDirectionRoutes('kharkiv')}
+        {renderDirectionRoutes('kyiv')}
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </>
   )
 }
