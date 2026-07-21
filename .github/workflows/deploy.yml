@@ -22,13 +22,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+
+      - name: Install stable npm
+        run: npm install --global npm@10.8.0
 
       - name: Install dependencies
         timeout-minutes: 10
         env:
           HUSKY: 0
-        run: npm ci --include=dev --no-audit --no-fund
+          NODE_ENV: development
+        run: |
+          rm -rf node_modules
+          npm cache clean --force
+          npm install --include=dev --no-audit --no-fund
 
       - name: Build project
         run: npm run build
@@ -78,9 +84,12 @@ jobs:
             -p "$SSH_PORT" \
             "$SSH_USER@$SSH_HOST" '
               set -e
+
               test -f /tmp/isaenko-deploy/index.html
+
               rm -rf /var/www/html/*
               cp -a /tmp/isaenko-deploy/. /var/www/html/
               rm -rf /tmp/isaenko-deploy
+
               echo "Deployment completed"
             '
