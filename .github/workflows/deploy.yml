@@ -29,9 +29,11 @@ jobs:
         env:
           HUSKY: 0
           CI: true
+          NODE_ENV: development
+          NPM_CONFIG_PRODUCTION: 'false'
         run: |
           npm config set registry https://registry.npmjs.org/
-          npm ci --no-audit --no-fund --prefer-offline --loglevel verbose
+          npm ci --include=dev --no-audit --no-fund --loglevel verbose
 
       - name: Check project
         run: npm run lint
@@ -55,10 +57,20 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          ssh -o ConnectTimeout=10 -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+          ssh \
+            -o BatchMode=yes \
+            -o ConnectTimeout=10 \
+            -i ~/.ssh/deploy_key \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" \
             "rm -rf /tmp/isaenko-deploy && mkdir -p /tmp/isaenko-deploy"
 
-          scp -o ConnectTimeout=10 -i ~/.ssh/deploy_key -P "$SSH_PORT" -r dist/. \
+          scp \
+            -o BatchMode=yes \
+            -o ConnectTimeout=10 \
+            -i ~/.ssh/deploy_key \
+            -P "$SSH_PORT" \
+            -r dist/. \
             "$SSH_USER@$SSH_HOST:/tmp/isaenko-deploy/"
 
       - name: Publish website
@@ -67,11 +79,19 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          ssh -o ConnectTimeout=10 -i ~/.ssh/deploy_key -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" '
-            set -e
-            test -f /tmp/isaenko-deploy/index.html
-            rm -rf /var/www/html/*
-            cp -a /tmp/isaenko-deploy/. /var/www/html/
-            rm -rf /tmp/isaenko-deploy
-            echo "Deployment completed"
-          '
+          ssh \
+            -o BatchMode=yes \
+            -o ConnectTimeout=10 \
+            -i ~/.ssh/deploy_key \
+            -p "$SSH_PORT" \
+            "$SSH_USER@$SSH_HOST" '
+              set -e
+
+              test -f /tmp/isaenko-deploy/index.html
+
+              rm -rf /var/www/html/*
+              cp -a /tmp/isaenko-deploy/. /var/www/html/
+              rm -rf /tmp/isaenko-deploy
+
+              echo "Deployment completed"
+            '
