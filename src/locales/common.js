@@ -1,0 +1,47 @@
+export const common = {
+  uk: {
+    openMenu: 'Відкрити меню',
+    scrollCta: 'Записатись на прийом',
+    watchReels: 'reels відео лікаря',
+    servicePrices: 'Вартість послуг',
+    onlineBooking: 'Онлайн-запис',
+    notFoundTitle: 'Сторінку не знайдено',
+    notFoundText: 'Схоже, такої сторінки не існує або її адресу було змінено.',
+    notFoundButton: 'Повернутися на головну',
+    agreement: {
+      aria: 'Погодитись з умовами договору оферти',
+      text: 'погоджуюсь з',
+      link: 'умовами договору оферти',
+    },
+  },
+  ru: {
+    openMenu: 'Открыть меню',
+    scrollCta: 'Записаться на прием',
+    watchReels: 'reels видео врача',
+    servicePrices: 'Стоимость услуг',
+    onlineBooking: 'Онлайн-запись',
+    notFoundTitle: 'Страница не найдена',
+    notFoundText: 'Похоже, такой страницы не существует или ее адрес был изменен.',
+    notFoundButton: 'Вернуться на главную',
+    agreement: {
+      aria: 'Согласиться с условиями договора оферты',
+      text: 'Согласен с',
+      link: 'условиями договора оферты',
+    },
+  },
+  en: {
+    openMenu: 'Open menu',
+    scrollCta: 'Book an appointment',
+    watchReels: "doctor's reels video",
+    servicePrices: 'Service cost',
+    onlineBooking: 'Online registration',
+    notFoundTitle: 'Page not found',
+    notFoundText: 'It looks like this page does not exist or its address has changed.',
+    notFoundButton: 'Back to home',
+    agreement: {
+      aria: 'Agree to the terms of the offer agreement',
+      text: 'I agree to the',
+      link: 'terms of the offer agreement',
+    },
+  },
+}

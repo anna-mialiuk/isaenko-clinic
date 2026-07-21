@@ -1,0 +1,105 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.team-doctors
+  padding: 8rem 0 12rem
+  background: vars.$color-second-bg
+
+  &__container
+    @include mix.laptop-big
+      padding: 0 2rem
+
+  &__title
+    margin-bottom: 3rem
+    color: vars.$color-dark
+
+  &__filters
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: 3rem
+    margin-bottom: 7rem
+
+  &__filter
+    color: rgba(31, 31, 41, .45)
+    font-size: 1.6rem
+    transition: .3s ease
+
+    &:hover,
+    &--active
+      color: vars.$color-dark
+      font-weight: 500
+
+  &__dropdown
+    position: relative
+
+  &__dropdown-button
+    display: inline-flex
+    align-items: center
+    gap: 1.2rem
+    color: rgba(31, 31, 41, .45)
+    font-size: 1.6rem
+    transition: .3s ease
+
+    &:hover
+      color: vars.$color-dark
+
+      .team-doctors__dropdown-arrow
+        transform: rotate(225deg)
+
+    &--active
+      color: vars.$color-dark
+
+      .team-doctors__dropdown-arrow
+        transform: rotate(225deg)
+
+  &__dropdown-arrow
+    width: .8rem
+    height: .8rem
+    border-right: .2rem solid currentColor
+    border-bottom: .2rem solid currentColor
+    transform: rotate(45deg)
+    transition: .3s ease
+
+  &__dropdown-list
+    position: absolute
+    top: calc(100% + 1.5rem)
+    left: 0
+    padding: 1rem 1.4rem 1.6rem 1.4rem
+    display: flex
+    flex-direction: column
+    gap: .4rem
+    border-radius: 1.2rem
+    background: vars.$color-second-bg
+    border: .1rem solid vars.$color-primary
+    z-index: 20
+
+  &__dropdown-item
+    padding: .5rem 1rem
+    border-radius: .8rem
+    color: vars.$color-dark
+    font-size: 1.4rem
+    text-align: left
+    transition: .3s ease
+
+    &:hover
+      background: #f4f4f4
+      color: vars.$color-primary
+
+  &__grid
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 3rem
+
+    @include mix.laptop-s
+      grid-template-columns: repeat(2, 1fr)
+
+    @include mix.tablet
+      grid-template-columns: 1fr
+      padding: 0 20% 
+
+    @include mix.mobile
+      padding: 0 10%
+
+    @include mix.mobile-s
+      padding: 0

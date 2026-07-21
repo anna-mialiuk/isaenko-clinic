@@ -1,0 +1,20 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.contacts-page
+    background: vars.$color-light
+    &__title
+        padding: 6rem 0 
+        color: vars.$color-primary
+        @include mix.laptop-big
+            padding: 6rem 2rem 0
+
+    .question-form
+        padding-top: 12rem
+        @include mix.tablet
+            padding-top: 6rem
+
+    &__team
+        padding-top: 12rem
+        @include mix.tablet
+            padding-top: 6rem

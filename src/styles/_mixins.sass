@@ -1,0 +1,64 @@
+@mixin flex-center
+  display: flex
+  align-items: center
+
+@mixin flex-between
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+@mixin dropdown-hidden
+  opacity: 0
+  visibility: hidden
+  pointer-events: none
+  transform: translateY(-1rem)
+  transition: .3s ease
+
+@mixin dropdown-visible
+  opacity: 1
+  visibility: visible
+  pointer-events: auto
+  transform: translateY(0)
+
+@mixin pill-button
+  border-radius: 5rem
+  transition: .3s ease
+
+// Breakpoints
+@mixin laptop-big
+  @media (max-width: 1140px)
+    @content
+
+@mixin laptop
+  @media (max-width: 1024px)
+    @content
+
+@mixin laptop-s
+  @media (max-width: 956px)
+    @content
+
+@mixin tablet
+  @media (max-width: 768px)
+    @content
+
+@mixin mobile
+  @media (max-width: 576px)
+    @content
+
+@mixin mobile-sm
+  @media (max-width: 480px)
+    @content
+
+@mixin mobile-s
+  @media (max-width: 390px)
+    @content
+
+// Large screens
+
+@mixin desktop-xl
+  @media (min-width: 1600px)
+    @content
+
+@mixin desktop-2k
+  @media (min-width: 1920px)
+    @content

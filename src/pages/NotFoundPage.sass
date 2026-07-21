@@ -1,0 +1,41 @@
+@use "../styles/variables" as vars
+
+.not-found-page
+    min-height: 100vh
+    display: flex
+    flex-direction: column
+
+    &__main
+        flex: 1
+        padding: 12rem 0
+
+    &__container
+        text-align: center
+        max-width: 78rem
+
+    &__label
+        margin-bottom: 1.6rem
+        font-size: 12rem
+        font-weight: 700
+        line-height: 1
+        color: vars.$gradient-pink-end
+
+    &__title
+        margin-bottom: 2.4rem
+
+    &__text
+        margin-bottom: 3.6rem
+
+    &__button
+        display: inline-flex
+        align-items: center
+        gap: 1rem
+        padding: 1.6rem 3.2rem
+        border-radius: 10rem
+        background: linear-gradient(324deg, vars.$gradient-pink-end, vars.$gradient-pink-start)
+        color: vars.$color-white
+        text-decoration: none
+        transition: opacity .2s ease
+
+        &:hover
+            opacity: .85

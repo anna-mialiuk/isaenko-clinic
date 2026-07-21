@@ -1,0 +1,10 @@
+export const DEFAULT_CITY_ID = 'kharkiv'
+
+export const BOOKING_URL =
+  'https://cbox.mobi/go/isaenko?_gl=1*sa8uua*_gcl_au*MjAxNDgwNTE5MS4xNzgwMTQ1ODQy'
+
+export const SOCIAL_LINKS = {
+  instagram: 'https://www.instagram.com/dr.isaenko.clinic?igsh=aXNncTBnNHR1ZTVt',
+  whatsapp: 'https://wa.me/+380978888911',
+  telegram: 'https://t.me/Dr_IsaenkoClinic',
+}

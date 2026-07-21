@@ -1,0 +1,30 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.hospital-doctors
+    padding: 12rem 0 0
+    background: vars.$color-second-bg
+    &__container
+        @include mix.laptop-big
+        padding: 0 2rem
+
+    &__title
+        margin-bottom: 3rem
+
+    &__grid
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 4rem
+
+        @include mix.laptop-s
+            grid-template-columns: repeat(2, 1fr)
+
+        @include mix.tablet
+            grid-template-columns: 1fr
+            padding: 0 20% 
+
+        @include mix.mobile
+            padding: 0 10%
+
+        @include mix.mobile-s
+            padding: 0

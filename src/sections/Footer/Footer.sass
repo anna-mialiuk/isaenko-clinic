@@ -1,0 +1,142 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.footer
+    background: linear-gradient(324deg, vars.$gradient-blue-end, vars.$gradient-blue-start)
+    padding: 13rem 0 2.6rem
+    @include mix.laptop-s
+        padding: 10rem 0 4rem
+
+    &__container
+        @include mix.laptop-big
+            padding: 0 2rem
+
+    &__flex
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        justify-items: center
+
+        @include mix.laptop-s
+            justify-items: start
+            grid-template-columns: 1fr 1fr
+            margin-bottom: 2rem
+            gap: 4rem
+            > :nth-child(1)
+                grid-column: 1 / 3
+            > :nth-child(4)
+                grid-column: 1 / 3
+            > :nth-child(2)
+                order: 3
+            > :nth-child(3)
+                order: 4
+
+    &__info
+        margin-right: 5rem
+
+    &__column,
+    &__link
+        display: flex
+        flex-direction: column
+        gap: 2rem
+    
+    &__logo
+        width: 17rem
+        margin-bottom: 4rem
+
+    &__license
+        color: vars.$color-white
+        margin-bottom: 2.7rem
+
+    &__instagram-logo
+        width: 3.5rem
+        height: 3.5rem
+
+    &__column-header
+        color: vars.$color-white
+        font-weight: 500
+        margin-bottom: 1rem
+
+    &__link
+        color: hsla(0, 0%, 100%, .4)
+        font-size: 1.4rem
+        transition: all .3s ease
+
+        &:hover
+            color: vars.$color-white
+
+    &__contacts-header
+        font-size: 1.8rem
+        font-weight: 700
+        color: vars.$color-white
+        margin-bottom: 1rem 
+
+    &__schedule
+        display: flex
+        justify-content: space-between
+        max-width: 21rem
+        color: vars.$color-white
+        font-size: 1.8rem
+        margin-bottom: 1rem
+
+    &__schedule-time
+        font-weight: 700
+
+    &__stationary
+        font-size: 1.8rem
+        font-weight: 700
+        color: vars.$color-white
+        max-width: 20rem
+        margin-bottom: 2rem
+    
+    &__messengers
+        @include mix.tablet
+            display: none
+
+    &__messengers-header
+        font-weight: 300
+        color: hsla(0, 0%, 100%, .5)
+        margin-bottom: 1rem
+
+    &__messengers-link
+        display: flex
+        align-items: center
+        background: rgba(36, 41, 48, .4)
+        padding: .9rem 2.5rem .9rem 1.7rem
+        border-radius: 1.7rem
+        font-size: 1.6rem
+        color: vars.$color-white
+        max-width: 16rem
+        transition: all .4s ease
+
+        &:hover
+            background: vars.$color-white
+            color: vars.$gradient-blue-end
+
+        &:not(last-child)
+            margin-bottom: 1rem
+
+    &__link-icon
+        margin-right: 1.2rem
+        width: 3.3rem
+        height: 3.3rem
+            
+    &__bottom
+        display: flex
+        justify-content: space-between
+        align-items: flex-end
+
+    &__rights,
+    &__documents-link
+        color: hsla(0, 0%, 100%, .4)
+        font-size: 1.3rem
+
+    &__documents
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+
+    &__documents-link
+        &_underlined
+            border-bottom: .03rem solid hsla(0, 0%, 100%, .4)
+    
+            

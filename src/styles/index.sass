@@ -1,0 +1,59 @@
+@use "./variables" as vars
+@use "./mixins" as mix
+@use "./typography"
+
+*,
+*::before,
+*::after
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  font-size: 62.5%
+  scroll-behavior: smooth
+
+  @include mix.laptop-big
+    font-size: 60%
+  @include mix.mobile-sm
+    font-size: 50%
+  @include mix.desktop-xl
+    font-size: 72.5%
+
+body
+  background: vars.$color-white
+  color: vars.$color-dark
+  font-family: "Manrope", sans-serif
+  font-size: 1.6rem
+  font-weight: 400
+
+a
+  text-decoration: none
+  color: inherit
+
+button,
+input,
+textarea,
+select
+  font: inherit
+  color: inherit
+
+button
+  border: none
+  background: none
+  cursor: pointer
+
+ul,
+ol
+  list-style: none
+
+img
+  display: block
+  max-width: 100%
+
+.container
+  width: 100%
+  max-width: 114rem
+  margin: 0 auto
+  @include mix.desktop-xl
+    width: 150rem

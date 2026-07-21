@@ -1,0 +1,232 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.direction-header
+  padding: 2rem 0
+  background: linear-gradient(135deg, vars.$gradient-pink-start 0%, vars.$gradient-pink-end 100%)
+  color: vars.$color-white
+
+  &__container
+    display: flex
+    flex-direction: column
+    gap: 5rem
+
+    @include mix.laptop-big
+      padding: 0 2rem
+
+  &__top,
+  &__bottom
+    @include mix.flex-between
+
+  &__logo img
+    width: 20rem
+    height: auto
+
+  &__contacts,
+  &__menu,
+  &__nav
+    @include mix.flex-center
+
+  &__contacts
+    gap: 3.2rem
+    font-size: 1.6rem
+    font-weight: 600
+
+  &__menu,
+  &__nav
+    gap: 3rem
+
+  &__nav
+    font-size: 1.6rem
+
+    a
+      transition: .3s ease
+
+      &:hover
+        color: vars.$color-primary
+      &.active
+        color: vars.$color-white
+        opacity: .4
+
+  &__burger
+    display: none
+
+  .hero__actions
+    display: flex
+    flex-direction: column
+    gap: 1.2rem
+
+  .hero__violet-button
+    padding: 1.9rem 6rem
+    background: vars.$color-white
+    color: vars.$color-primary
+    font-size: 1.5rem
+    border-radius: 5rem
+    transition: .3s ease
+
+    &:disabled
+      opacity: .45
+      cursor: not-allowed
+
+  .hero__checkbox
+    @include mix.flex-center
+    gap: 1.2rem
+
+  .hero__checkbox-circle
+    width: 2rem
+    height: 2rem
+    @include mix.flex-center
+    justify-content: center
+    border: .1rem solid vars.$color-primary
+    border-radius: 50%
+
+  .hero__checkbox-circle--active
+    border-color: transparent
+    background: #dc90a4
+
+  .hero__checkbox-icon
+    width: 1rem
+    height: 1rem
+
+  .hero__checkbox-text
+    display: flex
+    flex-direction: column
+    font-size: 1rem
+    color: rgba(255, 255, 255, .7)
+
+    a
+      text-decoration: underline
+
+  @include mix.laptop
+    &__contacts,
+    &__bottom
+      display: none
+
+    &__top
+      justify-content: space-between
+
+    &__burger
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      gap: .7rem
+      width: 4.5rem
+      height: 4.5rem
+
+      span
+        width: 3.4rem
+        height: .3rem
+        border-radius: 2rem
+        background: vars.$color-white
+  // Shared controls used by HeaderContent. These styles must live here as well,
+  // because pages with DirectionHeader can be loaded without the Hero chunk.
+  .hero__select,
+  .hero__directions,
+  .hero__checkbox
+    @include mix.flex-center
+
+  .hero__select
+    gap: .8rem
+    color: vars.$color-white
+    font-size: 1.6rem
+
+    img
+      width: 1.2rem
+      height: 1.2rem
+
+  .hero__city,
+  .hero__language,
+  .hero__directions-wrapper
+    position: relative
+
+  .hero__city,
+  .hero__language
+    &:hover
+      .hero__city-dropdown,
+      .hero__language-dropdown
+        @include mix.dropdown-visible
+
+    &:focus-within
+      .hero__city-dropdown,
+      .hero__language-dropdown
+        @include mix.dropdown-visible
+
+  .hero__city-dropdown,
+  .hero__language-dropdown
+    position: absolute
+    top: calc(100% + .8rem)
+    right: 0
+    min-width: 15rem
+    padding: 1.3rem
+    background: vars.$color-white
+    border-radius: 1.2rem
+    display: flex
+    flex-direction: column
+    z-index: 200
+    box-shadow: 0 1rem 3rem rgba(31, 31, 41, .12)
+    @include mix.dropdown-hidden
+
+    button
+      padding: 1rem 2rem
+      border-radius: 1.2rem
+      color: vars.$color-dark
+      font-size: 1.6rem
+      font-weight: 500
+      text-align: left
+      white-space: nowrap
+
+      &.active
+        background: vars.$color-primary
+        color: vars.$color-white
+
+  .hero__directions-wrapper
+    &:hover,
+    &:focus-within
+      .hero__directions-dropdown
+        @include mix.dropdown-visible
+
+  .hero__directions
+    gap: 2rem
+    padding: 1.9rem 3rem
+    border: .1rem solid rgba(255, 255, 255, .45)
+    color: vars.$color-white
+    font-size: 1.6rem
+    @include mix.pill-button
+
+    &:hover
+      background: vars.$color-primary
+
+  .hero__directions-icon
+    width: 2.4rem
+    height: 2.4rem
+
+  .hero__directions-dropdown
+    position: absolute
+    top: calc(100% + .8rem)
+    left: 0
+    width: max-content
+    min-width: 26rem
+    max-width: 34rem
+    padding: 2rem
+    background: #e0e2e8
+    border-radius: 1.2rem
+    display: flex
+    flex-direction: column
+    z-index: 200
+    box-shadow: 0 1rem 3rem rgba(31, 31, 41, .12)
+    @include mix.dropdown-hidden
+
+    a
+      color: vars.$color-dark
+      font-size: 1.4rem
+      font-weight: 500
+      line-height: 1.35
+      transition: .2s ease
+
+      &:not(:last-child)
+        margin-bottom: 1rem
+
+      &:hover,
+      &.active
+        color: vars.$color-primary

@@ -1,0 +1,285 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+:root
+  --hero-photo-opacity: 1
+
+.hero
+  position: relative
+  overflow: hidden
+  min-height: 100vh
+  padding: 2rem 0 6rem
+  background: linear-gradient(135deg, vars.$gradient-pink-start 0%, vars.$gradient-pink-end 100%)
+  color: vars.$color-white
+
+  &::before
+    content: ""
+    position: absolute
+    inset: 0
+    background: var(--hero-bg) center / cover no-repeat
+    opacity: var(--hero-photo-opacity)
+    z-index: 0
+    pointer-events: none
+
+  &::after
+    content: ""
+    position: absolute
+    inset: 0
+    background: var(--hero-gradient) center / cover no-repeat
+    z-index: 1
+    pointer-events: none
+
+  &__container
+    position: relative
+    z-index: 2
+    height: calc(100vh - 7rem)
+    display: flex
+    flex-direction: column
+    @include mix.laptop-big
+
+      padding: 0 2rem
+
+  &__header
+    display: flex
+    flex-direction: column
+    gap: 4.7rem
+
+  &__top,
+  &__bottom
+    @include mix.flex-between
+
+  &__logo img
+    display: block
+    width: 20rem
+    height: auto
+    @include mix.laptop-s
+      width: 12rem
+    
+  &__contacts,
+  &__menu,
+  &__nav,
+  &__select,
+  &__directions,
+  &__checkbox
+    @include mix.flex-center
+
+  &__contacts
+    gap: 3.2rem
+    font-size: 1.6rem
+    font-weight: 600
+
+  &__select
+    gap: .8rem
+    color: vars.$color-white
+    font-size: 1.6rem
+
+  &__menu,
+  &__nav
+    gap: 3rem
+
+  &__nav
+    font-size: 1.6rem
+
+    a
+      transition: .3s ease
+
+      &:hover
+        color: vars.$color-primary
+      &.active
+        color: vars.$color-white
+        opacity: .4
+
+  &__city,
+  &__language,
+  &__directions-wrapper
+    position: relative
+
+  &__city,
+  &__language
+    &:hover
+      .hero__city-dropdown,
+      .hero__language-dropdown
+        @include mix.dropdown-visible
+
+  &__city-dropdown,
+  &__language-dropdown
+    position: absolute
+    right: 0
+    padding: 1.3rem
+    background: vars.$color-white
+    border-radius: 1.2rem
+    display: flex
+    flex-direction: column
+    z-index: 200
+    @include mix.dropdown-hidden
+
+    button
+      padding: 1rem 2rem
+      border-radius: 1.2rem
+      color: vars.$color-dark
+      font-size: 1.6rem
+      font-weight: 500
+
+      &.active
+        background: vars.$color-primary
+        color: vars.$color-white
+
+  &__directions-wrapper
+    &:hover
+      .hero__directions-dropdown
+        @include mix.dropdown-visible
+
+  &__directions
+    gap: 2rem
+    padding: 1.9rem 3rem
+    border: .1rem solid rgba(255, 255, 255, .45)
+    color: vars.$color-white
+    font-size: 1.6rem
+    @include mix.pill-button
+
+    &:hover
+      background: vars.$color-primary
+
+
+  &__directions-icon
+    width: 2.4rem
+    height: 2.4rem
+
+  &__directions-dropdown
+    position: absolute
+    left: 0
+    width: 100%
+    padding: 2rem
+    background: #e0e2e8
+    border-radius: 1.2rem
+    display: flex
+    flex-direction: column
+    z-index: 100
+    @include mix.dropdown-hidden
+
+    a
+      color: vars.$color-dark
+      font-size: 1.4rem
+      font-weight: 500
+      transition: .2s ease
+
+      &:not(:last-child)
+        margin-bottom: 1rem
+
+      &:hover
+        color: vars.$color-primary
+
+      &.active
+        color: vars.$color-primary
+        
+  &__actions
+    display: flex
+    flex-direction: column
+    gap: 1.2rem
+
+  &__violet-button
+    padding: 1.9rem 6rem
+    background: vars.$color-primary
+    color: vars.$color-white
+    font-size: 1.5rem
+    @include mix.pill-button
+
+    &:disabled
+      opacity: .45
+      cursor: not-allowed
+
+    &:not(:disabled):hover
+      color: vars.$color-primary
+      background: vars.$color-white
+
+  &__checkbox
+    gap: 1.2rem
+
+  &__checkbox-circle
+    width: 2rem
+    height: 2rem
+    @include mix.flex-center
+    justify-content: center
+    flex-shrink: 0
+    border: .1rem solid rgba(255, 255, 255, .55)
+    border-radius: 50%
+    cursor: pointer
+    transition: .3s ease
+
+  &__checkbox-circle--active
+    border-color: vars.$color-primary
+    background: vars.$color-primary
+
+  &__checkbox-icon
+    width: 1rem
+    height: 2rem
+    border-radius: 50%
+    display: block
+
+  &__checkbox-text
+    display: flex
+    flex-direction: column
+    font-size: 1rem
+    color: vars.$color-for-p
+
+    a
+      text-decoration: underline
+
+  &__content
+    margin-top: auto
+    max-width: 60rem
+
+  &__h1
+    margin-bottom: .8rem
+
+  &__paragraph
+    margin-bottom: 4rem
+    line-height: 1.4
+
+  &__button
+    @include mix.flex-center
+    justify-content: center
+    max-width: 17rem
+    padding: 1.8rem 3rem
+    background: vars.$color-white
+    color: vars.$color-primary
+    font-size: 1.6rem
+
+    @include mix.pill-button
+
+    @include mix.mobile-sm
+      width: 90%
+      max-width: none
+
+    &:hover
+      background: vars.$color-primary
+      color: vars.$color-white
+
+  &__burger
+    display: none
+
+  @include mix.laptop
+    &__contacts,
+    &__bottom
+      display: none
+
+    &__top
+      justify-content: space-between
+
+    &__burger
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      gap: .7rem
+      width: 4.5rem
+      height: 4.5rem
+      position: relative
+      z-index: 10
+
+      span
+        display: block
+        width: 3.4rem
+        height: .3rem
+        border-radius: 2rem
+        background: vars.$color-white

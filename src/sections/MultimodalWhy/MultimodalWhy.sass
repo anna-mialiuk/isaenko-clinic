@@ -1,0 +1,53 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.multimodal-why
+  padding: 12rem 0
+  background: vars.$color-white
+  @include mix.tablet
+        padding: 6rem 0
+
+  &__container
+    @include mix.laptop-big
+      padding: 0 2rem
+
+  &__title
+    margin-bottom: 3rem
+    color: vars.$color-dark
+
+  &__content
+    max-width: 72rem
+
+  &__lead
+    margin-bottom: 5rem
+    color: vars.$color-for-p
+    font-size: 2rem
+    line-height: 1.45
+
+    &-strong
+      font-weight: 600
+
+  &__text
+    color: vars.$color-for-p
+    font-size: 2rem
+    line-height: 1.55
+
+  @include mix.tablet
+    padding: 8rem 0
+
+    &__title
+      margin-bottom: 4rem
+
+    &__lead,
+    &__text
+      font-size: 1.8rem
+
+  @include mix.mobile
+    padding: 6rem 0
+
+    &__title
+      margin-bottom: 3rem
+
+    &__lead,
+    &__text
+      font-size: 1.6rem

@@ -1,0 +1,153 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.doctor-card
+  position: relative
+  width: 100%
+  height: 100%
+  min-height: 50rem
+  border-radius: 1.2rem
+  overflow: hidden
+  color: vars.$color-white
+  @include mix.laptop-big
+    min-height: 55rem
+  @include mix.laptop-s
+    min-height: 58rem
+  @include mix.desktop-xl
+    min-height: 78rem
+
+  &--has-hover:hover,
+  &--has-hover:focus-visible
+
+    .doctor-card__front
+      opacity: 0
+
+    .doctor-card__back
+      opacity: 1
+
+  &__front,
+  &__back
+    position: absolute
+    inset: 0
+    transition: opacity .4s ease
+
+  &__front
+    opacity: 1
+    z-index: 1
+
+    &::after
+      content: ""
+      position: absolute
+      inset: 0
+      z-index: 1
+
+  &__back
+    opacity: 0
+    z-index: 2
+    padding: 1.4rem 2rem
+    background: vars.$color-white
+    color: vars.$color-dark
+    border: .1rem solid rgba(90, 109, 180, .2)
+    border-radius: 1.2rem
+
+    overflow: hidden
+
+    &::before
+      content: ""
+      position: absolute
+      left: 0
+      bottom: 0
+      width: 55%
+      height: 100%
+      background: url("/src/assets/images/decor/card-back.webp") left bottom / contain no-repeat
+      pointer-events: none
+      z-index: 0
+
+    &::after
+      content: ""
+      position: absolute
+      top: 3rem
+      right: 3rem
+      width: 14rem
+      height: 14rem
+      background: url("/src/assets/images/decor/quotes.svg") center / contain no-repeat
+      opacity: .3
+      pointer-events: none
+      z-index: 0
+
+  &__back-logo,
+  &__back-name,
+  &__back-text
+    position: relative
+    z-index: 1
+
+  &__image
+    width: 100%
+    height: 100%
+    object-fit: cover
+    display: block
+
+  &__experience
+    position: absolute
+    top: 2rem
+    left: 2rem
+    z-index: 2
+    padding: .7rem .9rem
+    border: .1rem solid hsla(0, 0%, 100%, .14)
+    border-radius: .8rem
+    background: rgba(0, 0, 0, .4)
+    backdrop-filter: blur(.8rem)
+    text-align: center
+
+    strong
+      display: block
+      font-size: 3.2rem
+      line-height: 1
+      font-weight: 700
+
+    span
+      font-size: 1.4rem
+
+  &__content
+    position: absolute
+    left: 2rem
+    right: 2rem
+    bottom: 2rem
+
+    z-index: 2
+
+  &__name
+    min-height: 6.8rem
+    margin-bottom: 1rem
+    font-size: 3.2rem
+    line-height: 1.05
+    font-weight: 600
+    max-width: 15rem
+
+  &__position
+    min-height: 6.5rem
+    font-size: 1.6rem
+    line-height: 1.35
+
+  &__back-logo
+    width: 10rem
+    margin-bottom: 8rem
+
+  &__back-name
+    margin-bottom: 2rem
+    color: vars.$color-dark
+    font-size: 3.6rem
+    line-height: 1.15
+    font-weight: 600
+
+  &__back-text
+    color: vars.$color-dark
+    font-size: 1.4rem
+    line-height: 1.5
+    font-weight: 600
+    @include mix.laptop-s
+      font-size: 1.6rem
+@media (prefers-reduced-motion: reduce)
+  .doctor-card__front,
+  .doctor-card__back
+    transition: none

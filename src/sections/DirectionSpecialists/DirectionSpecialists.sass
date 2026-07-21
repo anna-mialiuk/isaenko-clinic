@@ -1,0 +1,66 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.direction-specialists
+  padding: 12rem 0
+  background: vars.$color-white
+  @include mix.tablet
+    padding: 6rem 0
+
+  &__container
+    @include mix.laptop-big
+      padding: 0 2rem
+
+  &__tabs
+    width: fit-content
+    margin: 0 auto 4rem
+    padding: 3rem
+    display: flex
+    gap: 1rem
+    border-radius: 10rem
+    background: #f4f4f4
+    @include mix.mobile-sm
+      padding: 2rem
+      flex-direction: column
+      width: 100%
+
+  &__tab
+    min-width: 18rem
+    padding: 1.5rem 6rem
+    background: vars.$color-white
+    border-radius: 10rem
+    color: vars.$color-primary
+    font-weight: 700
+    transition: .3s ease
+    @include mix.mobile-sm
+      padding: 1.5rem 5rem
+    @include mix.mobile-s
+      padding: 1rem 3rem
+
+
+    &--active
+      background: vars.$color-primary
+      color: vars.$color-white
+
+  &__placeholder
+    min-height: 20rem
+    display: flex
+    align-items: center
+    justify-content: center
+    border: .1rem dashed rgba(31, 31, 41, .2)
+    border-radius: 1.2rem
+    color: vars.$color-for-p
+    font-size: 1.8rem
+
+  &__doctors
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 3rem
+    @include mix.laptop-s
+      grid-template-columns: repeat(2, 1fr)
+    @include mix.tablet
+      grid-template-columns: repeat(1, 1fr)
+      padding: 0 20%
+    @include mix.mobile-sm
+      padding: 0
+

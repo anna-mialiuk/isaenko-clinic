@@ -1,0 +1,44 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.toast
+    position: fixed
+    right: 2rem
+    bottom: 2rem
+    z-index: 1000
+    display: flex
+    align-items: center
+    gap: 1.2rem
+    max-width: 42rem
+    padding: 1.6rem 2rem
+    border-radius: 1.4rem
+    background: vars.$color-white
+    color: #1f1f1f
+    box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, .16)
+
+    @include mix.mobile
+        left: 1.5rem
+        right: 1.5rem
+        bottom: 1.5rem
+        max-width: none
+        padding: 1.4rem 1.6rem
+
+    &--success
+        border-left: .5rem solid #49b76d
+
+    &--error
+        border-left: .5rem solid #e05454
+
+    &__message
+        margin: 0
+        font-size: 1.5rem
+        line-height: 1.35
+
+    &__close
+        flex: 0 0 auto
+        border: 0
+        background: transparent
+        color: inherit
+        font-size: 2.4rem
+        line-height: 1
+        cursor: pointer

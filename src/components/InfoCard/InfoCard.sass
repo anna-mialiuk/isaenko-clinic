@@ -1,0 +1,20 @@
+@use "../../styles/variables" as vars
+
+.info-card
+    padding: 3.6rem 1.5rem 2.4rem
+    background: #f4f4f4
+    border-radius: 1.2rem
+    position: relative
+    cursor: pointer
+    overflow: hidden
+    transition: all .1s ease
+
+    &:hover
+        background: linear-gradient(324deg, vars.$gradient-pink-end, vars.$gradient-pink-start)
+        color: vars.$color-white
+
+    &__value
+        margin-bottom: 1rem
+
+        &--small
+            font-size: 2rem !important

@@ -1,0 +1,84 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.treatment-card
+  position: relative
+  display: flex
+  flex-direction: column
+  gap: 1.4rem
+  min-height: 17rem
+  padding: 3rem
+  border-radius: 1.2rem
+  background: #f4f4f4
+  overflow: hidden
+  transition: .3s ease
+  @include mix.laptop-big
+  padding: 2rem
+  gap: 2rem
+
+  &--horizontal
+    flex-direction: row
+    align-items: center
+
+  &:hover
+    background: linear-gradient(324deg, vars.$gradient-pink-end, vars.$gradient-pink-start)
+
+    .treatment-card__content
+      opacity: 0
+
+    .treatment-card__hover
+      opacity: 1
+
+  &__content
+    display: flex
+    flex-direction: inherit
+    align-items: inherit
+    gap: 1.4rem
+    transition: .3s ease
+
+  &__icon
+    width: 3.9rem
+    height: 4.6rem
+    object-fit: contain
+
+  &__title
+    color: vars.$color-dark
+    font-size: 2rem
+    font-weight: 400
+
+  &__hover
+    position: absolute
+    inset: 0
+    padding: 3rem
+    display: flex
+    gap: .7rem
+    opacity: 0
+    color: vars.$color-white
+    transition: .3s ease
+
+  &__hover-icon
+    width: 5.5rem
+    height: 5.5rem
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-shrink: 0
+    border-radius: 50%
+    background: vars.$color-white
+
+    img
+      width: 4.5rem
+      height: 4.5rem
+      object-fit: contain
+
+  &__hover-text
+    display: flex
+    flex-direction: column
+
+    strong
+      font-size: 2rem
+      font-weight: 500
+
+    span
+      font-size: 2rem
+      font-weight: 500

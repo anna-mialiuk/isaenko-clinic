@@ -1,0 +1,24 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.about-team-preview
+  padding: 0 0 12rem
+  background: vars.$color-light
+  @include mix.tablet
+    padding: 0 0 6rem 
+
+  &__container
+    @include mix.laptop-big
+      padding: 0 2rem
+
+  &__title
+    margin-bottom: 4rem
+    color: vars.$color-dark
+
+    span
+      color: vars.$color-primary
+
+  &__image
+    width: 100%
+    display: block
+    border-radius: 2.3rem

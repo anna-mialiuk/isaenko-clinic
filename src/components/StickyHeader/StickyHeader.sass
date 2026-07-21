@@ -1,0 +1,110 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.sticky-header
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 900
+  padding: 1.5rem 0
+  background: linear-gradient(354deg, vars.$gradient-pink-end, vars.$gradient-pink-start)
+  color: vars.$color-white
+  opacity: 0
+  visibility: hidden
+  pointer-events: none
+  transform: translateY(-100%)
+  transition: .35s ease
+  box-shadow: 0 1rem 3rem rgba(31, 31, 41, .08)
+
+  &--visible
+    opacity: 1
+    visibility: visible
+    pointer-events: auto
+    transform: translateY(0)
+
+  &__container
+    display: flex
+    flex-direction: column
+    gap: 2rem
+
+    @include mix.laptop-big
+      padding: 0 2rem
+
+  &__top,
+  &__bottom
+    @include mix.flex-between
+
+  &__logo img
+    width: 18rem
+
+  &__contacts,
+  &__menu,
+  &__nav,
+  &__select,
+  &__directions,
+  &__checkbox
+    @include mix.flex-center
+
+  &__contacts
+    gap: 3.2rem
+    font-size: 1.6rem
+    font-weight: 600
+
+  &__menu,
+  &__nav
+    gap: 3rem
+
+  &__nav
+    font-size: 1.6rem
+
+    a
+      transition: .3s ease
+
+      &:hover
+        color: vars.$color-primary
+      &.active
+        color: vars.$color-white
+        opacity: .4
+
+  &__burger
+    display: none
+
+  .hero__violet-button
+    color: vars.$color-primary
+    background: vars.$color-white
+
+    &:hover
+      color: vars.$color-white
+      background: vars.$color-primary
+
+  .hero__checkbox-text
+    color: vars.$color-white
+
+  .hero__checkbox-circle
+    background: #dc90a4
+    border-color: vars.$color-primary
+
+  .hero__checkbox-circle--active
+    border-color: transparent
+    
+  @include mix.laptop
+    &__contacts,
+    &__bottom
+      display: none
+
+    &__burger
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      gap: .7rem
+      width: 4.5rem
+      height: 4.5rem
+
+      span
+        display: block
+        width: 3.4rem
+        height: .3rem
+        border-radius: 2rem
+        background: vars.$color-white

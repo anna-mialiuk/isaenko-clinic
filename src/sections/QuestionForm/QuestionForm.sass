@@ -1,0 +1,156 @@
+@use "../../styles/variables" as vars
+@use "../../styles/mixins" as mix
+
+.question-form
+  padding: 0 10rem 12rem
+  background: vars.$color-white
+
+  @include mix.laptop-big
+    padding: 0 2rem 12rem
+
+  @include mix.tablet
+    padding: 0 2rem 6rem
+
+  @include mix.mobile
+    padding: 0 1.5rem 5rem
+
+  &__container
+    position: relative
+    display: grid
+    grid-template-columns: .8fr 1.2fr
+    gap: 8rem
+    padding: 6rem
+    box-sizing: border-box
+    border-radius: 2.2rem
+    background: linear-gradient(324deg, vars.$gradient-blue-end, vars.$gradient-blue-start)
+    color: vars.$color-white
+    overflow: hidden
+
+    @include mix.laptop-big
+      margin: 0 2rem
+
+    @include mix.laptop-s
+      grid-template-columns: 1fr
+      gap: 2rem
+
+    @include mix.tablet
+      padding: 2rem
+      margin: 0
+
+    @include mix.mobile
+      padding: 1.6rem
+      border-radius: 1.6rem
+
+    &::before
+      content: ""
+      position: absolute
+      inset: 0
+      background: url("/src/assets/images/decor/lines.svg") center / cover no-repeat
+      pointer-events: none
+      z-index: 0
+
+  &__content,
+  &__form
+    position: relative
+    z-index: 1
+
+  &__content
+    display: flex
+    flex-direction: column
+
+  &__title
+    margin-bottom: 1rem
+    line-height: 1.2
+
+    @include mix.mobile
+      font-size: 2.6rem
+
+  &__text
+    font-size: 2rem
+    line-height: 1.35
+
+    @include mix.mobile
+      font-size: 1.3rem
+
+  &__policy
+    margin-top: auto
+    color: vars.$color-white
+    opacity: .4
+    font-size: 1.4rem
+    line-height: 1.4
+
+    @include mix.laptop-s
+      margin-top: 2rem
+
+    @include mix.mobile
+      font-size: 1.1rem
+
+  &__form
+    display: flex
+    flex-direction: column
+    gap: 2rem
+    min-width: 0
+
+    @include mix.mobile
+      gap: 1.4rem
+
+    input,
+    textarea
+      width: 100%
+      box-sizing: border-box
+      padding: 2rem 2.4rem
+      border: none
+      border-radius: 1.2rem
+      background: #f4f4f4
+      color: hsla(0, 0%, 55%, .8)
+      font-size: 2rem
+      outline: none
+
+      @include mix.mobile
+        padding: 1.4rem 1.6rem
+        font-size: 1.4rem
+
+      &::placeholder
+        color: hsla(0, 0%, 55%, .8)
+
+    textarea
+      min-height: 12rem
+      resize: none
+
+      @include mix.mobile
+        min-height: 9rem
+
+    button
+      padding: 2rem
+      border-radius: 10rem
+      background: #000
+      color: vars.$color-white
+      font-size: 1.6rem
+      font-weight: 700
+      transition: .3s ease
+
+      @include mix.mobile
+        padding: 1.5rem
+        font-size: 1.4rem
+
+      &:hover
+        opacity: .9
+
+  &__field
+    display: flex
+    flex-direction: column
+
+  &__error
+    margin-top: .8rem
+    color: red
+    font-size: 2rem
+  &__success
+    color: vars.$color-white
+    font-size: 1.6rem
+    line-height: 1.4
+
+  &__honeypot
+    position: absolute
+    left: -9999px
+    opacity: 0
+    pointer-events: none
