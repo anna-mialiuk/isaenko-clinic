@@ -282,24 +282,6 @@ export default {
       ],
     },
 
-    'kolisnyk-maryna': {
-      name: 'Колісник Марина Григорівна',
-      experienceText: 'років досвіду',
-      position: 'Психолог',
-      description:
-        'Фахівець працює з проблеми в стосунках, особистісними проблемами внутрішнього самопочуття, пошуку себе.',
-      prices: [
-        {
-          service: 'Консультація',
-          duration: 'до 50 хвилин',
-        },
-        {
-          service: 'Сімейна консультація',
-          duration: 'до 90 хвилин',
-        },
-      ],
-    },
-
     'kovsh-vladyslava': {
       name: 'Ковш Владислава Олегівна',
       experienceText: 'років досвіду',
@@ -707,24 +689,6 @@ export default {
         {
           service: 'Психотерапия',
           duration: '50 минут',
-        },
-      ],
-    },
-
-    'kolisnyk-maryna': {
-      name: 'Колиснык Марина Григорьевна',
-      experienceText: 'лет опыта',
-      position: 'Психолог',
-      description:
-        'Специалист занимается проблемами в отношениях, личностными проблемами, связанными с внутренним самочувствием, и поиском себя.',
-      prices: [
-        {
-          service: 'Консультация',
-          duration: 'до 50 минут',
-        },
-        {
-          service: 'Семейная консультация',
-          duration: 'до 90 минут',
         },
       ],
     },
@@ -1137,24 +1101,6 @@ export default {
         {
           service: 'Psychotherapy',
           duration: '50 Minutes',
-        },
-      ],
-    },
-
-    'kolisnyk-maryna': {
-      name: 'Kolisnyk Maryna Hryhorivna',
-      experienceText: 'years of experience',
-      position: 'Psychologist',
-      description:
-        'The specialist works with problems in relationships, personal problems of inner well-being, and self-discovery',
-      prices: [
-        {
-          service: 'Psychologist',
-          duration: 'up to 50 Minutes',
-        },
-        {
-          service: 'Family consultation',
-          duration: 'up to 90 Minutes',
         },
       ],
     },

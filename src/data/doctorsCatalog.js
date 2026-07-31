@@ -9,9 +9,6 @@ export const HOME_MOBILE_DOCTOR_SLUGS = [
   'rudenko-tetiana',
 ]
 
-// Налаштування карток, які використовуються на головній сторінці.
-// Тексти лікарів зберігаються лише в src/locales/doctors.js та
-// src/locales/directionDoctors.js.
 const featuredDoctorSettings = [
   {
     id: 1,

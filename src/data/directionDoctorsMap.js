@@ -35,7 +35,6 @@ export const directionDoctorsMap = {
     'kozhevnikova-viktiriia',
     'korovina-lilia',
     'hytsal-kateryna',
-    'kolisnyk-maryna',
     'kovsh-vladyslava',
   ],
 
