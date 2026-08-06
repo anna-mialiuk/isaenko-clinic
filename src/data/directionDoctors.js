@@ -2,7 +2,7 @@ export const directionDoctors = [
   {
     slug: 'kozhyna-anna',
     name: 'Кожина Анна Михайлівна',
-    image: '/src/assets/images/doctors/doctor-8.webp',
+    image: '/images/doctors/doctor-8.webp',
     cities: ['kyiv'],
     online: true,
     experience: '30+',
@@ -34,7 +34,7 @@ export const directionDoctors = [
   {
     slug: 'heorhievska-natalia',
     name: 'Георгієвська Наталія Володимирівна',
-    image: '/src/assets/images/doctors/doctor-3.webp',
+    image: '/images/doctors/doctor-3.webp',
     cities: [''],
     online: true,
     experience: '20+',
@@ -65,7 +65,7 @@ export const directionDoctors = [
   {
     slug: 'tsebriuk-kateryna',
     name: 'Цебрюк Катерина Олегівна',
-    image: '/src/assets/images/doctors/doctor-4.webp',
+    image: '/images/doctors/doctor-4.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '5+',
@@ -96,7 +96,7 @@ export const directionDoctors = [
   {
     slug: 'shylina-natalia',
     name: 'Шиліна Наталія Сергіївна',
-    image: '/src/assets/images/doctors/doctor-9.webp',
+    image: '/images/doctors/doctor-9.webp',
     cities: ['kyiv'],
     online: true,
     experience: '30+',
@@ -123,7 +123,7 @@ export const directionDoctors = [
   {
     slug: 'sharpan-yulia',
     name: 'Шарпан Юлія Андріївна',
-    image: '/src/assets/images/doctors/doctor-10.webp',
+    image: '/images/doctors/doctor-10.webp',
     cities: [''],
     online: true,
     experience: '11+',
@@ -159,7 +159,7 @@ export const directionDoctors = [
   {
     slug: 'shvets-yulia',
     name: 'Швець Юлія Олексіївна',
-    image: '/src/assets/images/doctors/doctor-11.webp',
+    image: '/images/doctors/doctor-11.webp',
     cities: ['kyiv'],
     online: true,
     experience: '19',
@@ -191,7 +191,7 @@ export const directionDoctors = [
   {
     slug: 'korovina-lilia',
     name: 'Коровіна Лілія Дмитрівна',
-    image: '/src/assets/images/doctors/doctor-13.webp',
+    image: '/images/doctors/doctor-13.webp',
     cities: ['kyiv'],
     online: true,
     experience: '20',
@@ -224,7 +224,7 @@ export const directionDoctors = [
   {
     slug: 'matsiuk-anna',
     name: 'Мацюк Анна Романівна',
-    image: '/src/assets/images/doctors/doctor-2.webp',
+    image: '/images/doctors/doctor-2.webp',
     cities: ['kyiv'],
     online: true,
     experience: '5+',
@@ -255,7 +255,7 @@ export const directionDoctors = [
   {
     slug: 'mykhailov-borys',
     name: 'Михайлов Борис Володимирович',
-    image: '/src/assets/images/doctors/doctor-14.webp',
+    image: '/images/doctors/doctor-14.webp',
     cities: [''],
     online: true,
     experience: '40+',
@@ -277,7 +277,7 @@ export const directionDoctors = [
   {
     slug: 'scrynnyk-olha',
     name: 'Скринник Ольга Вячеславівна',
-    image: '/src/assets/images/doctors/doctor-15.webp',
+    image: '/images/doctors/doctor-15.webp',
     cities: ['kyiv'],
     online: true,
     experience: '25+',
@@ -309,7 +309,7 @@ export const directionDoctors = [
   {
     slug: 'bandeliani-iryna',
     name: 'Банделіані Ірина Елгуджівна',
-    image: '/src/assets/images/doctors/doctor-16.webp',
+    image: '/images/doctors/doctor-16.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '20+',
@@ -336,7 +336,7 @@ export const directionDoctors = [
   {
     slug: 'dorozhko-yulia',
     name: 'Дорожко Юлія Олексіївна',
-    image: '/src/assets/images/doctors/doctor-17.webp',
+    image: '/images/doctors/doctor-17.webp',
     cities: ['kyiv'],
     online: true,
     experience: '15',
@@ -363,7 +363,7 @@ export const directionDoctors = [
   {
     slug: 'iavorska-maria',
     name: 'Яворська Марія Вадимівна',
-    image: '/src/assets/images/doctors/doctor-18.webp',
+    image: '/images/doctors/doctor-18.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '3+',
@@ -390,7 +390,7 @@ export const directionDoctors = [
   {
     slug: 'kozhevnikova-viktiriia',
     name: 'Кожевнікова Вікторія Анатоліївна',
-    image: '/src/assets/images/doctors/doctor-6.webp',
+    image: '/images/doctors/doctor-6.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '30+',
@@ -421,7 +421,7 @@ export const directionDoctors = [
   {
     slug: 'hytsal-kateryna',
     name: 'Гуцал Катерина Віталіївна',
-    image: '/src/assets/images/doctors/doctor-19.webp',
+    image: '/images/doctors/doctor-19.webp',
     cities: [''],
     online: true,
     experience: '5+',
@@ -445,9 +445,36 @@ export const directionDoctors = [
   },
 
   {
+    slug: 'marchenko-maryna',
+    name: 'Марченко Марина Миколаївна',
+    image: '/images/doctors/doctor-20.webp',
+    cities: ['kharkiv'],
+    online: false,
+    experience: '16+',
+    experienceText: 'років досвіду',
+    position: 'Лікар-психіатр',
+    reelsLink: '',
+    hasHover: true,
+    description:
+      'Провідний фахівець у галузі терапії тривожно-депресивних розладів, ПТСР,  психосоматичних та соматоформних розладів, порушень сну.',
+    prices: [
+      {
+        service: 'Первинна консультація',
+        duration: '45 хвилин',
+        price: '2200 грн.',
+      },
+      {
+        service: 'Повторна консультація',
+        duration: '30 хвилин',
+        price: '1400 грн.',
+      },
+    ],
+  },
+
+  {
     slug: 'kovsh-vladyslava',
     name: 'Ковш Владислава Олегівна',
-    image: '/src/assets/images/doctors/doctor-21.webp',
+    image: '/images/doctors/doctor-21.webp',
     cities: ['kyiv'],
     online: true,
     experience: '3+',
@@ -469,7 +496,7 @@ export const directionDoctors = [
   {
     slug: 'tovazhnianska-olena',
     name: 'Товажнянська Олена Леонідівна',
-    image: '/src/assets/images/doctors/doctor-22.webp',
+    image: '/images/doctors/doctor-22.webp',
     cities: ['kyiv'],
     online: true,
     experience: '34+',
@@ -495,7 +522,7 @@ export const directionDoctors = [
   {
     slug: 'bovt-yuliia',
     name: 'Бовт Юлія Вікторівна',
-    image: '/src/assets/images/doctors/doctor-23.webp',
+    image: '/images/doctors/doctor-23.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '30+',
@@ -516,7 +543,7 @@ export const directionDoctors = [
   {
     slug: 'bilyk-liudmyla',
     name: 'Білик Людмила Ігорівна',
-    image: '/src/assets/images/doctors/doctor-24.webp',
+    image: '/images/doctors/doctor-24.webp',
     cities: [''],
     online: true,
     experience: '12',
@@ -537,7 +564,7 @@ export const directionDoctors = [
   {
     slug: 'zabrodina-liudmyla',
     name: 'Забродіна Людмила Петрівна',
-    image: '/src/assets/images/doctors/doctor-25.webp',
+    image: '/images/doctors/doctor-25.webp',
     cities: ['kharkiv'],
     online: false,
     experience: '35+',
@@ -558,9 +585,9 @@ export const directionDoctors = [
   {
     slug: 'rudenko-tetiana',
     name: 'Руденко Тетяна Анатоліївна',
-    image: '/src/assets/images/doctors/doctor-7.webp',
+    image: '/images/doctors/doctor-7.webp',
     cities: ['kharkiv'],
-    online: true,
+    online: false,
     experience: '15+',
     experienceText: 'років досвіду',
     position: 'Кандидат медичних наук, доцент, лікар-терапевт, лікар УЗД, лікар-кардіолог',
@@ -599,7 +626,7 @@ export const directionDoctors = [
   {
     slug: 'medianyk-nataliia',
     name: 'Медяник Наталія Сергіївна',
-    image: '/src/assets/images/doctors/doctor-26.webp',
+    image: '/images/doctors/doctor-26.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '7',
@@ -621,7 +648,7 @@ export const directionDoctors = [
   {
     slug: 'khilchevska-kateryna',
     name: 'Хільчевська Катерина Олександрівна',
-    image: '/src/assets/images/doctors/doctor-27.webp',
+    image: '/images/doctors/doctor-27.webp',
     cities: ['kharkiv'],
     online: true,
     experience: '3+',

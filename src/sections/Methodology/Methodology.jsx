@@ -24,7 +24,7 @@ function Methodology({ variant = 'kharkiv' }) {
 
           <div className="methodology__scheme">
             <div className="methodology__center">
-              <img src="/src/assets/images/logos/big-full-logo.svg" alt="logo" />
+              <img src="/images/logos/big-full-logo.svg" alt="logo" />
             </div>
 
             {methodology.items.map((item, index) => (

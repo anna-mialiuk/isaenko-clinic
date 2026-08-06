@@ -10,7 +10,7 @@ function LanguageSelect() {
         {language === 'en' && 'EN'}
         {language === 'ru' && 'RU'}
 
-        <img src="/src/assets/images/icons/white-arrow.svg" alt="" />
+        <img src="/images/icons/white-arrow.svg" alt="" />
       </button>
 
       <div className="hero__language-dropdown">

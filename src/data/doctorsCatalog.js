@@ -19,7 +19,7 @@ const featuredDoctorSettings = [
     directions: ['psychiatrist', 'psychotherapist'],
     cities: ['kharkiv', 'kyiv'],
     experience: '10+',
-    image: '/src/assets/images/doctors/doctor-1.webp',
+    image: '/images/doctors/doctor-1.webp',
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const featuredDoctorSettings = [
     hasHover: true,
     cities: ['kharkiv'],
     experience: '5+',
-    image: '/src/assets/images/doctors/doctor-2.webp',
+    image: '/images/doctors/doctor-2.webp',
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const featuredDoctorSettings = [
     hasHover: true,
     cities: ['kharkiv'],
     experience: '20+',
-    image: '/src/assets/images/doctors/doctor-3.webp',
+    image: '/images/doctors/doctor-3.webp',
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const featuredDoctorSettings = [
     hasHover: true,
     cities: ['kharkiv'],
     experience: '3+',
-    image: '/src/assets/images/doctors/doctor-4.webp',
+    image: '/images/doctors/doctor-4.webp',
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const featuredDoctorSettings = [
     hasHover: true,
     cities: ['kharkiv'],
     experience: '14+',
-    image: '/src/assets/images/doctors/doctor-5.webp',
+    image: '/images/doctors/doctor-5.webp',
   },
   {
     id: 6,
@@ -64,7 +64,7 @@ const featuredDoctorSettings = [
     hasHover: true,
     cities: ['kharkiv'],
     experience: '30+',
-    image: '/src/assets/images/doctors/doctor-6.webp',
+    image: '/images/doctors/doctor-6.webp',
   },
   {
     id: 7,
@@ -73,7 +73,7 @@ const featuredDoctorSettings = [
     hasHover: true,
     cities: ['kharkiv'],
     experience: '15+',
-    image: '/src/assets/images/doctors/doctor-7.webp',
+    image: '/images/doctors/doctor-7.webp',
   },
 ]
 

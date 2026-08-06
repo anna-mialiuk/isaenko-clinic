@@ -19,7 +19,7 @@ function Founder({ quote }) {
 
         <div className="founder__content">
           <div className="founder__quote-icon">
-            <img src="/src/assets/images/decor/quotes.svg" alt="icon" />
+            <img src="/images/decor/quotes.svg" alt="icon" />
           </div>
 
           <blockquote className="founder__quote">{quote ?? content.quote}</blockquote>
@@ -28,7 +28,7 @@ function Founder({ quote }) {
             <img
               loading="lazy"
               decoding="async"
-              src="/src/assets/images/doctors/founder-avatar.webp"
+              src="/images/doctors/founder-avatar.webp"
               alt={founder.name}
               className="founder__avatar"
             />

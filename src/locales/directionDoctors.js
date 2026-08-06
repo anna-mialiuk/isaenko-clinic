@@ -282,6 +282,24 @@ export default {
       ],
     },
 
+    'marchenko-maryna': {
+      name: 'Марченко Марина Миколаївна',
+      experienceText: 'років досвіду',
+      position: 'Лікар-психіатр',
+      description:
+        'Провідний фахівець у галузі терапії тривожно-депресивних розладів, ПТСР,  психосоматичних та соматоформних розладів, порушень сну.',
+      prices: [
+        {
+          service: 'Первинна консультація',
+          duration: '45 хвилин',
+        },
+        {
+          service: 'Повторна консультація',
+          duration: '30 хвилин',
+        },
+      ],
+    },
+
     'kovsh-vladyslava': {
       name: 'Ковш Владислава Олегівна',
       experienceText: 'років досвіду',
@@ -689,6 +707,24 @@ export default {
         {
           service: 'Психотерапия',
           duration: '50 минут',
+        },
+      ],
+    },
+
+    'marchenko-maryna': {
+      name: 'Марченко Марина Николаевна',
+      experienceText: 'лет опыта',
+      position: 'Врач-психиатр',
+      description:
+        'Ведущий специалист в области лечения тревожно-депрессивных расстройств, ПТСР, психосоматических и соматоформных расстройств, нарушений сна.',
+      prices: [
+        {
+          service: 'Первичная консультация',
+          duration: '45 минут',
+        },
+        {
+          service: 'Повторная консультация',
+          duration: '30 минут',
         },
       ],
     },
@@ -1101,6 +1137,25 @@ export default {
         {
           service: 'Psychotherapy',
           duration: '50 Minutes',
+        },
+      ],
+    },
+
+    'marchenko-maryna': {
+      name: 'Marcenko Maryna Mykolaivna',
+      experienceText: 'years of experience',
+      position: 'Psychiatrist',
+      description:
+        'A leading specialist in the treatment of anxiety and depressive disorders, PTSD, psychosomatic and somatoform disorders, and sleep disorders.',
+      prices: [
+        {
+          service: 'Initial Consultation',
+          duration: '45 Minutes',
+        },
+
+        {
+          service: 'Follow-up Consultation',
+          duration: '30 Minutes',
         },
       ],
     },

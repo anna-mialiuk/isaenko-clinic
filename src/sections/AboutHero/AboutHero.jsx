@@ -6,7 +6,7 @@ function AboutHero() {
 
   return (
     <ContentSection
-      image="/src/assets/images/about/about-hero.webp"
+      image="/images/about/about-hero.webp"
       imageAlt="Dr. Isaenko"
       imageHeight="50rem"
       imagePosition="center top"

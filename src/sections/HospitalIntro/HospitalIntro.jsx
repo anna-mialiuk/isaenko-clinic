@@ -11,7 +11,7 @@ function HospitalIntro() {
       className="hospital-intro"
       titleClass="hospital-intro__title"
       title={hospitalIntro.title}
-      image="/src/assets/images/hospital/hospital-intro.webp"
+      image="/images/hospital/hospital-intro.webp"
       imageAlt={hospitalIntro.imageAlt}
       imagePosition="center"
     >

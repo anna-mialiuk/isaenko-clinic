@@ -12,7 +12,7 @@ function AboutTeamPreview() {
         <img
           loading="lazy"
           decoding="async"
-          src="/src/assets/images/team/our-team.webp"
+          src="/images/team/our-team.webp"
           alt={aboutTeamPreview.imageAlt}
           className="about-team-preview__image"
         />

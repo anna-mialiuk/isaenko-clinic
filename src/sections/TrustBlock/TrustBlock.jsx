@@ -62,7 +62,7 @@ function TrustBlock({
               loading="lazy"
               decoding="async"
               className="trust-block__big-circle pink-circle"
-              src="/src/assets/images/decor/pink-circle.svg"
+              src="/images/decor/pink-circle.svg"
               alt=""
             />
           </div>
@@ -71,7 +71,7 @@ function TrustBlock({
             loading="lazy"
             decoding="async"
             className="trust-block__small-circle pink-circle"
-            src="/src/assets/images/decor/pink-circle.svg"
+            src="/images/decor/pink-circle.svg"
             alt=""
           />
         </div>

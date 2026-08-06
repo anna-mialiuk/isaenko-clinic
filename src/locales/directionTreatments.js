@@ -3,7 +3,7 @@ export default {
     {
       slug: 'anxiety',
       title: 'Тривога',
-      icon: '/src/assets/images/directions/anxiety.webp',
+      icon: '/images/directions/anxiety.webp',
       horizontal: false,
       hover: {
         number: '30000',
@@ -13,7 +13,7 @@ export default {
     {
       slug: 'panic-attacks',
       title: 'Панічні атаки',
-      icon: '/src/assets/images/directions/panic.webp',
+      icon: '/images/directions/panic.webp',
       horizontal: false,
       hover: {
         number: '350000',
@@ -23,7 +23,7 @@ export default {
     {
       slug: 'postpartum-depression',
       title: 'Післяпологові депресії, психози',
-      icon: '/src/assets/images/directions/postpartum.webp',
+      icon: '/images/directions/postpartum.webp',
       horizontal: true,
       hover: {
         number: '150000',
@@ -33,7 +33,7 @@ export default {
     {
       slug: 'depression',
       title: 'Депресія',
-      icon: '/src/assets/images/directions/depression.webp',
+      icon: '/images/directions/depression.webp',
       horizontal: false,
       hover: {
         number: '300000',
@@ -43,7 +43,7 @@ export default {
     {
       slug: 'bipolar-disorder',
       title: 'Біполярний розлад та схожі психічні стани',
-      icon: '/src/assets/images/directions/bipolar-disorder.webp',
+      icon: '/images/directions/bipolar-disorder.webp',
       horizontal: true,
       hover: {
         number: '150000',
@@ -53,7 +53,7 @@ export default {
     {
       slug: 'gambling-addiction',
       title: 'Лудоманія',
-      icon: '/src/assets/images/directions/gambling-addiction.webp',
+      icon: '/images/directions/gambling-addiction.webp',
       horizontal: false,
       hover: {
         number: '90000',
@@ -63,7 +63,7 @@ export default {
     {
       slug: 'drug-addiction',
       title: 'Наркотична залежність та реабілітація',
-      icon: '/src/assets/images/directions/drug-addiction.webp',
+      icon: '/images/directions/drug-addiction.webp',
       horizontal: true,
       hover: {
         number: '5000',
@@ -73,7 +73,7 @@ export default {
     {
       slug: 'alcoholism',
       title: 'Алкогольна залежність та її наслідки',
-      icon: '/src/assets/images/directions/alcoholism.webp',
+      icon: '/images/directions/alcoholism.webp',
       horizontal: true,
       hover: {
         number: '60000',
@@ -83,7 +83,7 @@ export default {
     {
       slug: 'personality-and-behavioral-disorders',
       title: 'Розлад особистості та поведінки',
-      icon: '/src/assets/images/directions/personality-and-behavioral-disorders.webp',
+      icon: '/images/directions/personality-and-behavioral-disorders.webp',
       horizontal: true,
       hover: {
         number: '120000',
@@ -93,7 +93,7 @@ export default {
     {
       slug: 'child-psychiatry',
       title: 'Дитяча психіатрія',
-      icon: '/src/assets/images/directions/child-psychiatry.webp',
+      icon: '/images/directions/child-psychiatry.webp',
       horizontal: false,
       hover: {
         number: '7000',
@@ -103,7 +103,7 @@ export default {
     {
       slug: 'family-relations',
       title: 'Сімейні стосунки',
-      icon: '/src/assets/images/directions/family-relations.webp',
+      icon: '/images/directions/family-relations.webp',
       horizontal: false,
       hover: {
         number: '35000 +',
@@ -113,7 +113,7 @@ export default {
     {
       slug: 'schizophrenia',
       title: 'Шизофренія',
-      icon: '/src/assets/images/directions/schizophrenia.webp',
+      icon: '/images/directions/schizophrenia.webp',
       horizontal: false,
       hover: {
         number: '150000',
@@ -126,7 +126,7 @@ export default {
     {
       slug: 'anxiety',
       title: 'Тревога',
-      icon: '/src/assets/images/directions/anxiety.webp',
+      icon: '/images/directions/anxiety.webp',
       horizontal: false,
       hover: {
         number: '30000',
@@ -136,7 +136,7 @@ export default {
     {
       slug: 'panic-attacks',
       title: 'Панические атаки',
-      icon: '/src/assets/images/directions/panic.webp',
+      icon: '/images/directions/panic.webp',
       horizontal: false,
       hover: {
         number: '350000',
@@ -146,7 +146,7 @@ export default {
     {
       slug: 'postpartum-depression',
       title: 'Послеродовая депрессия, психозы',
-      icon: '/src/assets/images/directions/postpartum.webp',
+      icon: '/images/directions/postpartum.webp',
       horizontal: true,
       hover: {
         number: '150000',
@@ -156,7 +156,7 @@ export default {
     {
       slug: 'depression',
       title: 'Депрессия',
-      icon: '/src/assets/images/directions/depression.webp',
+      icon: '/images/directions/depression.webp',
       horizontal: false,
       hover: {
         number: '300000',
@@ -166,7 +166,7 @@ export default {
     {
       slug: 'bipolar-disorder',
       title: 'Биполярное расстройство и похожие психические состояния',
-      icon: '/src/assets/images/directions/bipolar-disorder.webp',
+      icon: '/images/directions/bipolar-disorder.webp',
       horizontal: true,
       hover: {
         number: '150000',
@@ -176,7 +176,7 @@ export default {
     {
       slug: 'gambling-addiction',
       title: 'Лудомания',
-      icon: '/src/assets/images/directions/gambling-addiction.webp',
+      icon: '/images/directions/gambling-addiction.webp',
       horizontal: false,
       hover: {
         number: '90000',
@@ -186,7 +186,7 @@ export default {
     {
       slug: 'drug-addiction',
       title: 'Наркотическая зависимость и реабилитация',
-      icon: '/src/assets/images/directions/drug-addiction.webp',
+      icon: '/images/directions/drug-addiction.webp',
       horizontal: true,
       hover: {
         number: '5000',
@@ -196,7 +196,7 @@ export default {
     {
       slug: 'alcoholism',
       title: 'Алкогольная зависимость и её последствия',
-      icon: '/src/assets/images/directions/alcoholism.webp',
+      icon: '/images/directions/alcoholism.webp',
       horizontal: true,
       hover: {
         number: '60000',
@@ -206,7 +206,7 @@ export default {
     {
       slug: 'personality-and-behavioral-disorders',
       title: 'Расстройства личности и поведения',
-      icon: '/src/assets/images/directions/personality-and-behavioral-disorders.webp',
+      icon: '/images/directions/personality-and-behavioral-disorders.webp',
       horizontal: true,
       hover: {
         number: '120000',
@@ -216,7 +216,7 @@ export default {
     {
       slug: 'child-psychiatry',
       title: 'Детская психиатрия',
-      icon: '/src/assets/images/directions/child-psychiatry.webp',
+      icon: '/images/directions/child-psychiatry.webp',
       horizontal: false,
       hover: {
         number: '7000',
@@ -226,7 +226,7 @@ export default {
     {
       slug: 'family-relations',
       title: 'Семейные отношения',
-      icon: '/src/assets/images/directions/family-relations.webp',
+      icon: '/images/directions/family-relations.webp',
       horizontal: false,
       hover: {
         number: '35000 +',
@@ -236,7 +236,7 @@ export default {
     {
       slug: 'schizophrenia',
       title: 'Шизофрения',
-      icon: '/src/assets/images/directions/schizophrenia.webp',
+      icon: '/images/directions/schizophrenia.webp',
       horizontal: false,
       hover: {
         number: '150000',
@@ -249,7 +249,7 @@ export default {
     {
       slug: 'anxiety',
       title: 'Anxiety',
-      icon: '/src/assets/images/directions/anxiety.webp',
+      icon: '/images/directions/anxiety.webp',
       horizontal: false,
       hover: {
         number: '30000',
@@ -259,7 +259,7 @@ export default {
     {
       slug: 'panic-attacks',
       title: 'Panic attacks',
-      icon: '/src/assets/images/directions/panic.webp',
+      icon: '/images/directions/panic.webp',
       horizontal: false,
       hover: {
         number: '350000',
@@ -269,7 +269,7 @@ export default {
     {
       slug: 'postpartum-depression',
       title: 'Postpartum depression, psychosis',
-      icon: '/src/assets/images/directions/postpartum.webp',
+      icon: '/images/directions/postpartum.webp',
       horizontal: true,
       hover: {
         number: '150000',
@@ -279,7 +279,7 @@ export default {
     {
       slug: 'depression',
       title: 'Depression',
-      icon: '/src/assets/images/directions/depression.webp',
+      icon: '/images/directions/depression.webp',
       horizontal: false,
       hover: {
         number: '300000',
@@ -289,7 +289,7 @@ export default {
     {
       slug: 'bipolar-disorder',
       title: 'Bipolar disorder and similar mental states',
-      icon: '/src/assets/images/directions/bipolar-disorder.webp',
+      icon: '/images/directions/bipolar-disorder.webp',
       horizontal: true,
       hover: {
         number: '150000',
@@ -299,7 +299,7 @@ export default {
     {
       slug: 'gambling-addiction',
       title: 'Gambling addiction',
-      icon: '/src/assets/images/directions/gambling-addiction.webp',
+      icon: '/images/directions/gambling-addiction.webp',
       horizontal: false,
       hover: {
         number: '90000',
@@ -309,7 +309,7 @@ export default {
     {
       slug: 'drug-addiction',
       title: 'Drug addiction and rehabilitation',
-      icon: '/src/assets/images/directions/drug-addiction.webp',
+      icon: '/images/directions/drug-addiction.webp',
       horizontal: true,
       hover: {
         number: '5000',
@@ -319,7 +319,7 @@ export default {
     {
       slug: 'alcoholism',
       title: 'Alcohol addiction and its consequences',
-      icon: '/src/assets/images/directions/alcoholism.webp',
+      icon: '/images/directions/alcoholism.webp',
       horizontal: true,
       hover: {
         number: '60000',
@@ -329,7 +329,7 @@ export default {
     {
       slug: 'personality-and-behavioral-disorders',
       title: 'Personality and behavioral disorders',
-      icon: '/src/assets/images/directions/personality-and-behavioral-disorders.webp',
+      icon: '/images/directions/personality-and-behavioral-disorders.webp',
       horizontal: true,
       hover: {
         number: '120000',
@@ -339,7 +339,7 @@ export default {
     {
       slug: 'child-psychiatry',
       title: 'Child psychiatry',
-      icon: '/src/assets/images/directions/child-psychiatry.webp',
+      icon: '/images/directions/child-psychiatry.webp',
       horizontal: false,
       hover: {
         number: '7000',
@@ -349,7 +349,7 @@ export default {
     {
       slug: 'family-relations',
       title: 'Family relationships',
-      icon: '/src/assets/images/directions/family-relations.webp',
+      icon: '/images/directions/family-relations.webp',
       horizontal: false,
       hover: {
         number: '35000 +',
@@ -359,7 +359,7 @@ export default {
     {
       slug: 'schizophrenia',
       title: 'Schizophrenia',
-      icon: '/src/assets/images/directions/schizophrenia.webp',
+      icon: '/images/directions/schizophrenia.webp',
       horizontal: false,
       hover: {
         number: '150000',

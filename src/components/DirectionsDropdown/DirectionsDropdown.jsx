@@ -17,11 +17,7 @@ function DirectionsDropdown({ variant = 'kharkiv' }) {
   return (
     <div className="hero__directions-wrapper">
       <button type="button" className="hero__directions">
-        <img
-          src="/src/assets/images/icons/directions-icon.svg"
-          alt=""
-          className="hero__directions-icon"
-        />
+        <img src="/images/icons/directions-icon.svg" alt="" className="hero__directions-icon" />
 
         {buttonLabels[language]}
       </button>

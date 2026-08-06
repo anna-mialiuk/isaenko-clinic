@@ -46,7 +46,7 @@ function Footer({ variant = 'kharkiv' }) {
 
             <a href={data.socials.instagram} className="footer__instagram">
               <img
-                src="/src/assets/images/social/instagram.svg"
+                src="/images/social/instagram.svg"
                 alt="Dr. Isaenko Instagram"
                 className="footer__instagram-logo"
               />
@@ -76,7 +76,7 @@ function Footer({ variant = 'kharkiv' }) {
 
               <a href={data.socials.whatsapp} className="footer__messengers-link">
                 <img
-                  src="/src/assets/images/social/whats-app.svg"
+                  src="/images/social/whats-app.svg"
                   alt="WhatsApp"
                   className="footer__link-icon"
                 />
@@ -85,7 +85,7 @@ function Footer({ variant = 'kharkiv' }) {
 
               <a href={data.socials.telegram} className="footer__messengers-link">
                 <img
-                  src="/src/assets/images/social/telegram.svg"
+                  src="/images/social/telegram.svg"
                   alt="Telegram"
                   className="footer__link-icon"
                 />

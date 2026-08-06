@@ -8,7 +8,7 @@ function AboutCenter() {
   return (
     <ContentSection
       id="about"
-      image="/src/assets/images/about/about-center.webp"
+      image="/images/about/about-center.webp"
       imageAlt="Dr. Isaenko clinic"
       imageHeight="80rem"
       title={content.title}

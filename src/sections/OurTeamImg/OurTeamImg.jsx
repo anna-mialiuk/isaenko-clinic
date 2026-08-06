@@ -8,7 +8,7 @@ function OurTeamImg() {
           loading="lazy"
           decoding="async"
           className="our-team-img__img"
-          src="/src/assets/images/team/our-team.webp"
+          src="/images/team/our-team.webp"
           alt="Our team"
         />
       </div>

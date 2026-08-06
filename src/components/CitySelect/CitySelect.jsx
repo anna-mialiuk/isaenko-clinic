@@ -8,7 +8,7 @@ function CitySelect({ city, setCity, currentCity }) {
     <div className="hero__city">
       <button type="button" className="hero__select">
         {currentCity.name[language]}
-        <img src="/src/assets/images/icons/white-arrow.svg" alt="" />
+        <img src="/images/icons/white-arrow.svg" alt="" />
       </button>
 
       <div className="hero__city-dropdown">

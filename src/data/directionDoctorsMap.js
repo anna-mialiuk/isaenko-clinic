@@ -12,6 +12,7 @@ export const directionDoctorsMap = {
     'bandeliani-iryna',
     'dorozhko-yulia',
     'iavorska-maria',
+    'marchenko-maryna',
     'tsebriuk-kateryna',
   ],
 

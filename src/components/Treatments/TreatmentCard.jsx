@@ -14,7 +14,7 @@ function TreatmentCard({ treatment }) {
       {treatment.hover && (
         <div className="treatment-card__hover">
           <div className="treatment-card__hover-icon">
-            <img src="/src/assets/images/logos/big-full-logo.svg" alt="" />
+            <img src="/images/logos/big-full-logo.svg" alt="" />
           </div>
 
           <div className="treatment-card__hover-text">
