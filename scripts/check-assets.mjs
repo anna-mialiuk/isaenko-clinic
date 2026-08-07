@@ -4,7 +4,7 @@ import { extname, join, resolve } from 'node:path'
 const rootDir = resolve(import.meta.dirname, '..')
 const sourceExtensions = new Set(['.js', '.jsx', '.ts', '.tsx', '.sass', '.scss', '.css', '.html'])
 const ignoredDirectories = new Set(['node_modules', 'dist', '.git'])
-const assetRegex = /\/src\/assets\/[^"'`)\s]+/g
+const assetRegex = /\/images\/[^"'`)\s]+/g
 const missing = new Set()
 const references = new Set()
 
@@ -28,7 +28,7 @@ function walk(directory) {
     matches.forEach((assetPath) => {
       references.add(assetPath)
 
-      if (!existsSync(resolve(rootDir, `.${assetPath}`))) {
+      if (!existsSync(resolve(rootDir, `public${assetPath}`))) {
         missing.add(assetPath)
       }
     })

@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "sitemap": "node scripts/generate-sitemap.mjs",
-    "copy:assets": "node scripts/copy-src-assets.mjs",
     "check:assets": "node scripts/check-assets.mjs",
     "check:doctors": "node scripts/check-doctors.mjs",
     "check": "npm run lint && npm run check:doctors && npm run check:assets && npm run build",

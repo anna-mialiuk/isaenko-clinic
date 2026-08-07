@@ -1,4 +1,3 @@
-import checkIcon from '../../assets/images/icons/check.svg'
 import { offerAgreementUrl } from '../../data/legal'
 import { useLocale } from '../../hooks/useLocale'
 
@@ -16,7 +15,9 @@ function AgreementCheckbox({ block, isChecked, onToggle }) {
         onClick={onToggle}
         aria-label={content.aria}
       >
-        {isChecked && <img src={checkIcon} alt="" className={`${block}__checkbox-icon`} />}
+        {isChecked && (
+          <img src="/images/icons/check.svg" alt="" className={`${block}__checkbox-icon`} />
+        )}
       </button>
 
       <div className={`${block}__checkbox-text`}>

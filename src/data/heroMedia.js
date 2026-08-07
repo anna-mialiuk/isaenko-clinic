@@ -1,11 +1,8 @@
-import heroKharkiv from '../assets/images/hero/hero-kharkiv.webp'
-import heroKyiv from '../assets/images/hero/hero-kyiv.webp'
-
 export const heroMedia = {
   kharkiv: {
-    background: heroKharkiv,
+    background: '/images/hero/hero-kharkiv.webp',
   },
   kyiv: {
-    background: heroKyiv,
+    background: '/images/hero/hero-kyiv.webp',
   },
 }

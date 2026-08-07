@@ -2,7 +2,6 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { heroMedia } from '../../data/heroMedia'
-import heroGradient from '../../assets/images/hero/hero-gradient.webp'
 
 import HeaderContent from '../../components/HeaderContent/HeaderContent'
 import MobileMenu from '../../components/MobileMenu/MobileMenu'
@@ -56,7 +55,7 @@ function Hero({ variant = 'kharkiv' }) {
         ref={heroRef}
         style={{
           '--hero-bg': `url(${heroData.background})`,
-          '--hero-gradient': `url(${heroGradient})`,
+          '--hero-gradient': 'url(/images/hero/hero-gradient.webp)',
         }}
       >
         <div className="container hero__container">
