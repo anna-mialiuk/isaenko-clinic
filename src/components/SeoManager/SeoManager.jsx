@@ -221,8 +221,10 @@ function SeoManager() {
     setMeta('description', description)
     setMeta('robots', content.isNotFound ? 'noindex, nofollow' : 'index, follow')
 
-    setCanonical(canonicalUrl)
-    setAlternate(canonicalUrl)
+    const canonicalPath = getAbsoluteUrl(normalizePath(pathname))
+
+    setCanonical(canonicalPath)
+    setAlternate(canonicalPath)
 
     setPropertyMeta('og:type', 'website')
     setPropertyMeta('og:site_name', seo.siteName || 'Dr. Isaenko')
