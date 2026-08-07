@@ -12,21 +12,5 @@ export default defineConfig({
   },
   build: {
     cssCodeSplit: false,
-    rollupOptions: {
-      output: {
-        advancedChunks: {
-          groups: [
-            {
-              name: 'vendor',
-              test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|scheduler)[\\/]/,
-            },
-            {
-              name: 'locales',
-              test: /[\\/]src[\\/]locales[\\/]/,
-            },
-          ],
-        },
-      },
-    },
   },
 })
