@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
 
+require_once __DIR__ . '/ga4-mp.php';
+
 $rawBody = file_get_contents('php://input');
 $data = json_decode($rawBody, true);
 
@@ -23,6 +25,12 @@ $message = trim($data['message'] ?? '');
 $company = trim($data['company'] ?? '');
 $language = trim($data['language'] ?? 'uk');
 $page = trim($data['page'] ?? '');
+
+// Поля для GA4 Measurement Protocol.
+$eventId     = trim($data['event_id'] ?? '');
+$formName    = trim($data['form_name'] ?? 'question_form');
+$gaClientId  = trim($data['ga_client_id'] ?? '');
+$gaSessionId = trim($data['ga_session_id'] ?? '');
 
 if ($company !== '') {
   echo json_encode(['success' => true]);
@@ -99,4 +107,19 @@ if (!$sentToTelegram && !$sentToEmail) {
   error_log(html_entity_decode($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
 }
 
-echo json_encode(['success' => true]);
+// --- GA4: generate_lead ---
+$deduplicated = false;
+
+if (ga4_claim_event($eventId)) {
+  ga4_send_event('generate_lead', $gaClientId, $gaSessionId, [
+    'form_name' => $formName,
+    'lead_source' => 'form',
+    'page_path' => $page,
+    'event_id' => $eventId,
+    'currency' => 'UAH',
+  ]);
+} else {
+  $deduplicated = true;
+}
+
+echo json_encode(['success' => true, 'deduplicated' => $deduplicated]);

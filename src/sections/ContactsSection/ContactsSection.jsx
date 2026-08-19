@@ -1,9 +1,10 @@
 import { useLanguage } from '../../hooks/useLanguage'
 import { useLocale } from '../../hooks/useLocale'
+import { trackEvent } from '../../utils/gaEvent'
 
 import './ContactsSection.sass'
 
-function ContactsSection({ city, schedule, phone, phoneHref, email, mapUrl }) {
+function ContactsSection({ id, city, schedule, phone, phoneHref, email, mapUrl }) {
   const { language } = useLanguage()
   const { contacts } = useLocale()
 
@@ -31,7 +32,13 @@ function ContactsSection({ city, schedule, phone, phoneHref, email, mapUrl }) {
           <div className="contacts-section__group">
             <h3 className="contacts-section__group-title">{contacts.phone}</h3>
 
-            <a className="contacts-section__link" href={phoneHref}>
+            <a
+              className="contacts-section__link"
+              href={phoneHref}
+              onClick={() =>
+                trackEvent('click_phone', { phone_place: 'contacts_page', city: id || 'unknown' })
+              }
+            >
               {phone}
             </a>
           </div>
@@ -39,7 +46,11 @@ function ContactsSection({ city, schedule, phone, phoneHref, email, mapUrl }) {
           <div className="contacts-section__group">
             <h3 className="contacts-section__group-title">{contacts.email}</h3>
 
-            <a className="contacts-section__link" href={`mailto:${email}`}>
+            <a
+              className="contacts-section__link"
+              href={`mailto:${email}`}
+              onClick={() => trackEvent('click_email', { link_place: 'contacts_page' })}
+            >
               {email}
             </a>
           </div>

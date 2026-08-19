@@ -1,5 +1,7 @@
 import { useLocale } from '../../hooks/useLocale'
 
+import { trackEvent } from '../../utils/gaEvent'
+
 import './TopBar.sass'
 
 function TopBar() {
@@ -12,7 +14,11 @@ function TopBar() {
 
         <p className="top-bar__text top-bar__text-hide-mobile">{content.phoneInfo}</p>
 
-        <a href="tel:+380663777908" className="top-bar__button">
+        <a
+          href="tel:+380663777908"
+          className="top-bar__button"
+          onClick={() => trackEvent('click_phone', { phone_place: 'top_bar' })}
+        >
           {content.call}
         </a>
       </div>

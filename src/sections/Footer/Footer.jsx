@@ -5,6 +5,7 @@ import { footerData } from '../../data/footerData'
 import { useLanguage } from '../../hooks/useLanguage'
 import { useLocale } from '../../hooks/useLocale'
 import { logos } from '../../utils/getLogo'
+import { trackEvent } from '../../utils/gaEvent'
 
 import './Footer.sass'
 
@@ -44,7 +45,11 @@ function Footer({ variant = 'kharkiv' }) {
 
             <p className="footer__license p">{footer[variant].licenseText}</p>
 
-            <a href={data.socials.instagram} className="footer__instagram">
+            <a
+              href={data.socials.instagram}
+              className="footer__instagram"
+              onClick={() => trackEvent('click_messenger', { messenger: 'instagram' })}
+            >
               <img
                 src="/images/social/instagram.svg"
                 alt="Dr. Isaenko Instagram"
@@ -74,7 +79,11 @@ function Footer({ variant = 'kharkiv' }) {
             <div className="footer__messengers">
               <p className="footer__messengers-header">{footer[variant].labels.supportChats}</p>
 
-              <a href={data.socials.whatsapp} className="footer__messengers-link">
+              <a
+                href={data.socials.whatsapp}
+                className="footer__messengers-link"
+                onClick={() => trackEvent('click_messenger', { messenger: 'whatsapp' })}
+              >
                 <img
                   src="/images/social/whats-app.svg"
                   alt="WhatsApp"
@@ -83,7 +92,11 @@ function Footer({ variant = 'kharkiv' }) {
                 WhatsApp
               </a>
 
-              <a href={data.socials.telegram} className="footer__messengers-link">
+              <a
+                href={data.socials.telegram}
+                className="footer__messengers-link"
+                onClick={() => trackEvent('click_messenger', { messenger: 'telegram' })}
+              >
                 <img
                   src="/images/social/telegram.svg"
                   alt="Telegram"

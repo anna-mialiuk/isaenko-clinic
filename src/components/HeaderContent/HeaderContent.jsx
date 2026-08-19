@@ -9,6 +9,7 @@ import { getHomeRoute } from '../../utils/getRoute'
 import { useLanguage } from '../../hooks/useLanguage'
 import { useLocale } from '../../hooks/useLocale'
 import { logos } from '../../utils/getLogo'
+import { trackEvent } from '../../utils/gaEvent'
 
 function HeaderContent({
   block,
@@ -33,7 +34,12 @@ function HeaderContent({
         <div className={`${block}__contacts`}>
           <CitySelect city={city} setCity={setCity} currentCity={currentCity} />
 
-          <a href={`tel:${currentCity.phoneLink}`}>{currentCity.phone}</a>
+          <a
+            href={`tel:${currentCity.phoneLink}`}
+            onClick={() => trackEvent('click_phone', { phone_place: 'header', city: variant })}
+          >
+            {currentCity.phone}
+          </a>
 
           <LanguageSelect language={language} setLanguage={setLanguage} />
         </div>

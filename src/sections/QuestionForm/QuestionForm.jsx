@@ -4,8 +4,11 @@ import { useLocation } from 'react-router-dom'
 import Toast from '../../components/Toast/Toast'
 import { useLocale } from '../../hooks/useLocale'
 import { sendContactRequest } from '../../services/contactService'
+import { trackEvent, getGaIds } from '../../utils/gaEvent'
 
 import './QuestionForm.sass'
+
+const FORM_NAME = 'callback_footer'
 
 const initialFormState = {
   name: '',
@@ -24,6 +27,10 @@ function QuestionForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [toast, setToast] = useState(null)
+
+  const handleFocus = () => {
+    trackEvent('form_start', { form_name: FORM_NAME }, { once: 'session' })
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -69,12 +76,23 @@ function QuestionForm() {
     const newErrors = validateForm()
     setErrors(newErrors)
 
-    if (Object.keys(newErrors).length > 0) return
+    if (Object.keys(newErrors).length > 0) {
+      trackEvent('form_error', {
+        form_name: FORM_NAME,
+        error_type: 'validation',
+        error_field: Object.keys(newErrors)[0],
+      })
+      return
+    }
 
     try {
       setIsSubmitting(true)
       setSubmitError('')
       setToast(null)
+
+      const eventId = trackEvent('form_submit', { form_name: FORM_NAME })
+
+      const { clientId, sessionId } = await getGaIds()
 
       await sendContactRequest({
         name: form.name.trim(),
@@ -83,6 +101,10 @@ function QuestionForm() {
         company: form.company.trim(),
         language,
         page: pathname,
+        event_id: eventId,
+        form_name: FORM_NAME,
+        ga_client_id: clientId,
+        ga_session_id: sessionId,
       })
 
       setIsSent(true)
@@ -90,6 +112,12 @@ function QuestionForm() {
       setForm(initialFormState)
     } catch (error) {
       console.error('Question form submit error:', error)
+
+      trackEvent('form_error', {
+        form_name: FORM_NAME,
+        error_type: 'server',
+      })
+
       setSubmitError(questionForm.error)
       setToast({ type: 'error', message: questionForm.error })
     } finally {
@@ -115,6 +143,7 @@ function QuestionForm() {
             name="company"
             value={form.company}
             onChange={handleChange}
+            onFocus={handleFocus}
             className="question-form__honeypot"
             tabIndex="-1"
             autoComplete="off"
@@ -128,6 +157,7 @@ function QuestionForm() {
               placeholder={questionForm.namePlaceholder}
               value={form.name}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
 
             {errors.name && <span className="question-form__error">{errors.name}</span>}
@@ -140,6 +170,7 @@ function QuestionForm() {
               placeholder={questionForm.phonePlaceholder}
               value={form.phone}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
 
             {errors.phone && <span className="question-form__error">{errors.phone}</span>}
@@ -151,6 +182,7 @@ function QuestionForm() {
               placeholder={questionForm.messagePlaceholder}
               value={form.message}
               onChange={handleChange}
+              onFocus={handleFocus}
             />
 
             {errors.message && <span className="question-form__error">{errors.message}</span>}

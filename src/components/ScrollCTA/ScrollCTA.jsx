@@ -8,7 +8,10 @@ import './ScrollCTA.sass'
 function ScrollCTA() {
   const isVisible = useScrollCTAVisibility()
   const { common, footer } = useLocale()
-  const { bookingUrl, isChecked, toggleAgreement, preventIfUnchecked } = useBookingAgreement()
+  const { bookingUrl, isChecked, toggleAgreement, preventIfUnchecked } = useBookingAgreement(
+    true,
+    'scroll_cta',
+  )
 
   return (
     <div className={`scroll-cta ${isVisible ? 'scroll-cta--visible' : ''}`}>

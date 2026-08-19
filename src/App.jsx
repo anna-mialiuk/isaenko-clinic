@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import SeoManager from './components/SeoManager/SeoManager'
+import { useGaPageView } from './hooks/useGaPageView'
 
 import HomePage from './pages/HomePage'
 import DirectionPage from './pages/DirectionPage/DirectionPage'
@@ -43,6 +44,8 @@ function renderDirectionRoutes(variant) {
 }
 
 function App() {
+  useGaPageView()
+
   return (
     <>
       <SeoManager />

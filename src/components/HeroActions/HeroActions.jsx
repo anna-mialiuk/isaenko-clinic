@@ -4,7 +4,7 @@ import { useLocale } from '../../hooks/useLocale'
 
 function HeroActions() {
   const { common } = useLocale()
-  const { isChecked, toggleAgreement, openBooking } = useBookingAgreement()
+  const { isChecked, toggleAgreement, openBooking } = useBookingAgreement(true, 'hero')
 
   return (
     <div className="hero__actions">
