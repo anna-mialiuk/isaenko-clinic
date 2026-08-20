@@ -45,6 +45,28 @@ export default {
       ],
     },
 
+    'tsebriuk-kateryna': {
+      name: 'Цебрюк Катерина Олегівна',
+      experienceText: 'років досвіду',
+      position: 'Лікар-психіатр',
+      description:
+        'Фахівець у галузі терапії тривожно-депресивних розладів, розладів адаптації, шизофренії та біполярного афективного розладу.',
+      prices: [
+        {
+          service: 'Первинна консультація',
+          duration: '40 хвилин',
+        },
+        {
+          service: 'Повторна консультація',
+          duration: '30 хвилин',
+        },
+        {
+          service: 'Психотерапія',
+          duration: 'до 50 хвилин',
+        },
+      ],
+    },
+
     'shylina-natalia': {
       name: 'Шиліна Наталія Сергіївна',
       experienceText: 'років досвіду',
@@ -474,6 +496,28 @@ export default {
       ],
     },
 
+    'tsebriuk-kateryna': {
+      name: 'Цебрюк Екатерина Олеговна',
+      experienceText: 'лет опыта',
+      position: 'Врач-психиатр',
+      description:
+        'Специалист в области лечения тревожно-депрессивных расстройств, расстройств адаптации, шизофрении и биполярного аффективного расстройства.',
+      prices: [
+        {
+          service: 'Первичная консультация',
+          duration: '40 минут',
+        },
+        {
+          service: 'Повторная консультация',
+          duration: '30 минут',
+        },
+        {
+          service: 'Психотерапия',
+          duration: 'до 50 минут',
+        },
+      ],
+    },
+
     'shylina-natalia': {
       name: 'Шилина Наталья Сергеевна',
       experienceText: 'лет опыта',
@@ -898,6 +942,28 @@ export default {
         },
         {
           service: 'Family consultation',
+          duration: 'up to 50 Minutes',
+        },
+      ],
+    },
+
+    'tsebriuk-kateryna': {
+      name: 'Tsebriuk Kateryna Olehivna',
+      experienceText: 'years of experience',
+      position: 'Psychiatrist',
+      description:
+        'A specialist in the treatment of anxiety-depressive disorders, adaptation disorders, schizophrenia and bipolar affective disorder.',
+      prices: [
+        {
+          service: 'Initial consultation',
+          duration: '40 Minutes',
+        },
+        {
+          service: 'Follow-up consultation',
+          duration: '30 Minutes',
+        },
+        {
+          service: 'Psychotherapy',
           duration: 'up to 50 Minutes',
         },
       ],
