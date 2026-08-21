@@ -1,6 +1,6 @@
 export const DEFAULT_CITY_ID = 'kharkiv'
 
-export const BOOKING_URL = 'https://cbox.mobi/go/isaenko'
+export const BOOKING_URL = '/go/booking'
 
 export const SOCIAL_LINKS = {
   instagram: 'https://www.instagram.com/dr.isaenko.clinic?igsh=aXNncTBnNHR1ZTVt',

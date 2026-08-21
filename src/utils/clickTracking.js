@@ -2,6 +2,9 @@ import { buildBookingUrl, getAttribution, getCid } from './attribution'
 import { getGaIdentifiers } from './gaIdentifiers'
 
 const BOOKING_HOST = 'cbox.mobi'
+const BOOKING_PATH = '/go/booking'
+
+const isBookingUrl = (url) => url.includes(BOOKING_HOST) || url.includes(BOOKING_PATH)
 const ATTR_ENDPOINT = '/api/attr'
 
 const uuid = () => {
@@ -84,7 +87,7 @@ const handleClick = (event) => {
     return
   }
 
-  if (!href.includes(BOOKING_HOST)) return
+  if (!isBookingUrl(href)) return
 
   const eventId = uuid()
   const payload = buildPayload('booking_click', eventId, link)
@@ -101,7 +104,7 @@ const patchWindowOpen = () => {
   const original = window.open
 
   window.open = function (url, ...rest) {
-    if (typeof url === 'string' && url.includes(BOOKING_HOST)) {
+    if (typeof url === 'string' && isBookingUrl(url)) {
       const eventId = uuid()
       const payload = buildPayload('booking_click', eventId)
 
@@ -117,6 +120,7 @@ const patchWindowOpen = () => {
   }
 }
 
+/** Віджет запису може зʼявитись як iframe уже після рендеру. */
 const watchIframes = () => {
   if (!window.MutationObserver) return
 
@@ -126,7 +130,7 @@ const watchIframes = () => {
         if (node.nodeName !== 'IFRAME') return
 
         const src = node.getAttribute('src') || ''
-        if (!src.includes(BOOKING_HOST)) return
+        if (!isBookingUrl(src)) return
 
         const eventId = uuid()
         const payload = buildPayload('booking_click', eventId)
