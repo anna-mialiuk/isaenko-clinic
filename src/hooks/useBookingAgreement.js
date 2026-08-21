@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BOOKING_URL } from '../data/site'
-import { trackEvent } from '../utils/gaEvent'
+import { setNextBookingPlace } from '../utils/clickTracking'
 
 function useBookingAgreement(initialValue = true, place = 'unknown') {
   const [isChecked, setIsChecked] = useState(initialValue)
@@ -9,14 +9,10 @@ function useBookingAgreement(initialValue = true, place = 'unknown') {
     setIsChecked((currentValue) => !currentValue)
   }
 
-  const trackBookingClick = () => {
-    trackEvent('click_booking', { booking_place: place })
-  }
-
   const openBooking = () => {
     if (!isChecked) return
 
-    trackBookingClick()
+    setNextBookingPlace(place)
     window.open(BOOKING_URL, '_blank', 'noopener,noreferrer')
   }
 
@@ -25,8 +21,6 @@ function useBookingAgreement(initialValue = true, place = 'unknown') {
       event.preventDefault()
       return
     }
-
-    trackBookingClick()
   }
 
   return {
