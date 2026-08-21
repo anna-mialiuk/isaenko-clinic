@@ -35,7 +35,7 @@ function attr_columns() {
     'gclid', 'fbclid', 'ttclid',
     'client_id', 'session_id', 'session_number',
     'event_name', 'event_id', 'cid',
-    'booking_place',
+    'booking_place', 'form_name',
     'page_location', 'landing_page', 'referrer', 'ip', 'user_agent',
   ];
 }
