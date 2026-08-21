@@ -44,3 +44,33 @@ export const questionForm = {
     sending: 'Sending...',
   },
 }
+
+export const callbackWidget = {
+  uk: {
+    aria: 'Замовити зворотний дзвінок',
+    close: 'Закрити форму',
+    title: 'Передзвонити вам?',
+    text: 'Залиште номер — адміністратор передзвонить у робочі години.',
+    submit: 'Передзвоніть мені',
+    invalidPhone: 'Вкажіть коректний номер телефону',
+    serverMessage: 'Заявка на зворотний дзвінок (віджет)',
+  },
+  ru: {
+    aria: 'Заказать обратный звонок',
+    close: 'Закрыть форму',
+    title: 'Перезвонить вам?',
+    text: 'Оставьте номер — администратор перезвонит в рабочие часы.',
+    submit: 'Перезвоните мне',
+    invalidPhone: 'Укажите корректный номер телефона',
+    serverMessage: 'Заявка на обратный звонок (виджет)',
+  },
+  en: {
+    aria: 'Request a callback',
+    close: 'Close the form',
+    title: 'Shall we call you back?',
+    text: 'Leave your number and our administrator will call during working hours.',
+    submit: 'Call me back',
+    invalidPhone: 'Please enter a valid phone number',
+    serverMessage: 'Callback request (widget)',
+  },
+}

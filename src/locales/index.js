@@ -10,7 +10,7 @@ import { multimodal } from './multimodal'
 import { directionSpecialists } from './directionSpecialists'
 import { aboutTeamPreview, hospitalDoctors } from './moreSections'
 import { pages } from './pages'
-import { questionForm } from './forms'
+import { questionForm, callbackWidget } from './forms'
 import { schedule } from './schedule'
 import { seo } from './seo'
 import { teamDoctors } from './team'
@@ -57,6 +57,7 @@ export const locales = Object.fromEntries(
       directionTreatments: directionTreatments[language],
       stats: stats[language],
       questionForm: questionForm[language],
+      callbackWidget: callbackWidget[language],
       schedule: schedule[language],
       seo: seo[language],
       teamDoctors: teamDoctors[language],

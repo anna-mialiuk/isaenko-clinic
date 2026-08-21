@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import SeoManager from './components/SeoManager/SeoManager'
+import CallbackWidget from './components/CallbackWidget/CallbackWidget'
 import { useGaPageView } from './hooks/useGaPageView'
 import { useAttributionCapture } from './hooks/useAttributionCapture'
 
@@ -64,6 +65,8 @@ function App() {
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
+      <CallbackWidget />
     </>
   )
 }

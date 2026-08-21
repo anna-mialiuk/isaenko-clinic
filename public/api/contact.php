@@ -26,7 +26,6 @@ $company = trim($data['company'] ?? '');
 $language = trim($data['language'] ?? 'uk');
 $page = trim($data['page'] ?? '');
 
-// Поля для GA4 Measurement Protocol.
 $eventId     = trim($data['event_id'] ?? '');
 $formName    = trim($data['form_name'] ?? 'question_form');
 $gaClientId  = trim($data['ga_client_id'] ?? '');
@@ -37,7 +36,8 @@ if ($company !== '') {
   exit;
 }
 
-if ($name === '' || $phone === '' || $message === '') {
+// Віджет зворотного дзвінка надсилає лише телефон, тому обовʼязковий тільки він.
+if ($phone === '') {
   http_response_code(422);
   echo json_encode(['success' => false, 'message' => 'Required fields are missing']);
   exit;
@@ -62,10 +62,21 @@ $safeMessage = htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 $safeLanguage = htmlspecialchars($language, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 $safePageUrl = htmlspecialchars($pageUrl ?: 'невідомо', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
-$text = "📩 Нова заявка з сайту Dr. Isaenko\n\n" .
-  "👤 Імʼя: {$safeName}\n" .
-  "📞 Телефон: {$safePhone}\n" .
-  "💬 Повідомлення: {$safeMessage}\n" .
+$safeFormName = htmlspecialchars($formName, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+$text = "📩 Нова заявка з сайту Dr. Isaenko\n\n";
+
+if ($safeName !== '') {
+  $text .= "👤 Імʼя: {$safeName}\n";
+}
+
+$text .= "📞 Телефон: {$safePhone}\n";
+
+if ($safeMessage !== '') {
+  $text .= "💬 Повідомлення: {$safeMessage}\n";
+}
+
+$text .= "📋 Форма: {$safeFormName}\n" .
   "🌐 Мова: {$safeLanguage}\n" .
   "🔗 Сторінка: {$safePageUrl}";
 
