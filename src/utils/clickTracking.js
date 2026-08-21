@@ -1,5 +1,6 @@
 import { buildBookingUrl, getAttribution, getCid } from './attribution'
 import { getGaIdentifiers } from './gaIdentifiers'
+import { initFormTracking } from './formTracking'
 
 const BOOKING_HOST = 'cbox.mobi'
 const BOOKING_PATH = '/go/booking'
@@ -7,7 +8,21 @@ const BOOKING_PATH = '/go/booking'
 const isBookingUrl = (url) => url.includes(BOOKING_HOST) || url.includes(BOOKING_PATH)
 const ATTR_ENDPOINT = '/api/attr'
 
-const uuid = () => {
+const META_EVENTS = {
+  booking_click: 'BookingClick',
+  phone_click: 'Contact',
+  email_click: 'Contact',
+  form_submit: 'Lead',
+}
+
+const TIKTOK_EVENTS = {
+  booking_click: 'ClickButton',
+  phone_click: 'Contact',
+  email_click: 'Contact',
+  form_submit: 'SubmitForm',
+}
+
+export const uuid = () => {
   if (crypto.randomUUID) return crypto.randomUUID()
 
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -35,7 +50,7 @@ const resolvePlace = (element) => {
   return undefined
 }
 
-const buildPayload = (eventName, eventId, element) => {
+export const buildPayload = (eventName, eventId, element) => {
   const attribution = getAttribution()
   const place = resolvePlace(element)
 
@@ -52,7 +67,7 @@ const buildPayload = (eventName, eventId, element) => {
   }
 }
 
-const dispatch = (eventName, payload) => {
+export const dispatch = (eventName, payload) => {
   window.dataLayer = window.dataLayer || []
   window.dataLayer.push({
     event: eventName,
@@ -61,8 +76,16 @@ const dispatch = (eventName, payload) => {
   })
 
   if (typeof window.fbq === 'function') {
-    const fbEvent = eventName === 'booking_click' ? 'BookingClick' : 'Contact'
-    window.fbq('trackCustom', fbEvent, payload, { eventID: payload.event_id })
+    window.fbq('trackCustom', META_EVENTS[eventName] || 'Contact', payload, {
+      eventID: payload.event_id,
+    })
+  }
+
+  if (typeof window.ttq === 'object' && typeof window.ttq.track === 'function') {
+    window.ttq.track(TIKTOK_EVENTS[eventName] || 'ClickButton', {
+      ...payload,
+      event_id: payload.event_id,
+    })
   }
 
   if (navigator.sendBeacon) {
@@ -154,6 +177,7 @@ export const initClickTracking = () => {
   }
 
   document.addEventListener('click', handleClick, true)
+  initFormTracking()
   patchWindowOpen()
   watchIframes()
 }

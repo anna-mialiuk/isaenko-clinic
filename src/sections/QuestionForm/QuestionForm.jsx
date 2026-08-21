@@ -5,6 +5,7 @@ import Toast from '../../components/Toast/Toast'
 import { useLocale } from '../../hooks/useLocale'
 import { sendContactRequest } from '../../services/contactService'
 import { trackEvent, getGaIds } from '../../utils/gaEvent'
+import { getFormEventId } from '../../utils/formTracking'
 
 import './QuestionForm.sass'
 
@@ -90,7 +91,7 @@ function QuestionForm() {
       setSubmitError('')
       setToast(null)
 
-      const eventId = trackEvent('form_submit', { form_name: FORM_NAME })
+      const eventId = getFormEventId(FORM_NAME)
 
       const { clientId, sessionId } = await getGaIds()
 
@@ -137,7 +138,7 @@ function QuestionForm() {
           <p className="question-form__policy">{questionForm.policy}</p>
         </div>
 
-        <form className="question-form__form" onSubmit={handleSubmit}>
+        <form className="question-form__form" data-form-name={FORM_NAME} onSubmit={handleSubmit}>
           <input
             type="text"
             name="company"
