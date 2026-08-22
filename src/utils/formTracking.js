@@ -1,4 +1,4 @@
-import { buildPayload, dispatch, uuid } from './clickTracking'
+import { buildPayload, dispatch, uuid } from './trackingCore'
 
 const lastEventIds = new Map()
 
