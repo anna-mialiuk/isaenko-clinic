@@ -45,17 +45,35 @@ function Footer({ variant = 'kharkiv' }) {
 
             <p className="footer__license p">{footer[variant].licenseText}</p>
 
-            <a
-              href={data.socials.instagram}
-              className="footer__instagram"
-              onClick={() => trackEvent('click_messenger', { messenger: 'instagram' })}
-            >
-              <img
-                src="/images/social/instagram.svg"
-                alt="Dr. Isaenko Instagram"
-                className="footer__instagram-logo"
-              />
-            </a>
+            <div className="footer__socials">
+              <a
+                href={data.socials.instagram}
+                className="footer__instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('click_messenger', { messenger: 'instagram' })}
+              >
+                <img
+                  src="/images/social/instagram.svg"
+                  alt="Dr. Isaenko Instagram"
+                  className="footer__instagram-logo"
+                />
+              </a>
+
+              <a
+                href={data.socials.facebook}
+                className="footer__instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('click_messenger', { messenger: 'facebook' })}
+              >
+                <img
+                  src="/images/social/facebook.svg"
+                  alt="Dr. Isaenko Facebook"
+                  className="footer__instagram-logo"
+                />
+              </a>
+            </div>
           </div>
 
           <FooterLinkList title={footer[variant].labels.navigation} links={mainNavigation} />

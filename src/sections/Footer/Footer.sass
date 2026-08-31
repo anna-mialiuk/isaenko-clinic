@@ -47,6 +47,11 @@
         color: vars.$color-white
         margin-bottom: 2.7rem
 
+    &__socials
+        display: flex
+        align-items: center
+        gap: 1.2rem
+
     &__instagram-logo
         width: 3.5rem
         height: 3.5rem
@@ -130,13 +135,12 @@
         color: hsla(0, 0%, 100%, .4)
         font-size: 1.3rem
 
+    &__documents-link:not(:first-child)
+        text-align: end
+
     &__documents
         display: flex
         flex-direction: column
         align-items: flex-end
-
-    &__documents-link
-        &_underlined
-            border-bottom: .03rem solid hsla(0, 0%, 100%, .4)
     
             

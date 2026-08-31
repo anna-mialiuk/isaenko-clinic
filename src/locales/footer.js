@@ -32,7 +32,7 @@ export const footer = {
     uk: {
       licenseText: license.uk,
       labels: labels.uk,
-      rights: '«Dr. Isaenko» 2012 - 2024. Всі права захищені',
+      rights: '«Dr. Isaenko» 2012 - 2026. Всі права захищені',
       stationaryText: 'Стаціонар м. Харків працює цілодобово',
       workSchedule: [
         { day: 'Пн-Пт', time: '10:00 - 20:00' },
@@ -48,7 +48,7 @@ export const footer = {
     ru: {
       licenseText: license.ru,
       labels: labels.ru,
-      rights: '«Dr. Isaenko» 2012 - 2024. Все права защищены',
+      rights: '«Dr. Isaenko» 2012 - 2026. Все права защищены',
       stationaryText: 'Стационар в Харькове работает круглосуточно',
       workSchedule: [
         { day: 'Пн-Пт', time: '10:00 - 20:00' },
@@ -67,7 +67,7 @@ export const footer = {
     en: {
       licenseText: license.en,
       labels: labels.en,
-      rights: '© Dr. Isaenko 2012–2024. All rights reserved.',
+      rights: '© Dr. Isaenko 2012–2026. All rights reserved.',
       stationaryText: 'Inpatient treatment in Kharkiv operates 24/7',
       workSchedule: [
         { day: 'Mon-Fri', time: '10:00 - 20:00' },
@@ -88,7 +88,7 @@ export const footer = {
     uk: {
       licenseText: license.uk,
       labels: labels.uk,
-      rights: '«Dr. Isaenko» 2012 - 2024. Всі права захищені',
+      rights: '«Dr. Isaenko» 2012 - 2026. Всі права захищені',
       stationaryText: '',
       workSchedule: [
         { day: 'Пн-Пт', time: '10:00 - 20:00' },
@@ -104,7 +104,7 @@ export const footer = {
     ru: {
       licenseText: license.ru,
       labels: labels.ru,
-      rights: '«Dr. Isaenko» 2012 - 2024. Все права защищены',
+      rights: '«Dr. Isaenko» 2012 - 2026. Все права защищены',
       stationaryText: '',
       workSchedule: [
         { day: 'Пн-Пт', time: '10:00 - 20:00' },
@@ -123,7 +123,7 @@ export const footer = {
     en: {
       licenseText: license.en,
       labels: labels.en,
-      rights: '© Dr. Isaenko 2012–2024. All rights reserved.',
+      rights: '© Dr. Isaenko 2012–2026. All rights reserved.',
       stationaryText: '',
       workSchedule: [
         { day: 'Mon-Fri', time: '10:00 - 20:00' },

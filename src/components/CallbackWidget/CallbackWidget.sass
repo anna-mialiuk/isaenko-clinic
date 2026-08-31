@@ -36,10 +36,12 @@
     box-shadow: 0 .8rem 2.4rem rgba(31, 31, 41, .28)
     cursor: pointer
     transition: transform .3s ease
-    pointer-events: auto 
+    pointer-events: auto
+    animation: widgetPulse 2.4s ease-out infinite 
 
     &:hover
       transform: scale(1.06)
+      animation-play-state: paused
 
     @include mix.mobile
       width: 5.4rem
@@ -153,3 +155,11 @@
     color: vars.$color-dark
     font-size: 1.5rem
     line-height: 1.4
+
+@keyframes widgetPulse
+  0%
+    box-shadow: 0 .8rem 2.4rem rgba(31, 31, 41, .28), 0 0 0 0 rgba(222, 94, 140, .5)
+  70%
+    box-shadow: 0 .8rem 2.4rem rgba(31, 31, 41, .28), 0 0 0 1.6rem rgba(222, 94, 140, 0)
+  100%
+    box-shadow: 0 .8rem 2.4rem rgba(31, 31, 41, .28), 0 0 0 0 rgba(222, 94, 140, 0)
