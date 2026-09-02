@@ -1,15 +1,4 @@
-const formatDate = (value) => {
-  if (!value) return ''
-  // SQLite віддає "YYYY-MM-DD HH:MM:SS" — Safari такий рядок не парсить,
-  // тому підставляємо T і Z вручну.
-  const date = new Date(value.replace(' ', 'T') + 'Z')
-  return date.toLocaleString('uk-UA', {
-    day: '2-digit',
-    month: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
-}
+import { formatDate } from './formatDate'
 
 const sourceLabel = (lead) => {
   if (lead.utm_source) return lead.utm_source

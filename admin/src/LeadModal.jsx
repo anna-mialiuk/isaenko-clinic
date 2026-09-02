@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import { api } from './api'
 
+import { formatDate } from './formatDate'
+
 const FIELDS = [
   ['Створено', 'created_at'],
   ['Імʼя', 'name'],
@@ -55,7 +57,7 @@ function LeadModal({ lead, statuses, statusLabels, onClose, onSaved }) {
             lead[key] ? (
               <div key={key} className="modal__row">
                 <dt>{label}</dt>
-                <dd>{lead[key]}</dd>
+                <dd>{key === 'created_at' ? formatDate(lead[key], true) : lead[key]}</dd>
               </div>
             ) : null,
           )}
