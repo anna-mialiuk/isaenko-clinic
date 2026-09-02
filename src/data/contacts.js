@@ -13,7 +13,7 @@ export const contacts = [
     ],
     phone: '+38 066 37-77-908',
     phoneHref: 'tel:+380663777908',
-    email: 'info@dr-isaenko.com',
+    email: 'dr.Isaenko.clinic@gmail.com',
     mapUrl: 'https://www.google.com/maps?q=Kharkiv%20Dr%20Isaenko&output=embed',
   },
   {
@@ -28,9 +28,9 @@ export const contacts = [
       { day: 'Сб', time: '10:00 - 18:00' },
       { day: 'Нд', time: 'Вихідний' },
     ],
-    phone: '+38 066 37-77-908',
-    phoneHref: 'tel:+380663777908',
-    email: 'info@dr-isaenko.com',
+    phone: '+38 097 88-88-911',
+    phoneHref: 'tel:+380978888911',
+    email: 'dr.Isaenko.clinic@gmail.com',
     mapUrl: 'https://www.google.com/maps?q=Kyiv%20Dr%20Isaenko&output=embed',
   },
 ]
