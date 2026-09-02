@@ -1,19 +1,11 @@
 <?php
-/**
- * Авторизація в адмінпанель.
- *
- * Змінні оточення (fastcgi_param у nginx):
- *   ADMIN_USER            логін
- *   ADMIN_PASSWORD_HASH   хеш пароля, отриманий через password_hash()
- *
- * Хеш генерується так (на сервері, один раз):
- *   php -r 'echo password_hash("ваш_пароль", PASSWORD_DEFAULT), PHP_EOL;'
- *
- * Пароль у відкритому вигляді в конфіг НЕ кладемо: конфіг читають усі,
- * хто має доступ до сервера, а панель містить персональні дані пацієнтів.
- */
-
 require_once __DIR__ . '/attr-store.php';
+
+$adminConfig = '/var/lib/isaenko/admin-config.php';
+
+if (is_readable($adminConfig)) {
+  require_once $adminConfig;
+}
 
 const ADMIN_SESSION_TTL = 43200; // 12 годин
 const ADMIN_MAX_ATTEMPTS = 5;    // спроб входу за 15 хвилин з одного IP
