@@ -1,0 +1,472 @@
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+body
+  margin: 0
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+  font-size: 14px
+  color: #1f1f29
+  background: #f4f5f8
+
+button,
+input,
+select,
+textarea
+  font: inherit
+
+.boot
+  padding: 40px
+  color: #777
+
+// ── Вхід ──────────────────────────────────────────
+
+.login
+  display: flex
+  align-items: center
+  justify-content: center
+  min-height: 100vh
+
+  &__form
+    display: flex
+    flex-direction: column
+    gap: 12px
+    width: 320px
+    padding: 28px
+    border-radius: 12px
+    background: #fff
+    box-shadow: 0 8px 32px rgba(31, 31, 41, .1)
+
+  &__title
+    margin: 0 0 8px
+    font-size: 18px
+
+  &__input
+    padding: 11px 13px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+
+  &__submit
+    padding: 11px
+    border: 0
+    border-radius: 8px
+    background: #4d48b4
+    color: #fff
+    cursor: pointer
+
+    &:disabled
+      opacity: .6
+      cursor: default
+
+  &__error
+    margin: 0
+    color: #d1435b
+    font-size: 13px
+
+// ── Каркас ────────────────────────────────────────
+
+.layout
+  display: grid
+  grid-template-columns: 200px 1fr
+  min-height: 100vh
+
+.sidebar
+  display: flex
+  flex-direction: column
+  padding: 20px 14px
+  background: #262636
+  color: #fff
+
+  &__logo
+    margin-bottom: 24px
+    padding: 0 10px
+    font-weight: 600
+
+  &__nav
+    display: flex
+    flex-direction: column
+    gap: 2px
+    flex: 1
+
+  &__link
+    padding: 10px 12px
+    border: 0
+    border-radius: 8px
+    background: transparent
+    color: rgba(255, 255, 255, .65)
+    text-align: left
+    cursor: pointer
+
+    &:hover
+      background: rgba(255, 255, 255, .07)
+
+    &.is-active
+      background: #4d48b4
+      color: #fff
+
+  &__logout
+    padding: 9px
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: 8px
+    background: transparent
+    color: rgba(255, 255, 255, .7)
+    cursor: pointer
+
+.content
+  padding: 24px
+  overflow-x: auto
+
+// ── CRM ───────────────────────────────────────────
+
+.crm
+  &__header
+    display: flex
+    align-items: center
+    gap: 14px
+    margin-bottom: 18px
+
+  &__title
+    margin: 0
+    font-size: 20px
+
+  &__search
+    flex: 1
+    max-width: 340px
+    padding: 9px 13px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+
+  &__count
+    padding: 4px 10px
+    border-radius: 20px
+    background: #e6e7ee
+    font-size: 13px
+
+  &__error
+    padding: 10px 14px
+    border-radius: 8px
+    background: #fdecef
+    color: #d1435b
+
+  &__empty
+    color: #888
+
+.board
+  display: grid
+  grid-auto-flow: column
+  grid-auto-columns: minmax(240px, 1fr)
+  gap: 12px
+  align-items: start
+
+.column
+  padding: 10px
+  border-radius: 10px
+  background: #e9eaf0
+  min-height: 120px
+  transition: background .15s ease
+
+  &.is-over
+    background: #dcdef0
+    outline: 2px dashed #4d48b4
+
+  &__header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 10px
+    padding: 0 4px
+    font-weight: 600
+    font-size: 13px
+
+  &__count
+    color: #888
+
+  &__body
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+.card
+  padding: 11px 12px
+  border-radius: 8px
+  background: #fff
+  box-shadow: 0 1px 3px rgba(31, 31, 41, .1)
+  cursor: grab
+
+  &:active
+    cursor: grabbing
+
+  &__top
+    display: flex
+    justify-content: space-between
+    gap: 8px
+    margin-bottom: 4px
+
+  &__name
+    font-weight: 600
+
+  &__date
+    color: #999
+    font-size: 12px
+    white-space: nowrap
+
+  &__phone
+    display: block
+    margin-bottom: 6px
+    color: #4d48b4
+    text-decoration: none
+
+  &__message
+    margin: 0 0 8px
+    color: #555
+    font-size: 13px
+    overflow: hidden
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+
+  &__bottom
+    display: flex
+    flex-wrap: wrap
+    gap: 5px
+    font-size: 11px
+
+  &__source,
+  &__campaign,
+  &__warn
+    padding: 2px 7px
+    border-radius: 20px
+    background: #eef0f6
+    color: #666
+
+  &__warn
+    background: #fdecef
+    color: #d1435b
+
+// ── Модалка ───────────────────────────────────────
+
+.modal
+  position: fixed
+  inset: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 20px
+  background: rgba(31, 31, 41, .45)
+
+  &__box
+    width: 100%
+    max-width: 520px
+    max-height: 90vh
+    overflow-y: auto
+    padding: 22px
+    border-radius: 12px
+    background: #fff
+
+  &__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 14px
+
+  &__title
+    margin: 0
+    font-size: 17px
+
+  &__close
+    border: 0
+    background: transparent
+    color: #888
+    font-size: 24px
+    line-height: 1
+    cursor: pointer
+
+  &__fields
+    margin: 0 0 16px
+    border-top: 1px solid #eceef4
+
+  &__row
+    display: grid
+    grid-template-columns: 130px 1fr
+    gap: 10px
+    padding: 7px 0
+    border-bottom: 1px solid #eceef4
+
+    dt
+      color: #888
+      font-size: 13px
+
+    dd
+      margin: 0
+      word-break: break-word
+
+  &__label
+    display: block
+    margin-bottom: 12px
+    color: #666
+    font-size: 13px
+
+  &__select,
+  &__textarea
+    display: block
+    width: 100%
+    margin-top: 5px
+    padding: 9px 11px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    color: #1f1f29
+
+  &__actions
+    display: flex
+    justify-content: flex-end
+
+  &__save
+    padding: 10px 22px
+    border: 0
+    border-radius: 8px
+    background: #4d48b4
+    color: #fff
+    cursor: pointer
+
+  &__error
+    color: #d1435b
+    font-size: 13px
+
+// ── Дашборд ───────────────────────────────────────
+
+.dash
+  &__header
+    display: flex
+    align-items: center
+    gap: 14px
+    margin-bottom: 18px
+
+  &__period
+    padding: 8px 12px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    background: #fff
+
+  &__note
+    margin-top: 18px
+    padding: 12px 16px
+    border-radius: 10px
+    background: #eef0f6
+    color: #666
+    font-size: 13px
+    line-height: 1.5
+
+  // Секції в Аналітиці лежать поза сіткою .panels, тому gap на них
+  // не діє — розсовуємо їх власним відступом.
+  > .panel + .panel
+    margin-top: 12px
+
+  > .crm__title + .panel
+    margin-top: 14px
+
+.tiles
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr))
+  gap: 12px
+  margin-bottom: 18px
+
+.tile
+  display: flex
+  flex-direction: column
+  gap: 4px
+  padding: 16px 18px
+  border-radius: 10px
+  background: #fff
+
+  &__value
+    font-size: 26px
+    font-weight: 600
+
+  &__label
+    color: #888
+    font-size: 13px
+
+.panels
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))
+  gap: 12px
+
+.panel
+  padding: 16px 18px
+  border-radius: 10px
+  background: #fff
+
+  &--wide
+    grid-column: 1 / -1
+
+  &__title
+    margin: 0 0 12px
+    font-size: 15px
+
+  &__empty
+    margin: 0
+    color: #999
+
+.bars
+  margin: 0
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  gap: 7px
+
+  &__row
+    display: grid
+    grid-template-columns: minmax(90px, 190px) 1fr 44px
+    align-items: center
+    gap: 10px
+    font-size: 13px
+
+  &__label
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    color: #555
+
+  &__track
+    height: 8px
+    border-radius: 4px
+    background: #eef0f6
+    overflow: hidden
+
+  &__fill
+    display: block
+    height: 100%
+    background: #4d48b4
+
+  &__value
+    text-align: right
+    color: #666
+
+.table
+  width: 100%
+  border-collapse: collapse
+  font-size: 13px
+
+  th,
+  td
+    padding: 8px 10px
+    border-bottom: 1px solid #eceef4
+    text-align: left
+
+  th
+    color: #888
+    font-weight: 500
+
+// ── Заглушки ──────────────────────────────────────
+
+.placeholder
+  max-width: 620px
+
+  &__title
+    margin: 0 0 10px
+    font-size: 20px
+
+  &__note
+    color: #666
+    line-height: 1.6

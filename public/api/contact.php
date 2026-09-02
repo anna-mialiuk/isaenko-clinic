@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/ga4-mp.php';
+require_once __DIR__ . '/leads-store.php';
 
 $rawBody = file_get_contents('php://input');
 $data = json_decode($rawBody, true);
@@ -117,6 +118,23 @@ if ($toEmail !== '') {
 if (!$sentToTelegram && !$sentToEmail) {
   error_log(html_entity_decode($text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'));
 }
+
+// --- Збереження ліда в базу ---
+// Telegram — це сповіщення, а не сховище: повідомлення губляться в чаті,
+// їх не можна фільтрувати й немає статусів. База потрібна для CRM.
+leads_save([
+  'name' => $name,
+  'phone' => $phone,
+  'message' => $message,
+  'form_name' => $formName,
+  'page' => $page,
+  'language' => $language,
+  'cid' => trim($data['cid'] ?? ''),
+  'event_id' => $eventId !== '' ? $eventId : null,
+  'sent_to_telegram' => $sentToTelegram,
+  'ip' => $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '',
+  'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+]);
 
 // --- GA4: generate_lead ---
 $deduplicated = false;
