@@ -25,17 +25,12 @@
       font-size: 16px
 
 .board
-  display: flex
-  flex-wrap: wrap
-  align-items: flex-start
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+  align-items: start
   gap: 12px
 
 .column
-  // Мінімум 240px для читабельності, далі колонки ділять рядок порівну
-  // і переносяться на новий, коли не вміщаються. Так не потрібні ні
-  // прокрутка, ні окремі правила для вузьких екранів: на телефоні
-  // колонки просто стають одна під одною.
-  flex: 1 1 240px
   padding: 10px
   border-radius: 10px
   background: #e9eaf0
