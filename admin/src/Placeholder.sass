@@ -1,10 +1,15 @@
 .placeholder
+  // max-width обмежує зверху, але не заважає блоку розтягуватись
+  // під вміст. width: 100% прив'язує його до ширини батька.
+  width: 100%
   max-width: 620px
 
   &__title
     margin: 0 0 10px
     font-size: 20px
+    overflow-wrap: anywhere
 
   &__note
     color: #666
     line-height: 1.6
+    overflow-wrap: anywhere

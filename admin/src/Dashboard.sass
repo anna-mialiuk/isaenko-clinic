@@ -69,6 +69,8 @@
 
 .panels
   display: grid
+  // minmax(0, ...) у другому аргументі: інакше колонка не стискається
+  // нижче ширини вмісту й ламає сітку на вузьких екранах.
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))
   gap: 12px
 
@@ -82,6 +84,7 @@
   background: #fff
   // Довгі URL сторінок і таблиці не мають ламати верстку.
   overflow-x: auto
+  min-width: 0
 
   @include mix.mobile
     padding: 14px

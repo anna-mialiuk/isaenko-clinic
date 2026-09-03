@@ -1,12 +1,12 @@
 .card
+  min-width: 0
+  overflow-wrap: anywhere
   padding: 11px 12px
   border-radius: 8px
   background: #fff
   box-shadow: 0 1px 3px rgba(31, 31, 41, .1)
   cursor: pointer
 
-  // Курсор перетягування лише там, де воно справді працює:
-  // HTML5 drag-and-drop на тачскрінах не підтримується.
   @media (hover: hover) and (pointer: fine)
     cursor: grab
 
@@ -38,7 +38,6 @@
     margin: 0 0 8px
     color: #555
     font-size: 13px
-    // Три рядки прев'ю, повний текст — у картці заявки.
     display: -webkit-box
     -webkit-line-clamp: 3
     -webkit-box-orient: vertical

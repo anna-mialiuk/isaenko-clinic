@@ -37,6 +37,9 @@
   gap: 12px
 
 .column
+  // Та сама причина: без min-width: 0 довгий вміст картки
+  // розтягує колонку, колонка — сітку, сітка — сторінку.
+  min-width: 0
   padding: 10px
   border-radius: 10px
   background: #e9eaf0
