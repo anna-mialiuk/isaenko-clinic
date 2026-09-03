@@ -6,6 +6,10 @@ import LeadModal from './LeadModal'
 
 import './Kanban.sass'
 
+// Скільки карток показувати в колонці одразу. Решта — за кнопкою:
+// при десятках заявок сторінка інакше стає нескінченно довгою.
+const VISIBLE_LIMIT = 5
+
 const STATUS_LABELS = {
   new: 'Нові',
   in_progress: 'В роботі',
@@ -20,6 +24,7 @@ function Kanban() {
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState(null)
   const [dragOver, setDragOver] = useState(null)
+  const [expanded, setExpanded] = useState({})
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -117,9 +122,24 @@ function Kanban() {
               </header>
 
               <div className="column__body">
-                {grouped[status]?.map((lead) => (
+                {(expanded[status]
+                  ? grouped[status]
+                  : grouped[status]?.slice(0, VISIBLE_LIMIT)
+                )?.map((lead) => (
                   <LeadCard key={lead.id} lead={lead} onOpen={() => setSelected(lead)} />
                 ))}
+
+                {grouped[status]?.length > VISIBLE_LIMIT && (
+                  <button
+                    type="button"
+                    className="column__more"
+                    onClick={() => setExpanded((state) => ({ ...state, [status]: !state[status] }))}
+                  >
+                    {expanded[status]
+                      ? 'Згорнути'
+                      : `Показати ще ${grouped[status].length - VISIBLE_LIMIT}`}
+                  </button>
+                )}
               </div>
             </section>
           ))}
