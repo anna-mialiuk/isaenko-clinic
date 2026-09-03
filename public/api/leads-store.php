@@ -52,6 +52,35 @@ function leads_db() {
   return $pdo;
 }
 
+/**
+ * Нормалізація телефону до формату +380XXXXXXXXX.
+ * У формах немає маски, тому люди пишуть по-різному: 0968842404,
+ * 380971922147, +38 (067) 111-22-33. Посилання tel: з такими
+ * значеннями спрацьовує не завжди, тому зводимо до одного вигляду.
+ */
+function leads_normalize_phone($raw) {
+  $digits = preg_replace('/\D+/', '', (string) $raw);
+
+  if ($digits === '') return trim((string) $raw);
+
+  // 0XXXXXXXXX → 380XXXXXXXXX
+  if (strlen($digits) === 10 && $digits[0] === '0') {
+    $digits = '38' . $digits;
+  }
+
+  if (strlen($digits) === 12 && strpos($digits, '380') === 0) {
+    return '+' . $digits;
+  }
+
+  // Міжнародні номери інших країн: додаємо плюс, якщо схоже на повний.
+  if (strlen($digits) >= 11 && strlen($digits) <= 15) {
+    return '+' . $digits;
+  }
+
+  // Надто коротке чи надто довге — лишаємо як ввели, щоб не втратити дані.
+  return trim((string) $raw);
+}
+
 /** Статуси для канбану. Порядок = порядок колонок. */
 function leads_statuses() {
   return ['new', 'in_progress', 'booked', 'done', 'rejected'];
@@ -73,7 +102,7 @@ function leads_save($data) {
 
   $fields = [
     'name' => $data['name'] ?? '',
-    'phone' => $data['phone'] ?? '',
+    'phone' => leads_normalize_phone($data['phone'] ?? ''),
     'message' => $data['message'] ?? '',
     'form_name' => $data['form_name'] ?? '',
     'page' => $data['page'] ?? '',
