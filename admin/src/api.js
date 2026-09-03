@@ -20,20 +20,28 @@ async function request(action, options = {}) {
   return data
 }
 
+/** Порожні значення у фільтрах не відправляємо — інакше сервер
+ *  вважає їх заданими й повертає порожній результат. */
+const toQuery = (filters) => {
+  const params = new URLSearchParams(
+    Object.entries(filters).filter(([, value]) => value !== '' && value != null),
+  ).toString()
+
+  return params ? `&${params}` : ''
+}
+
 export const api = {
   me: () => request('me'),
   login: (user, password) => request('login', { method: 'POST', body: { user, password } }),
   logout: () => request('logout', { method: 'POST' }),
 
-  leads: (filters = {}) => {
-    const params = new URLSearchParams(
-      Object.entries(filters).filter(([, value]) => value !== '' && value != null),
-    ).toString()
-
-    return request('leads', { query: params ? `&${params}` : '' })
-  },
+  leads: (filters = {}) => request('leads', { query: toQuery(filters) }),
 
   updateLead: (id, changes) => request('leads', { method: 'PATCH', body: { id, ...changes } }),
 
   stats: (days = 30) => request('stats', { query: `&days=${days}` }),
+
+  errors: (filters = {}) => request('errors', { query: toQuery(filters) }),
+
+  resolveError: (id, resolved) => request('errors', { method: 'PATCH', body: { id, resolved } }),
 }

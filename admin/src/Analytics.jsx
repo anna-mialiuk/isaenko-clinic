@@ -72,11 +72,6 @@ function Analytics() {
           </tbody>
         </table>
       </section>
-
-      <p className="dash__note">
-        Лог помилок поки не ведеться окремо: помилки форми пишуться в error_log сервера. Якщо
-        потрібен їх перегляд тут — це окрема таблиця і запис у неї з contact.php.
-      </p>
     </div>
   )
 }

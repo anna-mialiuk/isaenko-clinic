@@ -5,6 +5,7 @@ import Login from './Login'
 import Dashboard from './Dashboard'
 import Kanban from './Kanban'
 import Analytics from './Analytics'
+import Errors from './Errors'
 import Placeholder from './Placeholder'
 
 import './Layout.sass'
@@ -13,6 +14,7 @@ const SECTIONS = [
   { id: 'dashboard', label: 'Дашборд' },
   { id: 'crm', label: 'a-CRM' },
   { id: 'analytics', label: 'Аналітика' },
+  { id: 'errors', label: 'Помилки' },
   { id: 'team', label: 'Наша команда' },
   { id: 'blog', label: 'Блог' },
 ]
@@ -64,6 +66,7 @@ function App() {
         {section === 'dashboard' && <Dashboard />}
         {section === 'crm' && <Kanban />}
         {section === 'analytics' && <Analytics />}
+        {section === 'errors' && <Errors />}
 
         {section === 'team' && (
           <Placeholder
