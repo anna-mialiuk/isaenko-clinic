@@ -7,6 +7,8 @@ import Kanban from './Kanban'
 import Analytics from './Analytics'
 import Placeholder from './Placeholder'
 
+import './Layout.sass'
+
 const SECTIONS = [
   { id: 'dashboard', label: 'Дашборд' },
   { id: 'crm', label: 'a-CRM' },

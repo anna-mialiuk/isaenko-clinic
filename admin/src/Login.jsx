@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import { api } from './api'
 
+import './Login.sass'
+
 function Login({ onSuccess }) {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')

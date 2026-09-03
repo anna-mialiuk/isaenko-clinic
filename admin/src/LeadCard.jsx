@@ -1,5 +1,10 @@
 import { formatDate } from './formatDate'
 
+import './LeadCard.sass'
+
+const canDrag = () =>
+  typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
 const sourceLabel = (lead) => {
   if (lead.utm_source) return lead.utm_source
   if (lead.gclid) return 'google ads'
@@ -11,7 +16,7 @@ function LeadCard({ lead, onOpen }) {
   return (
     <article
       className="card"
-      draggable
+      draggable={canDrag()}
       onDragStart={(event) => event.dataTransfer.setData('text/plain', String(lead.id))}
       onClick={onOpen}
     >

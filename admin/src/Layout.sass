@@ -1,0 +1,92 @@
+@use 'mixins' as mix
+
+.layout
+  display: grid
+  grid-template-columns: 200px 1fr
+  min-height: 100vh
+
+  @include mix.laptop-s
+    grid-template-columns: 1fr
+
+.sidebar
+  display: flex
+  flex-direction: column
+  padding: 20px 14px
+  background: #262636
+  color: #fff
+
+  @include mix.laptop-s
+    flex-direction: row
+    align-items: center
+    gap: 10px
+    padding: 10px 12px
+    position: sticky
+    top: 0
+    z-index: 10
+
+  &__logo
+    margin-bottom: 24px
+    padding: 0 10px
+    font-weight: 600
+
+    @include mix.laptop-s
+      margin: 0
+      padding: 0
+      white-space: nowrap
+
+    @include mix.mobile
+      display: none
+
+  &__nav
+    display: flex
+    flex-direction: column
+    gap: 2px
+    flex: 1
+
+    @include mix.laptop-s
+      flex-direction: row
+      gap: 4px
+      overflow-x: auto
+      scrollbar-width: none
+
+      &::-webkit-scrollbar
+        display: none
+
+  &__link
+    padding: 10px 12px
+    border: 0
+    border-radius: 8px
+    background: transparent
+    color: rgba(255, 255, 255, .65)
+    text-align: left
+    cursor: pointer
+
+    &:hover
+      background: rgba(255, 255, 255, .07)
+
+    &.is-active
+      background: #4d48b4
+      color: #fff
+
+    @include mix.laptop-s
+      padding: 8px 12px
+      white-space: nowrap
+
+  &__logout
+    padding: 9px
+    border: 1px solid rgba(255, 255, 255, .2)
+    border-radius: 8px
+    background: transparent
+    color: rgba(255, 255, 255, .7)
+    cursor: pointer
+
+    @include mix.laptop-s
+      padding: 8px 14px
+      white-space: nowrap
+
+.content
+  padding: 24px
+  overflow-x: auto
+
+  @include mix.laptop-s
+    padding: 16px 12px

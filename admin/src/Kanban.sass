@@ -1,0 +1,63 @@
+@use 'mixins' as mix
+
+.crm
+  &__header
+    display: flex
+    align-items: center
+    gap: 14px
+    margin-bottom: 18px
+
+    @include mix.mobile
+      flex-wrap: wrap
+      gap: 10px
+
+  &__search
+    flex: 1
+    max-width: 340px
+    padding: 9px 13px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+
+    @include mix.mobile
+      order: 3
+      max-width: none
+      // 16px не дає iOS збільшувати сторінку при фокусі.
+      font-size: 16px
+
+.board
+  display: flex
+  flex-wrap: wrap
+  align-items: flex-start
+  gap: 12px
+
+.column
+  // Мінімум 240px для читабельності, далі колонки ділять рядок порівну
+  // і переносяться на новий, коли не вміщаються. Так не потрібні ні
+  // прокрутка, ні окремі правила для вузьких екранів: на телефоні
+  // колонки просто стають одна під одною.
+  flex: 1 1 240px
+  padding: 10px
+  border-radius: 10px
+  background: #e9eaf0
+  min-height: 80px
+  transition: background .15s ease
+
+  &.is-over
+    background: #dcdef0
+    outline: 2px dashed #4d48b4
+
+  &__header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 10px
+    padding: 0 4px
+    font-weight: 600
+    font-size: 13px
+
+  &__count
+    color: #888
+
+  &__body
+    display: flex
+    flex-direction: column
+    gap: 8px

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { api } from './api'
 
+import './Dashboard.sass'
+
 const STATUS_LABELS = {
   new: 'Нові',
   in_progress: 'В роботі',
@@ -31,6 +33,16 @@ function Bars({ items, labelKey, valueKey, labels }) {
   )
 }
 
+/** Повний URL у підписі нечитабельний — лишаємо шлях і мітки. */
+const shortenUrl = (value) => {
+  try {
+    const url = new URL(value)
+    return (url.pathname === '/' ? '/' : url.pathname) + url.search
+  } catch {
+    return value
+  }
+}
+
 function Dashboard() {
   const [data, setData] = useState(null)
   const [days, setDays] = useState(30)
@@ -43,8 +55,8 @@ function Dashboard() {
       .catch(() => setError('Не вдалося завантажити статистику'))
   }, [days])
 
-  if (error) return <p className="crm__error">{error}</p>
-  if (!data) return <p className="crm__empty">Завантаження…</p>
+  if (error) return <p className="page__error">{error}</p>
+  if (!data) return <p className="page__empty">Завантаження…</p>
 
   const totalClicks = data.by_day.reduce((sum, day) => sum + Number(day.clicks), 0)
   const totalVisitors = data.by_day.reduce((sum, day) => sum + Number(day.visitors), 0)
@@ -55,7 +67,7 @@ function Dashboard() {
   return (
     <div className="dash">
       <header className="dash__header">
-        <h1 className="crm__title">Дашборд</h1>
+        <h1 className="page__title">Дашборд</h1>
 
         <select
           className="dash__period"
@@ -117,7 +129,14 @@ function Dashboard() {
 
         <section className="panel panel--wide">
           <h2 className="panel__title">Найпопулярніші сторінки</h2>
-          <Bars items={data.pages} labelKey="page_location" valueKey="count" />
+          <Bars
+            items={data.pages.map((page) => ({
+              ...page,
+              page_location: shortenUrl(page.page_location),
+            }))}
+            labelKey="page_location"
+            valueKey="count"
+          />
         </section>
       </div>
 

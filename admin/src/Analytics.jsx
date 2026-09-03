@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { api } from './api'
 
+import './Analytics.sass'
+
 function Analytics() {
   const [data, setData] = useState(null)
   const [error, setError] = useState('')
@@ -13,12 +15,12 @@ function Analytics() {
       .catch(() => setError('Не вдалося завантажити дані'))
   }, [])
 
-  if (error) return <p className="crm__error">{error}</p>
-  if (!data) return <p className="crm__empty">Завантаження…</p>
+  if (error) return <p className="page__error">{error}</p>
+  if (!data) return <p className="page__empty">Завантаження…</p>
 
   return (
     <div className="dash">
-      <h1 className="crm__title">Аналітика</h1>
+      <h1 className="page__title">Аналітика</h1>
 
       <section className="panel panel--wide">
         <h2 className="panel__title">Налаштовані події</h2>

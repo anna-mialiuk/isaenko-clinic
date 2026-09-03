@@ -4,6 +4,8 @@ import { api } from './api'
 import LeadCard from './LeadCard'
 import LeadModal from './LeadModal'
 
+import './Kanban.sass'
+
 const STATUS_LABELS = {
   new: 'Нові',
   in_progress: 'В роботі',
@@ -80,7 +82,7 @@ function Kanban() {
   return (
     <div className="crm">
       <header className="crm__header">
-        <h1 className="crm__title">Заявки</h1>
+        <h1 className="page__title">Заявки</h1>
 
         <input
           className="crm__search"
@@ -92,10 +94,10 @@ function Kanban() {
         <span className="crm__count">{leads.length}</span>
       </header>
 
-      {error && <p className="crm__error">{error}</p>}
+      {error && <p className="page__error">{error}</p>}
 
       {loading ? (
-        <p className="crm__empty">Завантаження…</p>
+        <p className="page__empty">Завантаження…</p>
       ) : (
         <div className="board">
           {statuses.map((status) => (

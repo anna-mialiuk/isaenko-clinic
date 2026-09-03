@@ -1,0 +1,138 @@
+@use 'mixins' as mix
+
+.dash
+  &__header
+    display: flex
+    align-items: center
+    gap: 14px
+    margin-bottom: 18px
+
+    @include mix.mobile
+      flex-wrap: wrap
+      gap: 10px
+
+  &__period
+    padding: 8px 12px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    background: #fff
+
+  &__note
+    margin-top: 18px
+    padding: 12px 16px
+    border-radius: 10px
+    background: #eef0f6
+    color: #666
+    font-size: 13px
+    line-height: 1.5
+
+  // Секції в Аналітиці лежать поза сіткою .panels, тому gap на них
+  // не діє — розсовуємо їх власним відступом.
+  > .panel + .panel
+    margin-top: 12px
+
+  > .page__title + .panel
+    margin-top: 14px
+
+.tiles
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr))
+  gap: 12px
+  margin-bottom: 18px
+
+  // На телефоні дві плитки в ряд читабельніші за одну розтягнуту.
+  @include mix.mobile
+    grid-template-columns: repeat(2, 1fr)
+    gap: 8px
+
+.tile
+  display: flex
+  flex-direction: column
+  gap: 4px
+  padding: 16px 18px
+  border-radius: 10px
+  background: #fff
+
+  @include mix.mobile
+    padding: 12px 14px
+
+  &__value
+    font-size: 26px
+    font-weight: 600
+
+    @include mix.mobile
+      font-size: 22px
+
+  &__label
+    color: #888
+    font-size: 13px
+
+.panels
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))
+  gap: 12px
+
+  // 320px не влазить у 360px екран разом із відступами.
+  @include mix.mobile
+    grid-template-columns: 1fr
+
+.panel
+  padding: 16px 18px
+  border-radius: 10px
+  background: #fff
+  // Довгі URL сторінок і таблиці не мають ламати верстку.
+  overflow-x: auto
+
+  @include mix.mobile
+    padding: 14px
+
+  &--wide
+    grid-column: 1 / -1
+
+  &__title
+    margin: 0 0 12px
+    font-size: 15px
+
+  &__empty
+    margin: 0
+    color: #999
+
+.bars
+  margin: 0
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  gap: 7px
+
+  &__row
+    display: grid
+    grid-template-columns: minmax(90px, 210px) 1fr 44px
+    align-items: center
+    gap: 10px
+    font-size: 13px
+
+    @include mix.mobile
+      grid-template-columns: minmax(70px, 110px) 1fr 36px
+      gap: 8px
+      font-size: 12px
+
+  &__label
+    color: #555
+    // Переносимо замість трикрапки: підпис має читатись цілком.
+    overflow-wrap: anywhere
+
+  &__track
+    height: 8px
+    border-radius: 4px
+    background: #eef0f6
+    overflow: hidden
+
+  &__fill
+    display: block
+    height: 100%
+    background: #4d48b4
+
+  &__value
+    text-align: right
+    color: #666

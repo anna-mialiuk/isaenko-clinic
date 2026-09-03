@@ -1,3 +1,5 @@
+import './Placeholder.sass'
+
 function Placeholder({ title, note }) {
   return (
     <div className="placeholder">

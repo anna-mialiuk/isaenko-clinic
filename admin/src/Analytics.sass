@@ -1,0 +1,20 @@
+@use 'mixins' as mix
+
+.table
+  width: 100%
+  min-width: 420px
+  border-collapse: collapse
+  font-size: 13px
+
+  th,
+  td
+    padding: 8px 10px
+    border-bottom: 1px solid #eceef4
+    text-align: left
+
+    @include mix.mobile
+      padding: 7px 8px
+
+  th
+    color: #888
+    font-weight: 500
