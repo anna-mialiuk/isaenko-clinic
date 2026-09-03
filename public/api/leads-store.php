@@ -40,9 +40,18 @@ function leads_db() {
       -- технічне
       sent_to_telegram INTEGER DEFAULT 0,
       ip TEXT,
-      user_agent TEXT
+      user_agent TEXT,
+      deleted_at TEXT
     )
   ");
+
+  // CREATE TABLE IF NOT EXISTS не додає колонки до вже створеної таблиці,
+  // тому для наявних баз доганяємо схему вручну.
+  $columns = $pdo->query('PRAGMA table_info(leads)')->fetchAll(PDO::FETCH_COLUMN, 1);
+
+  if (!in_array('deleted_at', $columns, true)) {
+    $pdo->exec('ALTER TABLE leads ADD COLUMN deleted_at TEXT');
+  }
 
   $pdo->exec('CREATE INDEX IF NOT EXISTS idx_leads_created ON leads(created_at DESC)');
   $pdo->exec('CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status)');
@@ -68,6 +77,7 @@ function leads_normalize_phone($raw) {
     $digits = '38' . $digits;
   }
 
+  // XXXXXXXXX (без коду оператора) не чіпаємо — незрозуміло, що це.
   if (strlen($digits) === 12 && strpos($digits, '380') === 0) {
     return '+' . $digits;
   }
@@ -132,7 +142,13 @@ function leads_save($data) {
   } catch (PDOException $e) {
     // Повторна відправка тієї самої форми — не дубль, а той самий лід.
     if (strpos($e->getMessage(), 'UNIQUE') !== false) return 0;
+
     error_log('[leads] ' . $e->getMessage());
+    errors_log('db', $e->getMessage(), [
+      'phone' => $fields['phone'],
+      'name' => $fields['name'],
+    ], 'error');
+
     return 0;
   }
 }
@@ -141,7 +157,9 @@ function leads_save($data) {
 function leads_list($filters = []) {
   $pdo = leads_db();
 
-  $where = [];
+  // Видалені ховаємо, але з бази не стираємо: у панелі персональні дані
+  // пацієнтів, і випадковий клік не має знищувати заявку назавжди.
+  $where = ['deleted_at IS NULL'];
   $params = [];
 
   if (!empty($filters['status'])) {
@@ -160,8 +178,7 @@ function leads_list($filters = []) {
     $params[] = $filters['date_from'];
   }
 
-  $sql = 'SELECT * FROM leads';
-  if ($where) $sql .= ' WHERE ' . implode(' AND ', $where);
+  $sql = 'SELECT * FROM leads WHERE ' . implode(' AND ', $where);
   $sql .= ' ORDER BY created_at DESC LIMIT ? OFFSET ?';
 
   $params[] = (int) ($filters['limit'] ?? 100);
@@ -202,17 +219,36 @@ function leads_update($id, $data) {
   return $stmt->rowCount() > 0;
 }
 
+/** Мʼяке видалення: заявка зникає з панелі, але лишається в базі. */
+function leads_delete($id) {
+  $stmt = leads_db()->prepare(
+    "UPDATE leads SET deleted_at = datetime('now') WHERE id = ? AND deleted_at IS NULL"
+  );
+  $stmt->execute([(int) $id]);
+
+  return $stmt->rowCount() > 0;
+}
+
+/** Повернути видалену заявку (через SQL або майбутню кнопку в панелі). */
+function leads_restore($id) {
+  $stmt = leads_db()->prepare('UPDATE leads SET deleted_at = NULL WHERE id = ?');
+  $stmt->execute([(int) $id]);
+
+  return $stmt->rowCount() > 0;
+}
+
 /** Зведення для дашборду. */
 function leads_stats($days = 30) {
   $pdo = leads_db();
 
   $byStatus = $pdo->query("
-    SELECT status, COUNT(*) AS count FROM leads GROUP BY status
+    SELECT status, COUNT(*) AS count FROM leads
+    WHERE deleted_at IS NULL GROUP BY status
   ")->fetchAll(PDO::FETCH_KEY_PAIR);
 
   $stmt = $pdo->prepare("
     SELECT date(created_at) AS day, COUNT(*) AS count
-    FROM leads WHERE created_at > datetime('now', ?)
+    FROM leads WHERE created_at > datetime('now', ?) AND deleted_at IS NULL
     GROUP BY day ORDER BY day
   ");
   $stmt->execute(['-' . (int) $days . ' day']);
@@ -222,7 +258,7 @@ function leads_stats($days = 30) {
     SELECT
       CASE WHEN utm_source = '' OR utm_source IS NULL THEN 'direct' ELSE utm_source END AS source,
       COUNT(*) AS count
-    FROM leads WHERE created_at > datetime('now', ?)
+    FROM leads WHERE created_at > datetime('now', ?) AND deleted_at IS NULL
     GROUP BY source ORDER BY count DESC
   ");
   $stmt->execute(['-' . (int) $days . ' day']);
@@ -232,6 +268,8 @@ function leads_stats($days = 30) {
     'by_status' => $byStatus,
     'by_day' => $byDay,
     'by_source' => $bySource,
-    'total' => (int) $pdo->query('SELECT COUNT(*) FROM leads')->fetchColumn(),
+    'total' => (int) $pdo->query(
+      'SELECT COUNT(*) FROM leads WHERE deleted_at IS NULL'
+    )->fetchColumn(),
   ];
 }

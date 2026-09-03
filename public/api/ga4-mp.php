@@ -59,11 +59,22 @@ function ga4_send_event($eventName, $clientId, $sessionId, $params) {
 
   if ($apiSecret === '') {
     error_log('[GA4 MP] GA4_API_SECRET is not set');
+    // Не разова помилка, а зламане налаштування: доки секрет не заданий,
+    // жодна конверсія не потрапить у GA4.
+    errors_log('ga4_mp', 'GA4_API_SECRET не заданий у конфізі сервера', [
+      'event_name' => $eventName,
+    ], 'error');
     return false;
   }
 
   if ($clientId === '') {
     error_log('[GA4 MP] client_id missing, event skipped: ' . $eventName);
+    // Форма не передала client_id — подія була б прив'язана
+    // до «фантомного» користувача, тому не надсилаємо взагалі.
+    errors_log('ga4_mp', 'Форма не передала client_id, подію не надіслано', [
+      'event_name' => $eventName,
+      'session_id' => $sessionId,
+    ], 'warning');
     return false;
   }
 

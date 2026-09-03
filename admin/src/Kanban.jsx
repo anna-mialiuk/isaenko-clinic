@@ -156,6 +156,10 @@ function Kanban() {
             setLeads((items) => items.map((item) => (item.id === updated.id ? updated : item)))
             setSelected(null)
           }}
+          onDeleted={(id) => {
+            setLeads((items) => items.filter((item) => item.id !== id))
+            setSelected(null)
+          }}
         />
       )}
     </div>
