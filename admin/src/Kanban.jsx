@@ -136,7 +136,7 @@ function Kanban() {
                   >
                     {expanded[status]
                       ? 'Згорнути'
-                      : `Показати ще ${grouped[status].length - VISIBLE_LIMIT}`}
+                      : `Показати ще ${grouped[status.id].length - VISIBLE_LIMIT}`}
                   </button>
                 )}
               </div>
