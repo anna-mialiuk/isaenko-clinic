@@ -86,6 +86,86 @@ if ($action === 'leads') {
   admin_json(['error' => 'method not allowed'], 405);
 }
 
+if ($action === 'export') {
+  // Віддаємо CSV файлом, а не JSON: браузер одразу пропонує зберегти.
+  $rows = leads_list([
+    'status' => $_GET['status'] ?? '',
+    'search' => $_GET['search'] ?? '',
+    'date_from' => $_GET['date_from'] ?? '',
+    'limit' => 10000,
+  ]);
+
+  $statusLabels = [
+    'new' => 'Нові',
+    'in_progress' => 'В роботі',
+    'booked' => 'Записані',
+    'done' => 'Прийшли',
+    'rejected' => 'Відмова',
+  ];
+
+  // Робочий набір полів. Технічні (client_id, event_id, ip, user_agent)
+  // у вивантаженні лише заважають — вони потрібні для звʼязки, не людині.
+  $columns = [
+    'created_at' => 'Дата',
+    'name' => 'Імʼя',
+    'phone' => 'Телефон',
+    'message' => 'Повідомлення',
+    'status' => 'Статус',
+    'comment' => 'Коментар',
+    'form_name' => 'Форма',
+    'page' => 'Сторінка',
+    'utm_source' => 'Джерело',
+    'utm_medium' => 'Канал',
+    'utm_campaign' => 'Кампанія',
+    'cmp_id' => 'ID кампанії',
+    'src_pl' => 'Платформа',
+    'gclid' => 'gclid',
+    'fbclid' => 'fbclid',
+  ];
+
+  $filename = 'leads-' . date('Y-m-d') . '.csv';
+
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename="' . $filename . '"');
+  header('Cache-Control: no-store');
+
+  $out = fopen('php://output', 'w');
+
+  // BOM: без нього Excel на Windows читає файл як ANSI
+  // і кирилиця перетворюється на кракозябри.
+  fwrite($out, "\xEF\xBB\xBF");
+
+  // Крапка з комою: Excel з українською локаллю розбиває саме по ній,
+  // інакше весь рядок потрапляє в одну клітинку.
+  fputcsv($out, array_values($columns), ';');
+
+  foreach ($rows as $row) {
+    $line = [];
+
+    foreach ($columns as $key => $label) {
+      $value = $row[$key] ?? '';
+
+      if ($key === 'status') $value = $statusLabels[$value] ?? $value;
+
+      // Значення, що починається з = + - @, Excel виконує як формулу.
+      // Апостроф спереду знешкоджує це (CSV injection).
+      //
+      // Телефон виключаємо: він нормалізований до «+ і цифри», формули
+      // там бути не може, а апостроф було б видно в клітинці.
+      if ($key !== 'phone' && $value !== '' && strpbrk((string) $value[0], '=+-@') !== false) {
+        $value = "'" . $value;
+      }
+
+      $line[] = $value;
+    }
+
+    fputcsv($out, $line, ';');
+  }
+
+  fclose($out);
+  exit;
+}
+
 if ($action === 'stats') {
   $days = min(max((int) ($_GET['days'] ?? 30), 1), 365);
 

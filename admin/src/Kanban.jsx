@@ -97,6 +97,10 @@ function Kanban() {
         />
 
         <span className="crm__count">{leads.length}</span>
+
+        <a className="crm__export" href={api.exportUrl({ search })} download>
+          Експорт CSV
+        </a>
       </header>
 
       {error && <p className="page__error">{error}</p>}

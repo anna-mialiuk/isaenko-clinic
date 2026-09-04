@@ -43,5 +43,9 @@ export const api = {
 
   errors: (filters = {}) => request('errors', { query: toQuery(filters) }),
 
+  // Не fetch, а звичайне посилання: браузер має сам запропонувати
+  // зберегти файл, а не тягнути його в память вкладки.
+  exportUrl: (filters = {}) => `${BASE}?action=export${toQuery(filters)}`,
+
   resolveError: (id, resolved) => request('errors', { method: 'PATCH', body: { id, resolved } }),
 }

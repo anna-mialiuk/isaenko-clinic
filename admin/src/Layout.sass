@@ -2,6 +2,9 @@
 
 .layout
   display: grid
+  // minmax(0, 1fr), а не просто 1fr: колонка 1fr має мінімум min-content,
+  // тому будь-який широкий елемент усередині розтягує сітку, а з нею
+  // всю сторінку — і зʼявляється горизонтальна прокрутка.
   grid-template-columns: 200px minmax(0, 1fr)
   min-height: 100vh
 
@@ -17,14 +20,24 @@
   color: #fff
 
   @include mix.laptop-s
-    flex-direction: row
-    align-items: center
-    gap: 10px
-    padding: 10px 12px
+    padding: 0
     position: sticky
     top: 0
     z-index: 10
     overflow: hidden
+
+  // ── Верхня смуга з логотипом і гамбургером ──────────
+  // Показується лише на вузьких екранах: на десктопі сайдбар
+  // видно завжди, ховати його немає потреби.
+  &__bar
+    display: contents
+
+    @include mix.laptop-s
+      display: flex
+      align-items: center
+      justify-content: space-between
+      gap: 12px
+      padding: 12px 14px
 
   &__logo
     margin-bottom: 24px
@@ -35,10 +48,74 @@
       margin: 0
       padding: 0
       white-space: nowrap
-      flex-shrink: 0
 
-    @include mix.mobile
-      display: none
+  &__burger
+    display: none
+
+    @include mix.laptop-s
+      display: flex
+      flex-direction: column
+      justify-content: center
+      gap: 5px
+      width: 40px
+      height: 40px
+      padding: 0 9px
+      border: 0
+      border-radius: 8px
+      background: transparent
+      cursor: pointer
+
+      &:hover
+        background: rgba(255, 255, 255, .07)
+
+  &__burger-line
+    display: block
+    height: 2px
+    border-radius: 2px
+    background: #fff
+    transition: transform .2s ease, opacity .2s ease
+
+    // Хрестик у відкритому стані: середня смужка зникає,
+    // крайні сходяться навхрест.
+    .sidebar.is-open &:nth-child(1)
+      transform: translateY(7px) rotate(45deg)
+
+    .sidebar.is-open &:nth-child(2)
+      opacity: 0
+
+    .sidebar.is-open &:nth-child(3)
+      transform: translateY(-7px) rotate(-45deg)
+
+  // ── Навігація ───────────────────────────────────────
+
+  // Висоту невідомого вмісту не можна анімувати через height чи display.
+  // Трюк із grid-template-rows: 0fr → 1fr робить це коректно й плавно.
+  &__panel
+    display: contents
+
+    @include mix.laptop-s
+      display: grid
+      grid-template-rows: 0fr
+      transition: grid-template-rows .28s ease
+
+      &.is-open
+        grid-template-rows: 1fr
+
+  &__panel-inner
+    display: contents
+
+    @include mix.laptop-s
+      display: flex
+      flex-direction: column
+      // Обовʼязково для трюку: без overflow вміст вилазить за нульовий рядок.
+      overflow: hidden
+      // Ховаємо після анімації, щоб згорнуті пункти не ловили фокус.
+      visibility: hidden
+      transition: visibility 0s .28s
+
+      .sidebar__panel.is-open &
+        visibility: visible
+        transition: visibility 0s
 
   &__nav
     display: flex
@@ -47,14 +124,61 @@
     flex: 1
 
     @include mix.laptop-s
-      flex-direction: row
-      gap: 4px
-      overflow-x: auto
-      scrollbar-width: none
-      min-width: 0
+      padding: 0 14px 14px
+      flex: none
 
-      &::-webkit-scrollbar
-        display: none
+  &__group
+    display: flex
+    flex-direction: column
+    gap: 2px
+
+  &__group-title
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 8px
+    padding: 10px 12px
+    border: 0
+    border-radius: 8px
+    background: transparent
+    color: rgba(255, 255, 255, .5)
+    font-size: 12px
+    letter-spacing: .04em
+    text-transform: uppercase
+    text-align: left
+    cursor: pointer
+
+    &:hover
+      color: rgba(255, 255, 255, .8)
+
+    transition: color .18s ease
+
+  &__chevron
+    width: 6px
+    height: 6px
+    border-right: 1.5px solid currentColor
+    border-bottom: 1.5px solid currentColor
+    transform: rotate(45deg) translate(-2px, -2px)
+    transition: transform .2s ease
+
+    .sidebar__group-title.is-open &
+      transform: rotate(225deg) translate(-2px, -2px)
+
+  &__sub
+    display: grid
+    grid-template-rows: 0fr
+    transition: grid-template-rows .22s ease
+
+    &.is-open
+      grid-template-rows: 1fr
+
+  &__sub-inner
+    display: flex
+    flex-direction: column
+    gap: 2px
+    overflow: hidden
+    // Відступ показує вкладеність без додаткових ліній і рамок.
+    padding-left: 10px
 
   &__link
     padding: 10px 12px
@@ -64,6 +188,7 @@
     color: rgba(255, 255, 255, .65)
     text-align: left
     cursor: pointer
+    transition: background .18s ease, color .18s ease
 
     &:hover
       background: rgba(255, 255, 255, .07)
@@ -72,10 +197,8 @@
       background: #4d48b4
       color: #fff
 
-    @include mix.laptop-s
-      padding: 8px 12px
-      white-space: nowrap
-      flex-shrink: 0
+    &--sub
+      font-size: 13px
 
   &__logout
     padding: 9px
@@ -86,13 +209,22 @@
     cursor: pointer
 
     @include mix.laptop-s
-      padding: 8px 14px
-      white-space: nowrap
-      flex-shrink: 0
+      margin: 0 14px 14px
 
 .content
   padding: 24px
+  // min-width: 0 — та сама причина, що й у колонці сітки:
+  // без нього широкий вміст розтягує grid-елемент.
   min-width: 0
 
   @include mix.laptop-s
     padding: 16px 12px
+
+// Хто вимкнув анімації в системі, не має бачити їх і тут.
+@media (prefers-reduced-motion: reduce)
+  .sidebar__panel,
+  .sidebar__sub,
+  .sidebar__chevron,
+  .sidebar__burger-line,
+  .sidebar__link
+    transition: none
