@@ -32,6 +32,17 @@ function LeadCard({ lead, onOpen }) {
       {lead.message && <p className="card__message">{lead.message}</p>}
 
       <div className="card__bottom">
+        <button
+          type="button"
+          className="card__more"
+          onClick={(event) => {
+            event.stopPropagation()
+            onOpen()
+          }}
+        >
+          Детальніше
+        </button>
+
         <span className="card__source">{sourceLabel(lead)}</span>
         {lead.cmp_id && <span className="card__campaign">#{lead.cmp_id}</span>}
         {!lead.sent_to_telegram && <span className="card__warn">не в TG</span>}

@@ -45,9 +45,29 @@
 
   &__bottom
     display: flex
+    align-items: center
     flex-wrap: wrap
     gap: 5px
     font-size: 11px
+
+  &__more
+    // Клік по всій картці теж відкриває деталі — кнопка потрібна,
+    // щоб це було очевидно, а не вгадувалось.
+    order: -1
+    width: 100%
+    margin-bottom: 4px
+    padding: 6px
+    border: 1px solid #d8dae2
+    border-radius: 6px
+    background: #fff
+    color: #4d48b4
+    font-size: 12px
+    cursor: pointer
+    transition: background .15s ease, border-color .15s ease
+
+    &:hover
+      border-color: #4d48b4
+      background: #f4f3fb
 
   &__source,
   &__campaign,
