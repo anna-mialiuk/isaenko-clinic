@@ -6,7 +6,6 @@
 
 require_once __DIR__ . '/admin-auth.php';
 require_once __DIR__ . '/leads-store.php';
-require_once __DIR__ . '/errors-store.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -71,7 +70,7 @@ if ($action === 'leads') {
         'limit' => min((int) ($_GET['limit'] ?? 100), 500),
         'offset' => (int) ($_GET['offset'] ?? 0),
       ]),
-      'statuses' => leads_statuses(),
+      'statuses' => statuses_list(),
     ]);
   }
 
@@ -87,25 +86,19 @@ if ($action === 'leads') {
   admin_json(['error' => 'method not allowed'], 405);
 }
 
-if ($action === 'errors') {
+if ($action === 'statuses') {
   if ($method === 'GET') {
-    admin_json([
-      'items' => errors_list([
-        'source' => $_GET['source'] ?? '',
-        'resolved' => $_GET['resolved'] ?? '',
-        'limit' => min((int) ($_GET['limit'] ?? 200), 500),
-      ]),
-      'unresolved' => errors_unresolved_count(),
-    ]);
+    admin_json(['items' => statuses_list(true)]);
   }
 
-  if ($method === 'PATCH' || $method === 'POST') {
+  if ($method === 'POST' || $method === 'PATCH') {
     $body = admin_body();
-    $id = (int) ($body['id'] ?? 0);
 
-    if (!$id) admin_json(['error' => 'id required'], 400);
+    if (empty($body['items']) || !is_array($body['items'])) {
+      admin_json(['error' => 'items required'], 400);
+    }
 
-    admin_json(['ok' => errors_resolve($id, $body['resolved'] ?? 1)]);
+    admin_json(['ok' => statuses_save($body['items'])]);
   }
 
   admin_json(['error' => 'method not allowed'], 405);

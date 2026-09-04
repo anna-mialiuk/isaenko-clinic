@@ -6,6 +6,7 @@ import Dashboard from './Dashboard'
 import Kanban from './Kanban'
 import Analytics from './Analytics'
 import Errors from './Errors'
+import CrmSettings from './CrmSettings'
 import Placeholder from './Placeholder'
 
 import './Layout.sass'
@@ -160,14 +161,7 @@ function App() {
         {section === 'analytics.events' && <Analytics />}
         {section === 'settings.server' && <Errors />}
 
-        {section === 'crm.settings' && (
-          <Placeholder
-            title="Налаштування CRM"
-            note="Статуси й воронка зараз задані в коді — пʼять фіксованих колонок.
-                  Щоб налаштовувати їх звідси (назви, порядок, кольори), треба
-                  перенести їх у базу й навчити канбан читати звідти."
-          />
-        )}
+        {section === 'crm.settings' && <CrmSettings />}
 
         {section === 'crm.notifications' && (
           <Placeholder

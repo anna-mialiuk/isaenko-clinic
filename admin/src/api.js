@@ -42,9 +42,11 @@ export const api = {
   // Повна картка з історією — окремим запитом, бо список її не тягне.
   lead: (id) => request('lead', { query: `&id=${id}` }),
 
-  stats: (days = 30) => request('stats', { query: `&days=${days}` }),
+  statuses: () => request('statuses'),
 
-  exportUrl: (filters = {}) => `${BASE}?action=export${toQuery(filters)}`,
+  saveStatuses: (items) => request('statuses', { method: 'POST', body: { items } }),
+
+  stats: (days = 30) => request('stats', { query: `&days=${days}` }),
 
   errors: (filters = {}) => request('errors', { query: toQuery(filters) }),
 

@@ -125,9 +125,112 @@ function leads_normalize_phone($raw) {
   return trim((string) $raw);
 }
 
-/** Статуси для канбану. Порядок = порядок колонок. */
+/**
+ * Статуси воронки. Зберігаються в базі, щоб їх можна було
+ * перейменовувати, міняти місцями й фарбувати з панелі.
+ * При першому зверненні створюється набір за замовчуванням.
+ */
+function statuses_db() {
+  $pdo = attr_db();
+
+  $pdo->exec("
+    CREATE TABLE IF NOT EXISTS lead_statuses (
+      id TEXT PRIMARY KEY,
+      label TEXT NOT NULL,
+      color TEXT NOT NULL DEFAULT '#8a8aa3',
+      position INTEGER NOT NULL DEFAULT 0,
+      is_archived INTEGER NOT NULL DEFAULT 0
+    )
+  ");
+
+  $count = (int) $pdo->query('SELECT COUNT(*) FROM lead_statuses')->fetchColumn();
+
+  if ($count === 0) {
+    $defaults = [
+      ['new', 'Нові', '#4d48b4', 1],
+      ['in_progress', 'В роботі', '#d99a2b', 2],
+      ['booked', 'Записані', '#2b8ad9', 3],
+      ['done', 'Прийшли', '#3d9970', 4],
+      ['rejected', 'Відмова', '#d1435b', 5],
+    ];
+
+    $stmt = $pdo->prepare(
+      'INSERT INTO lead_statuses (id, label, color, position) VALUES (?, ?, ?, ?)'
+    );
+
+    foreach ($defaults as $row) $stmt->execute($row);
+  }
+
+  return $pdo;
+}
+
+/** Повні дані статусів — для канбану й налаштувань. */
+function statuses_list($withArchived = false) {
+  $sql = 'SELECT * FROM lead_statuses';
+  if (!$withArchived) $sql .= ' WHERE is_archived = 0';
+  $sql .= ' ORDER BY position, id';
+
+  return statuses_db()->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/** Тільки ідентифікатори — там, де потрібен простий список. */
 function leads_statuses() {
-  return ['new', 'in_progress', 'booked', 'done', 'rejected'];
+  return array_column(statuses_list(), 'id');
+}
+
+/**
+ * Збереження набору статусів цілком: додані, перейменовані, переставлені.
+ * Видалені не стираємо, а архівуємо — інакше ліди з таким статусом
+ * зникли б із канбану назавжди.
+ */
+function statuses_save($items) {
+  $pdo = statuses_db();
+  $pdo->beginTransaction();
+
+  try {
+    $keep = [];
+
+    foreach (array_values($items) as $index => $item) {
+      $id = trim((string) ($item['id'] ?? ''));
+      $label = trim((string) ($item['label'] ?? ''));
+
+      if ($id === '' || $label === '') continue;
+
+      $keep[] = $id;
+
+      $stmt = $pdo->prepare("
+        INSERT INTO lead_statuses (id, label, color, position, is_archived)
+        VALUES (?, ?, ?, ?, 0)
+        ON CONFLICT(id) DO UPDATE SET
+          label = excluded.label,
+          color = excluded.color,
+          position = excluded.position,
+          is_archived = 0
+      ");
+
+      $stmt->execute([
+        $id,
+        mb_substr($label, 0, 40),
+        preg_match('/^#[0-9a-fA-F]{6}$/', $item['color'] ?? '') ? $item['color'] : '#8a8aa3',
+        $index + 1,
+      ]);
+    }
+
+    if ($keep) {
+      $marks = implode(',', array_fill(0, count($keep), '?'));
+      $pdo->prepare("UPDATE lead_statuses SET is_archived = 1 WHERE id NOT IN ($marks)")
+        ->execute($keep);
+    }
+
+    $pdo->commit();
+
+    return true;
+  } catch (PDOException $e) {
+    $pdo->rollBack();
+    error_log('[statuses] ' . $e->getMessage());
+
+    return false;
+  }
 }
 
 /**

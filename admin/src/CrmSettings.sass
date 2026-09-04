@@ -1,0 +1,141 @@
+@use 'mixins' as mix
+
+.settings
+  &__header
+    margin-bottom: 18px
+
+  &__hint
+    margin: 0 0 14px
+    color: #888
+    font-size: 13px
+
+  &__note
+    margin: 14px 0 0
+    padding: 10px 12px
+    border-radius: 8px
+    background: #f4f5f8
+    color: #666
+    font-size: 12px
+    line-height: 1.5
+
+  &__add
+    margin-top: 12px
+    padding: 9px 16px
+    border: 1px dashed #b9bbc9
+    border-radius: 8px
+    background: transparent
+    color: #4d48b4
+    font-size: 13px
+    cursor: pointer
+
+    &:hover
+      border-color: #4d48b4
+      background: #f4f3fb
+
+  &__actions
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    gap: 12px
+    margin-top: 18px
+
+  &__saved
+    color: #3d9970
+    font-size: 13px
+
+  &__save
+    padding: 11px 24px
+    border: 0
+    border-radius: 8px
+    background: #4d48b4
+    color: #fff
+    cursor: pointer
+
+    &:disabled
+      opacity: .6
+      cursor: default
+
+  &__error
+    margin-top: 14px
+
+.statuses
+  margin: 0
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+  &__row
+    display: flex
+    align-items: center
+    gap: 10px
+    padding: 10px 12px
+    border: 1px solid #eceef4
+    border-radius: 10px
+
+    @include mix.mobile
+      flex-wrap: wrap
+
+  &__dot
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    flex-shrink: 0
+
+  &__label
+    flex: 1
+    min-width: 120px
+    padding: 8px 10px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+
+    @include mix.mobile
+      font-size: 16px
+
+  &__colors
+    display: flex
+    gap: 4px
+    flex-shrink: 0
+
+  &__color
+    width: 20px
+    height: 20px
+    border: 2px solid transparent
+    border-radius: 50%
+    cursor: pointer
+    padding: 0
+    transition: transform .15s ease
+
+    &:hover
+      transform: scale(1.15)
+
+    &.is-active
+      border-color: #1f1f29
+
+  &__actions
+    display: flex
+    gap: 4px
+    flex-shrink: 0
+
+  &__move,
+  &__remove
+    width: 30px
+    height: 30px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    background: #fff
+    color: #666
+    cursor: pointer
+
+    &:hover:not(:disabled)
+      background: #f4f5f8
+
+    &:disabled
+      opacity: .35
+      cursor: default
+
+  &__remove
+    color: #d1435b
+    font-size: 18px
+    line-height: 1

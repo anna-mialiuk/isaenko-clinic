@@ -12,7 +12,7 @@ const HISTORY_LABELS = {
   comment: 'Коментар',
 }
 
-function LeadModal({ lead: initial, statuses, statusLabels, onClose, onSaved }) {
+function LeadModal({ lead: initial, statuses, onClose, onSaved }) {
   const [lead, setLead] = useState(initial)
   const [status, setStatus] = useState(initial.status)
   const [comment, setComment] = useState(initial.comment || '')
@@ -49,7 +49,11 @@ function LeadModal({ lead: initial, statuses, statusLabels, onClose, onSaved }) 
   }
 
   const phoneDigits = digitsOnly(lead.phone)
-  const currentIndex = statuses.indexOf(status)
+
+  // Статус міг бути перейменований або видалений — тоді показуємо
+  // сирий ідентифікатор, щоб історія не втрачала сенсу.
+  const statusLabel = (id) => statuses.find((item) => item.id === id)?.label || id
+  const currentIndex = statuses.findIndex((item) => item.id === status)
 
   return (
     <div className="modal" onClick={onClose}>
@@ -132,14 +136,16 @@ function LeadModal({ lead: initial, statuses, statusLabels, onClose, onSaved }) 
           <div className="funnel">
             {statuses.map((item, index) => (
               <button
-                key={item}
+                key={item.id}
                 type="button"
                 className={`funnel__step ${index <= currentIndex ? 'is-passed' : ''} ${
-                  item === status ? 'is-current' : ''
+                  item.id === status ? 'is-current' : ''
                 }`}
-                onClick={() => setStatus(item)}
+                // Колір етапу задається в налаштуваннях CRM.
+                style={{ '--step-color': item.color }}
+                onClick={() => setStatus(item.id)}
               >
-                {statusLabels[item] || item}
+                {item.label}
               </button>
             ))}
           </div>
@@ -214,8 +220,8 @@ function LeadModal({ lead: initial, statuses, statusLabels, onClose, onSaved }) 
                     {HISTORY_LABELS[entry.field] || entry.field}:{' '}
                     {entry.field === 'status' ? (
                       <>
-                        {statusLabels[entry.old_value] || entry.old_value || '—'} →{' '}
-                        <strong>{statusLabels[entry.new_value] || entry.new_value}</strong>
+                        {statusLabel(entry.old_value) || '—'} →{' '}
+                        <strong>{statusLabel(entry.new_value)}</strong>
                       </>
                     ) : (
                       <em>{entry.new_value || 'очищено'}</em>

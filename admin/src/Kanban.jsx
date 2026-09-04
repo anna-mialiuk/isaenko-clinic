@@ -7,16 +7,7 @@ import LeadModal from './LeadModal'
 import './Kanban.sass'
 
 // Скільки карток показувати в колонці одразу. Решта — за кнопкою:
-// при десятках заявок сторінка інакше стає нескінченно довгою.
 const VISIBLE_LIMIT = 5
-
-const STATUS_LABELS = {
-  new: 'Нові',
-  in_progress: 'В роботі',
-  booked: 'Записані',
-  done: 'Прийшли',
-  rejected: 'Відмова',
-}
 
 function Kanban() {
   const [leads, setLeads] = useState([])
@@ -32,6 +23,8 @@ function Kanban() {
     try {
       const data = await api.leads({ search, limit: 500 })
       setLeads(data.items)
+      // Статуси приходять із бази: назва, колір і порядок задаються
+      // в налаштуваннях, а не в коді.
       setStatuses(data.statuses)
       setError('')
     } catch {
@@ -48,7 +41,7 @@ function Kanban() {
   }, [load, search])
 
   const grouped = useMemo(() => {
-    const map = Object.fromEntries(statuses.map((status) => [status, []]))
+    const map = Object.fromEntries(statuses.map((status) => [status.id, []]))
 
     leads.forEach((lead) => {
       if (map[lead.status]) map[lead.status].push(lead)
@@ -97,10 +90,6 @@ function Kanban() {
         />
 
         <span className="crm__count">{leads.length}</span>
-
-        <a className="crm__export" href={api.exportUrl({ search })} download>
-          Експорт CSV
-        </a>
       </header>
 
       {error && <p className="page__error">{error}</p>}
@@ -111,33 +100,39 @@ function Kanban() {
         <div className="board">
           {statuses.map((status) => (
             <section
-              key={status}
-              className={`column ${dragOver === status ? 'is-over' : ''}`}
+              key={status.id}
+              className={`column ${dragOver === status.id ? 'is-over' : ''}`}
+              style={{ '--status-color': status.color }}
               onDragOver={(event) => {
                 event.preventDefault()
-                setDragOver(status)
+                setDragOver(status.id)
               }}
               onDragLeave={() => setDragOver(null)}
-              onDrop={(event) => handleDrop(event, status)}
+              onDrop={(event) => handleDrop(event, status.id)}
             >
               <header className="column__header">
-                <span>{STATUS_LABELS[status] || status}</span>
-                <span className="column__count">{grouped[status]?.length || 0}</span>
+                <span className="column__name">{status.label}</span>
+                <span className="column__count">{grouped[status.id]?.length || 0}</span>
               </header>
 
               <div className="column__body">
-                {(expanded[status]
-                  ? grouped[status]
-                  : grouped[status]?.slice(0, VISIBLE_LIMIT)
+                {(expanded[status.id]
+                  ? grouped[status.id]
+                  : grouped[status.id]?.slice(0, VISIBLE_LIMIT)
                 )?.map((lead) => (
                   <LeadCard key={lead.id} lead={lead} onOpen={() => setSelected(lead)} />
                 ))}
 
-                {grouped[status]?.length > VISIBLE_LIMIT && (
+                {grouped[status.id]?.length > VISIBLE_LIMIT && (
                   <button
                     type="button"
                     className="column__more"
-                    onClick={() => setExpanded((state) => ({ ...state, [status]: !state[status] }))}
+                    onClick={() =>
+                      setExpanded((state) => ({
+                        ...state,
+                        [status]: !state[status],
+                      }))
+                    }
                   >
                     {expanded[status]
                       ? 'Згорнути'
@@ -154,7 +149,6 @@ function Kanban() {
         <LeadModal
           lead={selected}
           statuses={statuses}
-          statusLabels={STATUS_LABELS}
           onClose={() => setSelected(null)}
           onSaved={(updated) => {
             setLeads((items) => items.map((item) => (item.id === updated.id ? updated : item)))

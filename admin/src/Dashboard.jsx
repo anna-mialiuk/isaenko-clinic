@@ -4,14 +4,6 @@ import { api } from './api'
 
 import './Dashboard.sass'
 
-const STATUS_LABELS = {
-  new: 'Нові',
-  in_progress: 'В роботі',
-  booked: 'Записані',
-  done: 'Прийшли',
-  rejected: 'Відмова',
-}
-
 function Bars({ items, labelKey, valueKey, labels }) {
   const max = Math.max(1, ...items.map((item) => Number(item[valueKey])))
 
@@ -45,6 +37,7 @@ const shortenUrl = (value) => {
 
 function Dashboard() {
   const [data, setData] = useState(null)
+  const [statusLabels, setStatusLabels] = useState({})
   const [days, setDays] = useState(30)
   const [error, setError] = useState('')
 
@@ -54,6 +47,16 @@ function Dashboard() {
       .then(setData)
       .catch(() => setError('Не вдалося завантажити статистику'))
   }, [days])
+
+  // Назви статусів живуть у базі — беремо їх, а не зашиті в код.
+  useEffect(() => {
+    api
+      .statuses()
+      .then((response) =>
+        setStatusLabels(Object.fromEntries(response.items.map((item) => [item.id, item.label]))),
+      )
+      .catch(() => {})
+  }, [])
 
   if (error) return <p className="page__error">{error}</p>
   if (!data) return <p className="page__empty">Завантаження…</p>
@@ -109,7 +112,7 @@ function Dashboard() {
             }))}
             labelKey="status"
             valueKey="count"
-            labels={STATUS_LABELS}
+            labels={statusLabels}
           />
         </section>
 
