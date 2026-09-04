@@ -39,13 +39,14 @@ export const api = {
 
   updateLead: (id, changes) => request('leads', { method: 'PATCH', body: { id, ...changes } }),
 
+  // Повна картка з історією — окремим запитом, бо список її не тягне.
+  lead: (id) => request('lead', { query: `&id=${id}` }),
+
   stats: (days = 30) => request('stats', { query: `&days=${days}` }),
 
-  errors: (filters = {}) => request('errors', { query: toQuery(filters) }),
-
-  // Не fetch, а звичайне посилання: браузер має сам запропонувати
-  // зберегти файл, а не тягнути його в память вкладки.
   exportUrl: (filters = {}) => `${BASE}?action=export${toQuery(filters)}`,
+
+  errors: (filters = {}) => request('errors', { query: toQuery(filters) }),
 
   resolveError: (id, resolved) => request('errors', { method: 'PATCH', body: { id, resolved } }),
 }

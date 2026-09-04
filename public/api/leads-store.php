@@ -15,6 +15,7 @@ function leads_db() {
       created_at TEXT NOT NULL DEFAULT (datetime('now')),
       name TEXT,
       phone TEXT,
+      email TEXT,
       message TEXT,
       form_name TEXT,
       page TEXT,
@@ -27,10 +28,20 @@ function leads_db() {
       utm_source TEXT,
       utm_medium TEXT,
       utm_campaign TEXT,
+      utm_term TEXT,
+      utm_content TEXT,
       cmp_id TEXT,
+      cmp_name TEXT,
+      grp_id TEXT,
+      grp_name TEXT,
+      ad_id TEXT,
+      ad_name TEXT,
+      kw TEXT,
+      plc TEXT,
       src_pl TEXT,
       gclid TEXT,
       fbclid TEXT,
+      landing_page TEXT,
 
       -- робота менеджера
       status TEXT NOT NULL DEFAULT 'new',
@@ -49,9 +60,32 @@ function leads_db() {
   // тому для наявних баз доганяємо схему вручну.
   $columns = $pdo->query('PRAGMA table_info(leads)')->fetchAll(PDO::FETCH_COLUMN, 1);
 
-  if (!in_array('deleted_at', $columns, true)) {
-    $pdo->exec('ALTER TABLE leads ADD COLUMN deleted_at TEXT');
+  // Догоняємо схему для баз, створених раніше: CREATE TABLE IF NOT EXISTS
+  // не додає колонок до вже існуючої таблиці.
+  $expected = [
+    'deleted_at', 'email', 'utm_term', 'utm_content', 'cmp_name',
+    'grp_id', 'grp_name', 'ad_id', 'ad_name', 'kw', 'plc', 'landing_page',
+  ];
+
+  foreach ($expected as $column) {
+    if (!in_array($column, $columns, true)) {
+      $pdo->exec("ALTER TABLE leads ADD COLUMN $column TEXT");
+    }
   }
+
+  // Історія роботи з лідом: хто що змінив і коли.
+  $pdo->exec("
+    CREATE TABLE IF NOT EXISTS lead_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      lead_id INTEGER NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      field TEXT NOT NULL,
+      old_value TEXT,
+      new_value TEXT
+    )
+  ");
+
+  $pdo->exec('CREATE INDEX IF NOT EXISTS idx_history_lead ON lead_history(lead_id, created_at)');
 
   $pdo->exec('CREATE INDEX IF NOT EXISTS idx_leads_created ON leads(created_at DESC)');
   $pdo->exec('CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status)');
@@ -120,13 +154,24 @@ function leads_save($data) {
     'cid' => $data['cid'] ?? '',
     'event_id' => $data['event_id'] ?? null,
     'client_id' => $attribution['client_id'] ?? '',
+    'email' => $data['email'] ?? '',
     'utm_source' => $attribution['utm_source'] ?? '',
     'utm_medium' => $attribution['utm_medium'] ?? '',
     'utm_campaign' => $attribution['utm_campaign'] ?? '',
+    'utm_term' => $attribution['utm_term'] ?? '',
+    'utm_content' => $attribution['utm_content'] ?? '',
     'cmp_id' => $attribution['cmp_id'] ?? '',
+    'cmp_name' => $attribution['cmp_name'] ?? '',
+    'grp_id' => $attribution['grp_id'] ?? '',
+    'grp_name' => $attribution['grp_name'] ?? '',
+    'ad_id' => $attribution['ad_id'] ?? '',
+    'ad_name' => $attribution['ad_name'] ?? '',
+    'kw' => $attribution['kw'] ?? '',
+    'plc' => $attribution['plc'] ?? '',
     'src_pl' => $attribution['src_pl'] ?? '',
     'gclid' => $attribution['gclid'] ?? '',
     'fbclid' => $attribution['fbclid'] ?? '',
+    'landing_page' => $attribution['landing_page'] ?? '',
     'sent_to_telegram' => !empty($data['sent_to_telegram']) ? 1 : 0,
     'ip' => $data['ip'] ?? '',
     'user_agent' => mb_substr($data['user_agent'] ?? '', 0, 500),
@@ -197,6 +242,11 @@ function leads_update($id, $data) {
   $set = [];
   $params = [];
 
+  // Поточні значення потрібні, щоб записати в історію, що саме змінилось.
+  $stmt = $pdo->prepare('SELECT status, comment FROM leads WHERE id = ?');
+  $stmt->execute([(int) $id]);
+  $before = $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
+
   foreach ($allowed as $field) {
     if (!array_key_exists($field, $data)) continue;
 
@@ -216,7 +266,44 @@ function leads_update($id, $data) {
   $stmt = $pdo->prepare('UPDATE leads SET ' . implode(', ', $set) . ' WHERE id = ?');
   $stmt->execute($params);
 
-  return $stmt->rowCount() > 0;
+  if ($stmt->rowCount() === 0) return false;
+
+  // Пишемо тільки те, що справді змінилось: інакше історія засмічується
+  // записами «зберегли, нічого не змінивши».
+  foreach ($allowed as $field) {
+    if (!array_key_exists($field, $data)) continue;
+
+    $old = (string) ($before[$field] ?? '');
+    $new = (string) $data[$field];
+
+    if ($old === $new) continue;
+
+    $log = $pdo->prepare(
+      'INSERT INTO lead_history (lead_id, field, old_value, new_value) VALUES (?, ?, ?, ?)'
+    );
+    $log->execute([(int) $id, $field, $old, $new]);
+  }
+
+  return true;
+}
+
+/** Один лід із історією — для картки. */
+function leads_find($id) {
+  $pdo = leads_db();
+
+  $stmt = $pdo->prepare('SELECT * FROM leads WHERE id = ? AND deleted_at IS NULL');
+  $stmt->execute([(int) $id]);
+  $lead = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$lead) return null;
+
+  $stmt = $pdo->prepare(
+    'SELECT * FROM lead_history WHERE lead_id = ? ORDER BY created_at DESC, id DESC'
+  );
+  $stmt->execute([(int) $id]);
+  $lead['history'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  return $lead;
 }
 
 /** Мʼяке видалення: заявка зникає з панелі, але лишається в базі. */
