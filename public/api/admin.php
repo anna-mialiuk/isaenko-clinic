@@ -86,6 +86,70 @@ if ($action === 'leads') {
   admin_json(['error' => 'method not allowed'], 405);
 }
 
+if ($action === 'export') {
+  $rows = leads_list([
+    'status' => $_GET['status'] ?? '',
+    'search' => $_GET['search'] ?? '',
+    'date_from' => $_GET['date_from'] ?? '',
+    'limit' => 10000,
+  ]);
+
+  $statusLabels = array_column(statuses_list(true), 'label', 'id');
+
+  $columns = [
+    'created_at' => 'Дата',
+    'name' => 'Імʼя',
+    'phone' => 'Телефон',
+    'email' => 'Пошта',
+    'message' => 'Повідомлення',
+    'status' => 'Статус',
+    'comment' => 'Коментар',
+    'form_name' => 'Форма',
+    'page' => 'Сторінка',
+    'utm_source' => 'Байер',
+    'utm_medium' => 'Канал',
+    'src_pl' => 'Платформа',
+    'cmp_name' => 'Кампанія',
+    'grp_name' => 'Група оголошень',
+    'ad_name' => 'Оголошення',
+    'kw' => 'Ключ',
+    'plc' => 'Місце показу',
+    'gclid' => 'gclid',
+    'fbclid' => 'fbclid',
+  ];
+
+  header('Content-Type: text/csv; charset=utf-8');
+  header('Content-Disposition: attachment; filename="leads-' . date('Y-m-d') . '.csv"');
+  header('Cache-Control: no-store');
+
+  $out = fopen('php://output', 'w');
+
+  fwrite($out, "\xEF\xBB\xBF");
+
+  fputcsv($out, array_values($columns), ';');
+
+  foreach ($rows as $row) {
+    $line = [];
+
+    foreach ($columns as $key => $label) {
+      $value = $row[$key] ?? '';
+
+      if ($key === 'status') $value = $statusLabels[$value] ?? $value;
+
+      if ($key !== 'phone' && $value !== '' && strpbrk((string) $value[0], '=+-@') !== false) {
+        $value = "'" . $value;
+      }
+
+      $line[] = $value;
+    }
+
+    fputcsv($out, $line, ';');
+  }
+
+  fclose($out);
+  exit;
+}
+
 if ($action === 'statuses') {
   if ($method === 'GET') {
     admin_json(['items' => statuses_list(true)]);

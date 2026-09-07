@@ -21,24 +21,28 @@
     @include mix.mobile
       order: 3
       max-width: none
-      // 16px не дає iOS збільшувати сторінку при фокусі.
       font-size: 16px
 
+  &__export
+    padding: 8px 14px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    background: #fff
+    color: #4d48b4
+    font-size: 13px
+    text-decoration: none
+    white-space: nowrap
+
+    &:hover
+      background: #f4f5f8
+
 .board
-  // auto-fit, а не flex-wrap: у флексі останній елемент рядка
-  // розтягується на всю ширину (колонка «Відмова» займала весь екран).
-  // Grid тримає всі колонки однаковими незалежно від рядка.
-  //
-  // Мінімум 200px: при такій ширині пʼять колонок вміщаються на 1440px,
-  // а далі кількість зменшується сама — 4, 3, 2, і одна на телефоні.
   display: grid
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
   align-items: start
   gap: 12px
 
 .column
-  // Та сама причина: без min-width: 0 довгий вміст картки
-  // розтягує колонку, колонка — сітку, сітка — сторінку.
   min-width: 0
   padding: 10px
   border-radius: 10px
