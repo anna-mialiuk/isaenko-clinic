@@ -134,11 +134,11 @@ function Kanban() {
                     onClick={() =>
                       setExpanded((state) => ({
                         ...state,
-                        [status]: !state[status],
+                        [status.id]: !state[status.id],
                       }))
                     }
                   >
-                    {expanded[status]
+                    {expanded[status.id]
                       ? 'Згорнути'
                       : `Показати ще ${grouped[status.id].length - VISIBLE_LIMIT}`}
                   </button>
