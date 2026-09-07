@@ -122,6 +122,25 @@ if (!$sentToTelegram && !$sentToEmail) {
 // --- Збереження ліда в базу ---
 // Telegram — це сповіщення, а не сховище: повідомлення губляться в чаті,
 // їх не можна фільтрувати й немає статусів. База потрібна для CRM.
+// Мітки реклами форма надсилає сама (див. contactService.js).
+// Якщо їх немає — leads_save спробує знайти клік за cid.
+$attributionKeys = [
+  'client_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+  'cmp_id', 'cmp_name', 'grp_id', 'grp_name', 'ad_id', 'ad_name',
+  'kw', 'plc', 'src_pl', 'gclid', 'fbclid', 'landing_page',
+];
+
+$attribution = [];
+
+foreach ($attributionKeys as $key) {
+  $value = trim((string) ($data[$key] ?? ''));
+  if ($value !== '') $attribution[$key] = mb_substr($value, 0, 500);
+}
+
+if (!isset($attribution['client_id']) && $gaClientId !== '') {
+  $attribution['client_id'] = $gaClientId;
+}
+
 leads_save([
   'name' => $name,
   'phone' => $phone,
@@ -131,6 +150,7 @@ leads_save([
   'language' => $language,
   'cid' => trim($data['cid'] ?? ''),
   'event_id' => $eventId !== '' ? $eventId : null,
+  'attribution' => $attribution,
   'sent_to_telegram' => $sentToTelegram,
   'ip' => $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '',
   'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',

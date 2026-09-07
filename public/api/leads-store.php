@@ -240,11 +240,20 @@ function statuses_save($items) {
 function leads_save($data) {
   $pdo = leads_db();
 
-  $attribution = [];
+  // Спершу те, що прийшло з форми; чого бракує — дотягуємо
+  // з останнього кліку цього відвідувача за cid.
+  $attribution = is_array($data['attribution'] ?? null) ? $data['attribution'] : [];
 
   if (!empty($data['cid'])) {
     $row = attr_find_by_cid($data['cid']);
-    if ($row) $attribution = $row;
+
+    if ($row) {
+      foreach ($row as $key => $value) {
+        if (empty($attribution[$key]) && $value !== null && $value !== '') {
+          $attribution[$key] = $value;
+        }
+      }
+    }
   }
 
   $fields = [
