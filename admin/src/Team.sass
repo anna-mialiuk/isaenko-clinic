@@ -1,0 +1,176 @@
+@use 'mixins' as mix
+
+.team
+  &__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 14px
+    margin-bottom: 18px
+
+  &__add
+    padding: 9px 16px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    background: #fff
+    color: #4d48b4
+    font-size: 13px
+    cursor: pointer
+
+    &:hover
+      background: #f4f5f8
+
+  &__form
+    margin-bottom: 12px
+
+  &__fields
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))
+    gap: 12px
+
+  &__field
+    display: flex
+    flex-direction: column
+    gap: 5px
+    color: #888
+    font-size: 13px
+
+  &__input
+    padding: 9px 11px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    color: #1f1f29
+
+    @include mix.mobile
+      font-size: 16px
+
+  &__hint
+    margin: 12px 0 0
+    padding: 10px 12px
+    border-radius: 8px
+    background: #f4f5f8
+    color: #666
+    font-size: 12px
+    line-height: 1.5
+
+  &__actions
+    display: flex
+    justify-content: flex-end
+    margin-top: 14px
+
+  &__save
+    padding: 10px 20px
+    border: 0
+    border-radius: 8px
+    background: #4d48b4
+    color: #fff
+    cursor: pointer
+    white-space: nowrap
+
+    &:disabled
+      opacity: .6
+      cursor: default
+
+  &__error
+    margin-bottom: 12px
+
+  &__note
+    margin-top: 16px
+    padding: 12px 16px
+    border-radius: 10px
+    background: #eef0f6
+    color: #666
+    font-size: 13px
+    line-height: 1.6
+
+.users
+  margin: 0
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+  &__row
+    display: grid
+    grid-template-columns: 1fr auto auto
+    align-items: center
+    gap: 12px
+    padding: 12px 14px
+    border: 1px solid #eceef4
+    border-radius: 10px
+
+    @include mix.laptop-s
+      grid-template-columns: 1fr
+      gap: 8px
+
+    &.is-blocked
+      opacity: .6
+
+  &__main
+    display: flex
+    flex-direction: column
+    gap: 2px
+    min-width: 0
+
+  &__login
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: 6px
+    font-weight: 600
+    overflow-wrap: anywhere
+
+  &__badge
+    padding: 2px 7px
+    border-radius: 20px
+    background: #eef0f6
+    color: #666
+    font-size: 11px
+    font-weight: 400
+
+    &.is-warn
+      background: #fdecef
+      color: #d1435b
+
+  &__name
+    color: #888
+    font-size: 13px
+
+  &__meta
+    color: #999
+    font-size: 12px
+    white-space: nowrap
+
+  &__actions
+    display: flex
+    flex-wrap: wrap
+    gap: 4px
+
+  &__button
+    padding: 6px 12px
+    border: 1px solid #d8dae2
+    border-radius: 8px
+    background: #fff
+    color: #666
+    font-size: 12px
+    cursor: pointer
+
+    &:hover
+      background: #f4f5f8
+
+    &.is-danger
+      color: #d1435b
+
+      &:hover
+        background: #fdecef
+
+  &__reset
+    grid-column: 1 / -1
+    display: flex
+    gap: 8px
+    padding-top: 10px
+    border-top: 1px solid #eceef4
+
+    @include mix.mobile
+      flex-direction: column

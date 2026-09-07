@@ -6,6 +6,7 @@
 
 require_once __DIR__ . '/admin-auth.php';
 require_once __DIR__ . '/leads-store.php';
+require_once __DIR__ . '/users-store.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -53,7 +54,14 @@ if ($action === 'logout') {
 }
 
 if ($action === 'me') {
-  admin_json(['authorised' => admin_is_authorised()]);
+  admin_json([
+    'authorised' => admin_is_authorised(),
+    'user' => admin_current_login(),
+    'name' => $_SESSION['admin']['name'] ?? '',
+    // Аварійний вхід показуємо в панелі: підказка, що варто
+    // створити нормальний обліковий запис.
+    'fallback' => (bool) ($_SESSION['admin']['fallback'] ?? false),
+  ]);
 }
 
 // ── Далі тільки для авторизованих ─────────────────────────────
@@ -148,6 +156,42 @@ if ($action === 'export') {
 
   fclose($out);
   exit;
+}
+
+if ($action === 'users') {
+  if ($method === 'GET') {
+    admin_json(['items' => users_list(), 'current' => admin_current_login()]);
+  }
+
+  $body = admin_body();
+
+  if ($method === 'POST') {
+    $result = users_create($body);
+
+    admin_json($result, isset($result['error']) ? 400 : 200);
+  }
+
+  if ($method === 'PATCH') {
+    $id = (int) ($body['id'] ?? 0);
+
+    if (!$id) admin_json(['error' => 'id required'], 400);
+
+    $result = users_update($id, $body, admin_current_login());
+
+    admin_json($result, isset($result['error']) ? 400 : 200);
+  }
+
+  if ($method === 'DELETE') {
+    $id = (int) ($_GET['id'] ?? 0);
+
+    if (!$id) admin_json(['error' => 'id required'], 400);
+
+    $result = users_delete($id, admin_current_login());
+
+    admin_json($result, isset($result['error']) ? 400 : 200);
+  }
+
+  admin_json(['error' => 'method not allowed'], 405);
 }
 
 if ($action === 'statuses') {

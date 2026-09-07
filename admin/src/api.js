@@ -46,6 +46,14 @@ export const api = {
 
   saveStatuses: (items) => request('statuses', { method: 'POST', body: { items } }),
 
+  users: () => request('users'),
+
+  createUser: (data) => request('users', { method: 'POST', body: data }),
+
+  updateUser: (id, changes) => request('users', { method: 'PATCH', body: { id, ...changes } }),
+
+  deleteUser: (id) => request('users', { method: 'DELETE', query: `&id=${id}` }),
+
   stats: (days = 30) => request('stats', { query: `&days=${days}` }),
 
   exportUrl: (filters = {}) => `${BASE}?action=export${toQuery(filters)}`,

@@ -7,6 +7,7 @@ import Kanban from './Kanban'
 import Analytics from './Analytics'
 import Errors from './Errors'
 import CrmSettings from './CrmSettings'
+import Team from './Team'
 import Placeholder from './Placeholder'
 
 import './Layout.sass'
@@ -181,14 +182,7 @@ function App() {
           />
         )}
 
-        {section === 'settings.team' && (
-          <Placeholder
-            title="Команда"
-            note="Зараз один спільний логін на всіх. Розділ додасть окремі облікові
-                  записи з ролями — і тоді запрацює поле «відповідальний менеджер»
-                  у картці заявки."
-          />
-        )}
+        {section === 'settings.team' && <Team />}
 
         {section === 'blog' && (
           <Placeholder
