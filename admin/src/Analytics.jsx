@@ -11,7 +11,8 @@ import './Analytics.sass'
 const SERIES = ['--series-1', '--series-2', '--series-3', '--series-4']
 
 /** Ключ серії має бути безпечним для id градієнта в SVG. */
-const seriesKey = (name) => `e_${name.replace(/[^a-z0-9]/gi, '_')}`
+// У старих рядках event_name буває NULL — приводимо до рядка.
+const seriesKey = (name) => `e_${String(name ?? '').replace(/[^a-z0-9]/gi, '_')}`
 
 function Delta({ value }) {
   if (value == null) return <span className="events__delta">—</span>
@@ -110,15 +111,16 @@ function Analytics() {
             {data.events.map((event, index) => {
               const key = seriesKey(event.event_name)
               const color = SERIES[index % SERIES.length]
-              const isOpen = open === event.event_name
+              const name = event.event_name || ''
+              const isOpen = open === name
 
               return (
-                <li key={event.event_name} className={`events__item ${isOpen ? 'is-open' : ''}`}>
+                <li key={name || 'unnamed'} className={`events__item ${isOpen ? 'is-open' : ''}`}>
                   <button
                     type="button"
                     className="events__row"
                     aria-expanded={isOpen}
-                    onClick={() => setOpen(isOpen ? null : event.event_name)}
+                    onClick={() => setOpen(isOpen ? null : name)}
                   >
                     <span className="events__dot" style={{ background: `var(${color})` }} />
                     <span className="events__name">{event.event_name || '—'}</span>
@@ -143,7 +145,7 @@ function Analytics() {
                       <div className="events__sources">
                         <h3 className="events__subtitle">Джерела й кампанії</h3>
                         <Sources
-                          rows={data.by_source.filter((row) => row.event_name === event.event_name)}
+                          rows={data.by_source.filter((row) => (row.event_name || '') === name)}
                         />
                       </div>
                     </div>

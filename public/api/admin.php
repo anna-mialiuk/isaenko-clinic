@@ -233,7 +233,7 @@ if ($action === 'events') {
 
   // Підсумок по кожній події за період і за попередній такий самий.
   $stmt = $pdo->prepare("
-    SELECT event_name,
+    SELECT COALESCE(event_name, '') AS event_name,
            SUM(CASE WHEN created_at > datetime('now', :since) THEN 1 ELSE 0 END) AS count,
            SUM(CASE WHEN created_at <= datetime('now', :since) THEN 1 ELSE 0 END) AS previous
     FROM attribution_clicks
@@ -248,7 +248,7 @@ if ($action === 'events') {
   ], $stmt->fetchAll(PDO::FETCH_ASSOC));
 
   $stmt = $pdo->prepare("
-    SELECT event_name, date(created_at) AS day, COUNT(*) AS count
+    SELECT COALESCE(event_name, '') AS event_name, date(created_at) AS day, COUNT(*) AS count
     FROM attribution_clicks
     WHERE created_at > datetime('now', ?)
     GROUP BY event_name, day ORDER BY day
@@ -258,7 +258,7 @@ if ($action === 'events') {
 
   // Джерело: utm_source, а без нього — платформа з src_pl або «direct».
   $stmt = $pdo->prepare("
-    SELECT event_name,
+    SELECT COALESCE(event_name, '') AS event_name,
            COALESCE(NULLIF(utm_source, ''), NULLIF(src_pl, ''), 'direct') AS source,
            COALESCE(NULLIF(cmp_name, ''), NULLIF(utm_campaign, ''), '') AS campaign,
            COUNT(*) AS count
