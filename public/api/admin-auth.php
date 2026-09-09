@@ -61,7 +61,7 @@ function admin_throttle_reset() {
  * Аварійний потрібен, щоб не можна було заблокувати себе назавжди:
  * якщо база порожня чи пошкоджена, ним завжди можна зайти й усе полагодити.
  */
-function admin_login($user, $password) {
+function admin_login($user, $password, $remember = false) {
   $login = trim((string) $user);
   $account = users_find_by_login($login);
 
@@ -70,6 +70,8 @@ function admin_login($user, $password) {
 
     users_touch_login($account['login']);
     admin_start_session($account['login'], $account['name'] ?? '', false);
+
+    if ($remember) admin_remember_device($account['login']);
 
     return true;
   }
@@ -111,8 +113,52 @@ function admin_current_login() {
   return admin_is_authorised() ? ($_SESSION['admin']['user'] ?? null) : null;
 }
 
+const ADMIN_DEVICE_COOKIE = 'isaenko_device';
+
+function admin_device_cookie_options($lifetime) {
+  return [
+    'expires' => $lifetime ? time() + $lifetime : 1,
+    'path' => '/api/',
+    'httponly' => true,
+    'secure' => true,
+    'samesite' => 'Strict',
+  ];
+}
+
+/** Видає пристрою довгий токен. Аварійному входу — ніколи. */
+function admin_remember_device($login) {
+  $token = device_token_create($login);
+  setcookie(ADMIN_DEVICE_COOKIE, $token, admin_device_cookie_options(DEVICE_TOKEN_TTL));
+}
+
+function admin_forget_device() {
+  if (!empty($_COOKIE[ADMIN_DEVICE_COOKIE])) {
+    device_token_revoke($_COOKIE[ADMIN_DEVICE_COOKIE]);
+  }
+
+  setcookie(ADMIN_DEVICE_COOKIE, '', admin_device_cookie_options(0));
+}
+
+/** Сесії немає, але є токен пристрою — піднімаємо сесію з нього. */
+function admin_resume_from_device() {
+  if (empty($_COOKIE[ADMIN_DEVICE_COOKIE])) return false;
+
+  $account = device_token_verify($_COOKIE[ADMIN_DEVICE_COOKIE]);
+
+  if (!$account) {
+    setcookie(ADMIN_DEVICE_COOKIE, '', admin_device_cookie_options(0));
+    return false;
+  }
+
+  users_touch_login($account['login']);
+  admin_start_session($account['login'], $account['name'] ?? '', false);
+
+  return true;
+}
+
 function admin_logout() {
   admin_session_start();
+  admin_forget_device();
   $_SESSION = [];
   session_destroy();
 }
@@ -120,13 +166,15 @@ function admin_logout() {
 function admin_is_authorised() {
   admin_session_start();
 
-  if (empty($_SESSION['admin'])) return false;
-  if ($_SESSION['admin']['expires'] < time()) {
-    admin_logout();
-    return false;
+  if (!empty($_SESSION['admin']) && $_SESSION['admin']['expires'] < time()) {
+    $_SESSION = [];
+    session_destroy();
+    admin_session_start();
   }
 
-  return true;
+  if (!empty($_SESSION['admin'])) return true;
+
+  return admin_resume_from_device();
 }
 
 /** Ставиться на початку кожного захищеного ендпоінта. */

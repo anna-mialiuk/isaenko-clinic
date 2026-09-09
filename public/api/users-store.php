@@ -32,7 +32,92 @@ function users_db() {
 
   $pdo->exec('CREATE INDEX IF NOT EXISTS idx_users_login ON users(login)');
 
+  // Запамʼятовані пристрої. У cookie йде selector:validator;
+  // у базі — тільки хеш validator, тому витік бази не дає входу.
+  $pdo->exec("
+    CREATE TABLE IF NOT EXISTS device_tokens (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      login TEXT NOT NULL,
+      selector TEXT NOT NULL UNIQUE,
+      validator_hash TEXT NOT NULL,
+      user_agent TEXT,
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      last_used_at TEXT,
+      expires_at TEXT NOT NULL
+    )
+  ");
+
   return $pdo;
+}
+
+// ── Запамʼятовані пристрої ─────────────────────────────────────
+
+const DEVICE_TOKEN_TTL = 2592000; // 30 днів
+
+function device_token_create($login) {
+  $selector = bin2hex(random_bytes(9));
+  $validator = bin2hex(random_bytes(32));
+
+  $stmt = users_db()->prepare('
+    INSERT INTO device_tokens (login, selector, validator_hash, user_agent, expires_at)
+    VALUES (?, ?, ?, ?, ?)
+  ');
+  $stmt->execute([
+    $login,
+    $selector,
+    hash('sha256', $validator),
+    mb_substr((string) ($_SERVER['HTTP_USER_AGENT'] ?? ''), 0, 255),
+    gmdate('Y-m-d H:i:s', time() + DEVICE_TOKEN_TTL),
+  ]);
+
+  return $selector . ':' . $validator;
+}
+
+/** Повертає обліковий запис, якщо токен дійсний, інакше null. */
+function device_token_verify($token) {
+  $parts = explode(':', (string) $token, 2);
+  if (count($parts) !== 2) return null;
+
+  [$selector, $validator] = $parts;
+  if (!preg_match('/^[a-f0-9]{18}$/', $selector) || !preg_match('/^[a-f0-9]{64}$/', $validator)) {
+    return null;
+  }
+
+  $pdo = users_db();
+
+  // Прострочені прибираємо принагідно — окремого cron немає.
+  $pdo->exec("DELETE FROM device_tokens WHERE expires_at < datetime('now')");
+
+  $stmt = $pdo->prepare('SELECT * FROM device_tokens WHERE selector = ?');
+  $stmt->execute([$selector]);
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$row) return null;
+  if (!hash_equals($row['validator_hash'], hash('sha256', $validator))) {
+    // Правильний selector з неправильним validator — хтось підбирає.
+    $pdo->prepare('DELETE FROM device_tokens WHERE selector = ?')->execute([$selector]);
+    return null;
+  }
+
+  $account = users_find_by_login($row['login']);
+  if (!$account) return null;
+
+  $pdo->prepare("UPDATE device_tokens SET last_used_at = datetime('now') WHERE id = ?")
+    ->execute([$row['id']]);
+
+  return $account;
+}
+
+function device_token_revoke($token) {
+  $parts = explode(':', (string) $token, 2);
+  if (count($parts) !== 2) return;
+
+  users_db()->prepare('DELETE FROM device_tokens WHERE selector = ?')->execute([$parts[0]]);
+}
+
+/** Усі пристрої користувача — при зміні пароля чи деактивації. */
+function device_tokens_revoke_all($login) {
+  users_db()->prepare('DELETE FROM device_tokens WHERE login = ?')->execute([$login]);
 }
 
 /** Логін дозволяємо латиницею, цифрами, крапкою й підкресленням. */
@@ -153,6 +238,12 @@ function users_update($id, $data, $currentLogin = null) {
   $stmt = $pdo->prepare('UPDATE users SET ' . implode(', ', $set) . ' WHERE id = ?');
   $stmt->execute($params);
 
+  // Новий пароль або блокування скидають усі запамʼятовані пристрої:
+  // інакше старий токен далі пускає без пароля.
+  if (!empty($data['password']) || (array_key_exists('is_active', $data) && !$data['is_active'])) {
+    device_tokens_revoke_all($user['login']);
+  }
+
   return ['ok' => true];
 }
 
@@ -174,6 +265,7 @@ function users_delete($id, $currentLogin = null) {
   if ($count <= 1) return ['error' => 'Має лишитись хоча б один користувач'];
 
   $pdo->prepare('DELETE FROM users WHERE id = ?')->execute([(int) $id]);
+  device_tokens_revoke_all($login);
 
   return ['ok' => true];
 }

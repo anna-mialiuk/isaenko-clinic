@@ -7,6 +7,7 @@ import './Login.sass'
 function Login({ onSuccess }) {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
+  const [remember, setRemember] = useState(true)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -16,7 +17,7 @@ function Login({ onSuccess }) {
     setBusy(true)
 
     try {
-      await api.login(user, password)
+      await api.login(user, password, remember)
       onSuccess()
     } catch (err) {
       // Сервер навмисно не каже, логін чи пароль невірний.
@@ -51,6 +52,15 @@ function Login({ onSuccess }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+        <label className="login__remember">
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+          />
+          Запамʼятати цей пристрій на 30 днів
+        </label>
 
         {error && <p className="login__error">{error}</p>}
 

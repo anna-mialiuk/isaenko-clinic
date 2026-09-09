@@ -32,7 +32,8 @@ const toQuery = (filters) => {
 
 export const api = {
   me: () => request('me'),
-  login: (user, password) => request('login', { method: 'POST', body: { user, password } }),
+  login: (user, password, remember = false) =>
+    request('login', { method: 'POST', body: { user, password, remember } }),
   logout: () => request('logout', { method: 'POST' }),
 
   leads: (filters = {}) => request('leads', { query: toQuery(filters) }),

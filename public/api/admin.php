@@ -38,7 +38,7 @@ if ($action === 'login') {
 
   $body = admin_body();
 
-  if (!admin_login($body['user'] ?? '', $body['password'] ?? '')) {
+  if (!admin_login($body['user'] ?? '', $body['password'] ?? '', !empty($body['remember']))) {
     admin_throttle_hit();
     // Не уточнюємо, логін чи пароль невірний — це підказка для перебору.
     admin_json(['error' => 'invalid credentials'], 401);

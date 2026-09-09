@@ -19,6 +19,7 @@
     margin: 0 0 8px
     font-size: 18px
 
+  &__input
     padding: 11px 13px
     border: 1px solid var(--border)
     border-radius: 8px
@@ -36,6 +37,20 @@
     &:disabled
       opacity: .6
       cursor: default
+
+  &__remember
+    display: flex
+    align-items: center
+    gap: 8px
+    color: var(--text-2)
+    font-size: 13px
+    cursor: pointer
+
+    input
+      width: 16px
+      height: 16px
+      margin: 0
+      accent-color: var(--accent)
 
   &__error
     margin: 0
