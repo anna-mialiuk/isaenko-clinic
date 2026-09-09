@@ -56,6 +56,8 @@ export const api = {
 
   stats: (days = 30) => request('stats', { query: `&days=${days}` }),
 
+  events: (days = 30) => request('events', { query: `&days=${days}` }),
+
   exportUrl: (filters = {}) => `${BASE}?action=export${toQuery(filters)}`,
 
   errors: (filters = {}) => request('errors', { query: toQuery(filters) }),

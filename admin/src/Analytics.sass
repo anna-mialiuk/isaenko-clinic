@@ -1,20 +1,151 @@
 @use 'mixins' as mix
 
-.table
-  width: 100%
-  min-width: 420px
-  border-collapse: collapse
-  font-size: 13px
+// Сітка сторінки, картки й підпис періоду — спільні з Оглядом (Dashboard.sass).
+// Тут лише те, чого немає там: рядки подій і розбивка за джерелами.
 
-  th,
-  td
-    padding: 8px 10px
-    border-bottom: 1px solid var(--surface-2)
+.events
+  margin: 0
+  padding: 0
+  list-style: none
+
+  &__item
+    & + &
+      border-top: 1px solid var(--border)
+
+  &__row
+    display: grid
+    grid-template-columns: 8px minmax(120px, 1fr) 140px 64px 64px 14px
+    align-items: center
+    gap: 14px
+    width: 100%
+    padding: 10px 4px
+    border: 0
+    background: transparent
     text-align: left
+    cursor: pointer
+    border-radius: var(--radius-sm)
+    transition: background .15s ease
+
+    &:hover
+      background: var(--surface-2)
 
     @include mix.mobile
-      padding: 7px 8px
+      grid-template-columns: 8px minmax(0, 1fr) 56px 56px 14px
+      gap: 10px
 
-  th
+  &__dot
+    width: 8px
+    height: 8px
+    border-radius: 50%
+
+  &__name
+    font-weight: 700
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  &__spark
+    // Recharts вимірює контейнер; без явної висоти він порожній.
+    display: block
+    height: 36px
+
+    @include mix.mobile
+      display: none
+
+  &__count
+    text-align: right
+    font-weight: 700
+
+  &__delta
+    text-align: right
+    font-size: 12px
+    font-weight: 700
     color: var(--text-3)
+
+    &.is-up
+      color: var(--success)
+
+    &.is-down
+      color: var(--danger)
+
+  &__chevron
+    width: 6px
+    height: 6px
+    border-right: 1.5px solid var(--text-3)
+    border-bottom: 1.5px solid var(--text-3)
+    transform: rotate(45deg)
+    transition: transform .2s ease
+    justify-self: center
+
+    .events__item.is-open &
+      transform: rotate(225deg)
+
+  &__details
+    display: grid
+    grid-template-columns: minmax(0, 3fr) minmax(240px, 2fr)
+    gap: 20px
+    padding: 6px 4px 18px 26px
+
+    @include mix.laptop
+      grid-template-columns: minmax(0, 1fr)
+
+    @include mix.mobile
+      padding-left: 4px
+
+  &__subtitle
+    margin: 0 0 10px
+    font-size: 13px
+    font-weight: 700
+    color: var(--text-2)
+
+.breakdown
+  display: flex
+  flex-direction: column
+  gap: 8px
+  margin: 0
+  padding: 0
+  list-style: none
+
+  &__row
+    display: grid
+    grid-template-columns: minmax(90px, 160px) 1fr 40px 40px
+    align-items: center
+    gap: 10px
+    font-size: 13px
+
+  &__name
+    display: flex
+    flex-direction: column
+    min-width: 0
+    font-weight: 600
+    overflow-wrap: anywhere
+
+  &__campaign
+    color: var(--text-3)
+    font-size: 11px
     font-weight: 500
+
+  &__track
+    height: 8px
+    border-radius: 4px
+    background: var(--surface-2)
+    overflow: hidden
+
+  &__fill
+    display: block
+    height: 100%
+    border-radius: 4px
+    background: var(--accent)
+
+  &__count
+    text-align: right
+    color: var(--text-2)
+
+  &__share
+    text-align: right
+    font-weight: 700
+
+@media (prefers-reduced-motion: reduce)
+  .events__row,
+  .events__chevron
+    transition: none

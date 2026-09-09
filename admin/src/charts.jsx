@@ -173,3 +173,42 @@ export function Ring({ value, color = '--series-1' }) {
     </svg>
   )
 }
+
+/** Одна серія по днях — розгорнута картка події. */
+export function SeriesChart({ data, dataKey, color = '--series-1', name }) {
+  const stroke = token(color)
+  const id = `series-${dataKey}`
+
+  return (
+    <ResponsiveContainer width="100%" height={200}>
+      <AreaChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: -18 }}>
+        <defs>
+          <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={stroke} stopOpacity={0.3} />
+            <stop offset="100%" stopColor={stroke} stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <CartesianGrid vertical={false} stroke={token('--border')} strokeDasharray="3 3" />
+        <XAxis
+          dataKey="label"
+          tick={axisTick()}
+          tickLine={false}
+          axisLine={false}
+          interval="preserveStartEnd"
+          minTickGap={28}
+        />
+        <YAxis tick={axisTick()} tickLine={false} axisLine={false} allowDecimals={false} />
+        <Tooltip contentStyle={tooltipStyle()} cursor={{ stroke: token('--border') }} />
+        <Area
+          type="monotone"
+          name={name}
+          dataKey={dataKey}
+          stroke={stroke}
+          strokeWidth={2}
+          fill={`url(#${id})`}
+          isAnimationActive={false}
+        />
+      </AreaChart>
+    </ResponsiveContainer>
+  )
+}

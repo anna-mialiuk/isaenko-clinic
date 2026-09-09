@@ -3,7 +3,6 @@ import { Suspense, lazy, useCallback, useEffect, useState } from 'react'
 import { api } from './api'
 import Login from './Login'
 import Kanban from './Kanban'
-import Analytics from './Analytics'
 import Errors from './Errors'
 import CrmSettings from './CrmSettings'
 import Team from './Team'
@@ -12,6 +11,7 @@ import Placeholder from './Placeholder'
 // Графіки (recharts) важкі й потрібні тільки на дашборді —
 // не тягнемо їх у бандл для тих, хто працює лише з заявками.
 const Dashboard = lazy(() => import('./Dashboard'))
+const Analytics = lazy(() => import('./Analytics'))
 import { applyTheme, getInitialTheme } from './theme'
 import {
   IconBell,
@@ -180,7 +180,11 @@ function App() {
             <Dashboard />
           </Suspense>
         )}
-        {section === 'analytics.events' && <Analytics />}
+        {section === 'analytics.events' && (
+          <Suspense fallback={<p className="page__empty">Завантаження…</p>}>
+            <Analytics />
+          </Suspense>
+        )}
         {section === 'settings.server' && <Errors />}
 
         {section === 'crm.settings' && <CrmSettings />}

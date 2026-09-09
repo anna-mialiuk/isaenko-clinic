@@ -224,6 +224,59 @@ if ($action === 'lead') {
   admin_json($lead);
 }
 
+if ($action === 'events') {
+  $days = min(max((int) ($_GET['days'] ?? 30), 1), 365);
+  $since = '-' . $days . ' day';
+  $sinceTwice = '-' . ($days * 2) . ' day';
+
+  $pdo = attr_db();
+
+  // Підсумок по кожній події за період і за попередній такий самий.
+  $stmt = $pdo->prepare("
+    SELECT event_name,
+           SUM(CASE WHEN created_at > datetime('now', :since) THEN 1 ELSE 0 END) AS count,
+           SUM(CASE WHEN created_at <= datetime('now', :since) THEN 1 ELSE 0 END) AS previous
+    FROM attribution_clicks
+    WHERE created_at > datetime('now', :twice)
+    GROUP BY event_name ORDER BY count DESC
+  ");
+  $stmt->execute([':since' => $since, ':twice' => $sinceTwice]);
+  $events = array_map(static fn ($row) => [
+    'event_name' => (string) $row['event_name'],
+    'count' => (int) $row['count'],
+    'previous' => (int) $row['previous'],
+  ], $stmt->fetchAll(PDO::FETCH_ASSOC));
+
+  $stmt = $pdo->prepare("
+    SELECT event_name, date(created_at) AS day, COUNT(*) AS count
+    FROM attribution_clicks
+    WHERE created_at > datetime('now', ?)
+    GROUP BY event_name, day ORDER BY day
+  ");
+  $stmt->execute([$since]);
+  $byDay = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  // Джерело: utm_source, а без нього — платформа з src_pl або «direct».
+  $stmt = $pdo->prepare("
+    SELECT event_name,
+           COALESCE(NULLIF(utm_source, ''), NULLIF(src_pl, ''), 'direct') AS source,
+           COALESCE(NULLIF(cmp_name, ''), NULLIF(utm_campaign, ''), '') AS campaign,
+           COUNT(*) AS count
+    FROM attribution_clicks
+    WHERE created_at > datetime('now', ?)
+    GROUP BY event_name, source, campaign ORDER BY count DESC
+  ");
+  $stmt->execute([$since]);
+  $bySource = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  admin_json([
+    'events' => $events,
+    'by_day' => $byDay,
+    'by_source' => $bySource,
+    'days' => $days,
+  ]);
+}
+
 if ($action === 'stats') {
   $days = min(max((int) ($_GET['days'] ?? 30), 1), 365);
 

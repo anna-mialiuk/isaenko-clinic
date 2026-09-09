@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { api } from './api'
 import { ColumnChart, Ring, Sparkline, TrendChart } from './charts'
 import { IconCursor, IconEye, IconInbox, IconTarget } from './Icons'
+import { delta, fillDays, sum } from './stats'
 
 import './Dashboard.sass'
 
@@ -16,45 +17,6 @@ const shortenUrl = (value) => {
   } catch {
     return value
   }
-}
-
-const sum = (items, key) => items.reduce((total, item) => total + Number(item[key] || 0), 0)
-
-/** Дельта до попереднього періоду у відсотках; null — нема з чим порівнювати. */
-const delta = (current, previous) => {
-  if (!previous) return null
-  return Math.round(((current - previous) / previous) * 100)
-}
-
-const dayLabel = (iso) => {
-  const [, month, day] = iso.split('-')
-  return `${day}.${month}`
-}
-
-/**
- * База повертає тільки дні, де щось було. Для графіка потрібен
- * кожен день періоду — інакше пропуски виглядають як стрибки.
- */
-const fillDays = (days, clicksByDay, leadsByDay) => {
-  const clicks = Object.fromEntries(clicksByDay.map((row) => [row.day, row]))
-  const leads = Object.fromEntries(leadsByDay.map((row) => [row.day, Number(row.count)]))
-  const result = []
-  const cursor = new Date()
-  cursor.setDate(cursor.getDate() - days + 1)
-
-  for (let i = 0; i < days; i += 1) {
-    const iso = cursor.toISOString().slice(0, 10)
-    result.push({
-      day: iso,
-      label: dayLabel(iso),
-      visitors: Number(clicks[iso]?.visitors || 0),
-      clicks: Number(clicks[iso]?.clicks || 0),
-      leads: leads[iso] || 0,
-    })
-    cursor.setDate(cursor.getDate() + 1)
-  }
-
-  return result
 }
 
 function Kpi({ icon: Icon, label, value, change, series, dataKey, color }) {
@@ -129,10 +91,15 @@ function Dashboard() {
       .catch(() => {})
   }, [])
 
-  const series = useMemo(
-    () => (data ? fillDays(days, data.by_day, data.leads.by_day) : []),
-    [data, days],
-  )
+  const series = useMemo(() => {
+    if (!data) return []
+
+    const visitors = fillDays(days, { visitors: data.by_day }, 'visitors')
+    const clicks = fillDays(days, { clicks: data.by_day }, 'clicks')
+    const leads = fillDays(days, { leads: data.leads.by_day })
+
+    return visitors.map((row, index) => ({ ...row, ...clicks[index], ...leads[index] }))
+  }, [data, days])
 
   if (error) return <p className="page__error">{error}</p>
   if (!data) return <p className="page__empty">Завантаження…</p>
