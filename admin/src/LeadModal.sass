@@ -7,7 +7,7 @@
   align-items: center
   justify-content: center
   padding: 20px
-  background: rgba(31, 31, 41, .45)
+  background: var(--overlay)
 
   @include mix.mobile
     padding: 0
@@ -20,7 +20,7 @@
     overflow-y: auto
     padding: 22px
     border-radius: 12px
-    background: #fff
+    background: var(--surface)
 
     @include mix.mobile
       // На телефоні картка займає екран знизу: так до неї легше дотягнутись
@@ -43,14 +43,14 @@
 
   &__subtitle
     margin: 2px 0 0
-    color: #999
+    color: var(--text-3)
     font-size: 12px
 
   &__close
     flex-shrink: 0
     border: 0
     background: transparent
-    color: #888
+    color: var(--text-3)
     font-size: 26px
     line-height: 1
     cursor: pointer
@@ -58,11 +58,11 @@
   &__section
     padding-top: 16px
     margin-top: 16px
-    border-top: 1px solid #eceef4
+    border-top: 1px solid var(--surface-2)
 
   &__section-title
     margin: 0 0 10px
-    color: #888
+    color: var(--text-3)
     font-size: 12px
     font-weight: 600
     letter-spacing: .04em
@@ -72,7 +72,7 @@
     margin: 12px 0 0
     padding: 10px 12px
     border-radius: 8px
-    background: #f4f5f8
+    background: var(--bg)
     line-height: 1.45
     overflow-wrap: anywhere
 
@@ -80,9 +80,9 @@
     display: block
     width: 100%
     padding: 10px 12px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    color: #1f1f29
+    color: var(--text)
     resize: vertical
 
     @include mix.mobile
@@ -97,8 +97,8 @@
     padding: 11px 24px
     border: 0
     border-radius: 8px
-    background: #4d48b4
-    color: #fff
+    background: var(--accent)
+    color: var(--accent-contrast)
     cursor: pointer
 
     &:disabled
@@ -107,7 +107,7 @@
 
   &__error
     margin: 12px 0 0
-    color: #d1435b
+    color: var(--danger)
     font-size: 13px
 
 // ── Контакти ──────────────────────────────────────
@@ -121,7 +121,7 @@
   &__label
     width: 70px
     flex-shrink: 0
-    color: #888
+    color: var(--text-3)
     font-size: 13px
 
   &__value
@@ -141,21 +141,21 @@
     min-width: 30px
     height: 30px
     padding: 0 7px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    background: #fff
-    color: #4d48b4
+    background: var(--surface)
+    color: var(--accent)
     font-size: 12px
     text-decoration: none
     cursor: pointer
     transition: background .15s ease, border-color .15s ease
 
     &:hover
-      background: #f4f5f8
+      background: var(--bg)
 
     &.is-copied
-      border-color: #3d9970
-      color: #3d9970
+      border-color: var(--success)
+      color: var(--success)
 
 // ── Воронка ───────────────────────────────────────
 
@@ -167,10 +167,10 @@
   &__step
     flex: 1 1 auto
     padding: 9px 10px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    background: #fff
-    color: #888
+    background: var(--surface)
+    color: var(--text-3)
     font-size: 12px
     white-space: nowrap
     cursor: pointer
@@ -178,13 +178,13 @@
 
     // Пройдені етапи підсвічені блідо, поточний — повним кольором статусу.
     &.is-passed
-      border-color: var(--step-color, #4d48b4)
-      color: var(--step-color, #4d48b4)
+      border-color: var(--step-color, var(--accent))
+      color: var(--step-color, var(--accent))
 
     &.is-current
-      border-color: var(--step-color, #4d48b4)
-      background: var(--step-color, #4d48b4)
-      color: #fff
+      border-color: var(--step-color, var(--accent))
+      background: var(--step-color, var(--accent))
+      color: var(--accent-contrast)
 
 // ── Поля ──────────────────────────────────────────
 
@@ -202,7 +202,7 @@
       gap: 2px
 
     dt
-      color: #888
+      color: var(--text-3)
       font-size: 13px
 
     dd
@@ -210,7 +210,7 @@
       overflow-wrap: anywhere
 
       &.is-empty
-        color: #bbb
+        color: var(--text-3)
 
   &__mono
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace
@@ -238,9 +238,9 @@
   &__date
     flex-shrink: 0
     width: 120px
-    color: #999
+    color: var(--text-3)
     font-size: 12px
 
   &__text
-    color: #555
+    color: var(--text-2)
     overflow-wrap: anywhere

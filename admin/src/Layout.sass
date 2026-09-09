@@ -5,7 +5,7 @@
   // minmax(0, 1fr), а не просто 1fr: колонка 1fr має мінімум min-content,
   // тому будь-який широкий елемент усередині розтягує сітку, а з нею
   // всю сторінку — і зʼявляється горизонтальна прокрутка.
-  grid-template-columns: 200px minmax(0, 1fr)
+  grid-template-columns: 232px minmax(0, 1fr)
   min-height: 100vh
 
   @include mix.laptop-s
@@ -15,14 +15,16 @@
 .sidebar
   display: flex
   flex-direction: column
-  padding: 20px 14px
-  background: #262636
-  color: #fff
+  position: sticky
+  top: 0
+  height: 100vh
+  padding: 22px 14px 16px
+  background: var(--nav-bg)
+  color: var(--nav-text-strong)
 
   @include mix.laptop-s
+    height: auto
     padding: 0
-    position: sticky
-    top: 0
     z-index: 10
     overflow: hidden
 
@@ -40,9 +42,25 @@
       padding: 12px 14px
 
   &__logo
-    margin-bottom: 24px
+    display: flex
+    align-items: center
+    gap: 10px
+    margin-bottom: 26px
     padding: 0 10px
-    font-weight: 600
+    font-size: 15px
+    font-weight: 800
+    letter-spacing: -.01em
+
+    // Знак замість зображення: квадрат з ініціалом бренду.
+    &::before
+      content: 'I'
+      display: grid
+      place-items: center
+      width: 28px
+      height: 28px
+      border-radius: 8px
+      background: var(--nav-active)
+      font-size: 14px
 
     @include mix.laptop-s
       margin: 0
@@ -66,13 +84,13 @@
       cursor: pointer
 
       &:hover
-        background: rgba(255, 255, 255, .07)
+        background: var(--nav-hover)
 
   &__burger-line
     display: block
     height: 2px
     border-radius: 2px
-    background: #fff
+    background: var(--nav-text-strong)
     transition: transform .2s ease, opacity .2s ease
 
     // Хрестик у відкритому стані: середня смужка зникає,
@@ -120,99 +138,91 @@
   &__nav
     display: flex
     flex-direction: column
-    gap: 2px
+    gap: 18px
     flex: 1
+    min-height: 0
+    overflow-y: auto
 
     @include mix.laptop-s
-      padding: 0 14px 14px
+      padding: 4px 14px 14px
       flex: none
+      overflow: visible
 
   &__group
     display: flex
     flex-direction: column
     gap: 2px
 
-  &__group-title
-    display: flex
-    align-items: center
-    justify-content: space-between
-    gap: 8px
-    padding: 10px 12px
-    border: 0
-    border-radius: 8px
-    background: transparent
-    color: rgba(255, 255, 255, .5)
-    font-size: 12px
-    letter-spacing: .04em
-    text-transform: uppercase
-    text-align: left
-    cursor: pointer
-
-    &:hover
-      color: rgba(255, 255, 255, .8)
-
-    transition: color .18s ease
-
-  &__chevron
-    width: 6px
-    height: 6px
-    border-right: 1.5px solid currentColor
-    border-bottom: 1.5px solid currentColor
-    transform: rotate(45deg) translate(-2px, -2px)
-    transition: transform .2s ease
-
-    .sidebar__group-title.is-open &
-      transform: rotate(225deg) translate(-2px, -2px)
-
-  &__sub
-    display: grid
-    grid-template-rows: 0fr
-    transition: grid-template-rows .22s ease
-
-    &.is-open
-      grid-template-rows: 1fr
-
-  &__sub-inner
-    display: flex
-    flex-direction: column
-    gap: 2px
-    overflow: hidden
-    // Відступ показує вкладеність без додаткових ліній і рамок.
-    padding-left: 10px
+  &__caption
+    padding: 0 12px 6px
+    color: var(--nav-text)
+    font-size: 11px
+    font-weight: 600
+    opacity: .75
 
   &__link
-    padding: 10px 12px
+    display: flex
+    align-items: center
+    gap: 10px
+    padding: 9px 12px
     border: 0
     border-radius: 8px
     background: transparent
-    color: rgba(255, 255, 255, .65)
+    color: var(--nav-text)
+    font-weight: 600
     text-align: left
     cursor: pointer
     transition: background .18s ease, color .18s ease
 
     &:hover
-      background: rgba(255, 255, 255, .07)
+      background: var(--nav-hover)
+      color: var(--nav-text-strong)
 
     &.is-active
-      background: #4d48b4
-      color: #fff
+      background: var(--nav-active)
+      color: var(--nav-text-strong)
 
-    &--sub
-      font-size: 13px
+  &__icon
+    flex: none
+    opacity: .85
 
-  &__logout
-    padding: 9px
-    border: 1px solid rgba(255, 255, 255, .2)
-    border-radius: 8px
-    background: transparent
-    color: rgba(255, 255, 255, .7)
-    cursor: pointer
+    .sidebar__link.is-active &
+      opacity: 1
+
+  // ── Низ: тема і вихід ───────────────────────────────
+  &__footer
+    display: flex
+    flex-direction: column
+    gap: 6px
+    margin-top: 12px
+    padding-top: 12px
+    border-top: 1px solid rgba(255, 255, 255, .08)
 
     @include mix.laptop-s
       margin: 0 14px 14px
+      padding-top: 12px
+
+  &__theme,
+  &__logout
+    display: flex
+    align-items: center
+    gap: 10px
+    padding: 9px 12px
+    border: 0
+    border-radius: 8px
+    background: transparent
+    color: var(--nav-text)
+    font-weight: 600
+    text-align: left
+    cursor: pointer
+    transition: background .18s ease, color .18s ease
+
+    &:hover
+      background: var(--nav-hover)
+      color: var(--nav-text-strong)
 
 .content
-  padding: 24px
+  padding: 24px 28px 32px
   // min-width: 0 — та сама причина, що й у колонці сітки:
   // без нього широкий вміст розтягує grid-елемент.
   min-width: 0
@@ -223,8 +233,8 @@
 // Хто вимкнув анімації в системі, не має бачити їх і тут.
 @media (prefers-reduced-motion: reduce)
   .sidebar__panel,
-  .sidebar__sub,
-  .sidebar__chevron,
   .sidebar__burger-line,
-  .sidebar__link
+  .sidebar__link,
+  .sidebar__theme,
+  .sidebar__logout
     transition: none

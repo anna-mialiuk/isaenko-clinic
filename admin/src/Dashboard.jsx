@@ -1,8 +1,89 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { api } from './api'
+import { ColumnChart, Ring, Sparkline, TrendChart } from './charts'
+import { IconCursor, IconEye, IconInbox, IconTarget } from './Icons'
 
 import './Dashboard.sass'
+
+const SERIES = ['--series-1', '--series-2', '--series-3', '--series-4']
+
+/** Повний URL у підписі нечитабельний — лишаємо шлях і мітки. */
+const shortenUrl = (value) => {
+  try {
+    const url = new URL(value)
+    return (url.pathname === '/' ? '/' : url.pathname) + url.search
+  } catch {
+    return value
+  }
+}
+
+const sum = (items, key) => items.reduce((total, item) => total + Number(item[key] || 0), 0)
+
+/** Дельта до попереднього періоду у відсотках; null — нема з чим порівнювати. */
+const delta = (current, previous) => {
+  if (!previous) return null
+  return Math.round(((current - previous) / previous) * 100)
+}
+
+const dayLabel = (iso) => {
+  const [, month, day] = iso.split('-')
+  return `${day}.${month}`
+}
+
+/**
+ * База повертає тільки дні, де щось було. Для графіка потрібен
+ * кожен день періоду — інакше пропуски виглядають як стрибки.
+ */
+const fillDays = (days, clicksByDay, leadsByDay) => {
+  const clicks = Object.fromEntries(clicksByDay.map((row) => [row.day, row]))
+  const leads = Object.fromEntries(leadsByDay.map((row) => [row.day, Number(row.count)]))
+  const result = []
+  const cursor = new Date()
+  cursor.setDate(cursor.getDate() - days + 1)
+
+  for (let i = 0; i < days; i += 1) {
+    const iso = cursor.toISOString().slice(0, 10)
+    result.push({
+      day: iso,
+      label: dayLabel(iso),
+      visitors: Number(clicks[iso]?.visitors || 0),
+      clicks: Number(clicks[iso]?.clicks || 0),
+      leads: leads[iso] || 0,
+    })
+    cursor.setDate(cursor.getDate() + 1)
+  }
+
+  return result
+}
+
+function Kpi({ icon: Icon, label, value, change, series, dataKey, color }) {
+  const tone = change == null ? '' : change >= 0 ? 'is-up' : 'is-down'
+
+  return (
+    <article className="kpi">
+      <div className="kpi__head">
+        <span className="kpi__icon" style={{ color: `var(${color})` }}>
+          <Icon />
+        </span>
+        <span className="kpi__label">{label}</span>
+      </div>
+
+      <div className="kpi__row">
+        <span className="kpi__value">{value}</span>
+        {change != null && (
+          <span className={`kpi__delta ${tone}`}>
+            {change >= 0 ? '↑' : '↓'} {Math.abs(change)}%
+          </span>
+        )}
+      </div>
+
+      <div className="kpi__spark">
+        <Sparkline data={series} dataKey={dataKey} color={color} />
+      </div>
+    </article>
+  )
+}
 
 function Bars({ items, labelKey, valueKey, labels }) {
   const max = Math.max(1, ...items.map((item) => Number(item[valueKey])))
@@ -23,16 +104,6 @@ function Bars({ items, labelKey, valueKey, labels }) {
       ))}
     </ul>
   )
-}
-
-/** Повний URL у підписі нечитабельний — лишаємо шлях і мітки. */
-const shortenUrl = (value) => {
-  try {
-    const url = new URL(value)
-    return (url.pathname === '/' ? '/' : url.pathname) + url.search
-  } catch {
-    return value
-  }
 }
 
 function Dashboard() {
@@ -58,19 +129,37 @@ function Dashboard() {
       .catch(() => {})
   }, [])
 
+  const series = useMemo(
+    () => (data ? fillDays(days, data.by_day, data.leads.by_day) : []),
+    [data, days],
+  )
+
   if (error) return <p className="page__error">{error}</p>
   if (!data) return <p className="page__empty">Завантаження…</p>
 
-  const totalClicks = data.by_day.reduce((sum, day) => sum + Number(day.clicks), 0)
-  const totalVisitors = data.by_day.reduce((sum, day) => sum + Number(day.visitors), 0)
-  const leadsInPeriod = data.leads.by_day.reduce((sum, day) => sum + Number(day.count), 0)
+  const totalClicks = sum(series, 'clicks')
+  const totalVisitors = sum(series, 'visitors')
+  const leadsInPeriod = sum(series, 'leads')
+  const previous = data.previous || {}
 
-  const conversion = totalVisitors ? ((leadsInPeriod / totalVisitors) * 100).toFixed(1) : '0'
+  const conversion = totalVisitors ? (leadsInPeriod / totalVisitors) * 100 : 0
+  const previousConversion = previous.visitors ? (previous.leads / previous.visitors) * 100 : 0
+
+  const sourcesTotal = sum(data.leads.by_source, 'count')
+  const sources = data.leads.by_source.slice(0, 6)
+
+  const events = data.events.map((event) => ({
+    label: event.event_name || '—',
+    count: Number(event.count),
+  }))
 
   return (
     <div className="dash">
       <header className="dash__header">
-        <h1 className="page__title">Дашборд</h1>
+        <div>
+          <h1 className="page__title">Огляд</h1>
+          <p className="dash__subtitle">Заявки, трафік і джерела за вибраний період</p>
+        </div>
 
         <select
           className="dash__period"
@@ -83,23 +172,86 @@ function Dashboard() {
         </select>
       </header>
 
-      <div className="tiles">
-        <div className="tile">
-          <span className="tile__value">{leadsInPeriod}</span>
-          <span className="tile__label">заявок за період</span>
-        </div>
-        <div className="tile">
-          <span className="tile__value">{totalVisitors}</span>
-          <span className="tile__label">відвідувачів з подіями</span>
-        </div>
-        <div className="tile">
-          <span className="tile__value">{totalClicks}</span>
-          <span className="tile__label">цільових кліків</span>
-        </div>
-        <div className="tile">
-          <span className="tile__value">{conversion}%</span>
-          <span className="tile__label">конверсія в заявку</span>
-        </div>
+      <div className="kpis">
+        <Kpi
+          icon={IconInbox}
+          label="Заявки"
+          value={leadsInPeriod}
+          change={delta(leadsInPeriod, previous.leads)}
+          series={series}
+          dataKey="leads"
+          color="--series-2"
+        />
+        <Kpi
+          icon={IconEye}
+          label="Відвідувачі з подіями"
+          value={totalVisitors}
+          change={delta(totalVisitors, previous.visitors)}
+          series={series}
+          dataKey="visitors"
+          color="--series-1"
+        />
+        <Kpi
+          icon={IconCursor}
+          label="Цільові кліки"
+          value={totalClicks}
+          change={delta(totalClicks, previous.clicks)}
+          series={series}
+          dataKey="clicks"
+          color="--series-3"
+        />
+        <Kpi
+          icon={IconTarget}
+          label="Конверсія в заявку"
+          value={`${conversion.toFixed(1)}%`}
+          change={previousConversion ? Math.round(conversion - previousConversion) : null}
+          series={series}
+          dataKey="leads"
+          color="--series-4"
+        />
+      </div>
+
+      <div className="panels panels--main">
+        <section className="panel panel--trend">
+          <div className="panel__head">
+            <h2 className="panel__title">Динаміка</h2>
+            <ul className="legend">
+              <li className="legend__item" style={{ '--dot': 'var(--series-1)' }}>
+                Відвідувачі
+              </li>
+              <li className="legend__item" style={{ '--dot': 'var(--series-2)' }}>
+                Заявки
+              </li>
+            </ul>
+          </div>
+          <TrendChart data={series} />
+        </section>
+
+        <section className="panel">
+          <h2 className="panel__title">Джерела заявок</h2>
+          {sources.length ? (
+            <ul className="sources">
+              {sources.map((source, index) => {
+                const share = sourcesTotal ? Number(source.count) / sourcesTotal : 0
+                const color = SERIES[index % SERIES.length]
+
+                return (
+                  <li key={source.source} className="sources__row">
+                    <span className="sources__dot" style={{ background: `var(${color})` }} />
+                    <span className="sources__name">
+                      {source.source === 'direct' ? 'прямий' : source.source}
+                    </span>
+                    <span className="sources__count">{source.count}</span>
+                    <span className="sources__share">{Math.round(share * 100)}%</span>
+                    <Ring value={share} color={color} />
+                  </li>
+                )
+              })}
+            </ul>
+          ) : (
+            <p className="panel__empty">Поки немає заявок за цей період</p>
+          )}
+        </section>
       </div>
 
       <div className="panels">
@@ -117,17 +269,12 @@ function Dashboard() {
         </section>
 
         <section className="panel">
-          <h2 className="panel__title">Джерела заявок</h2>
-          {data.leads.by_source.length ? (
-            <Bars items={data.leads.by_source} labelKey="source" valueKey="count" />
-          ) : (
-            <p className="panel__empty">Поки немає даних</p>
-          )}
-        </section>
-
-        <section className="panel">
           <h2 className="panel__title">Події</h2>
-          <Bars items={data.events} labelKey="event_name" valueKey="count" />
+          {events.length ? (
+            <ColumnChart data={events} />
+          ) : (
+            <p className="panel__empty">Поки немає подій</p>
+          )}
         </section>
 
         <section className="panel panel--wide">

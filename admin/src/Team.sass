@@ -10,15 +10,15 @@
 
   &__add
     padding: 9px 16px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    background: #fff
-    color: #4d48b4
+    background: var(--surface)
+    color: var(--accent)
     font-size: 13px
     cursor: pointer
 
     &:hover
-      background: #f4f5f8
+      background: var(--bg)
 
   &__form
     margin-bottom: 12px
@@ -32,14 +32,14 @@
     display: flex
     flex-direction: column
     gap: 5px
-    color: #888
+    color: var(--text-3)
     font-size: 13px
 
   &__input
     padding: 9px 11px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    color: #1f1f29
+    color: var(--text)
 
     @include mix.mobile
       font-size: 16px
@@ -48,8 +48,8 @@
     margin: 12px 0 0
     padding: 10px 12px
     border-radius: 8px
-    background: #f4f5f8
-    color: #666
+    background: var(--bg)
+    color: var(--text-2)
     font-size: 12px
     line-height: 1.5
 
@@ -62,8 +62,8 @@
     padding: 10px 20px
     border: 0
     border-radius: 8px
-    background: #4d48b4
-    color: #fff
+    background: var(--accent)
+    color: var(--accent-contrast)
     cursor: pointer
     white-space: nowrap
 
@@ -78,8 +78,8 @@
     margin-top: 16px
     padding: 12px 16px
     border-radius: 10px
-    background: #eef0f6
-    color: #666
+    background: var(--surface-2)
+    color: var(--text-2)
     font-size: 13px
     line-height: 1.6
 
@@ -97,7 +97,7 @@
     align-items: center
     gap: 12px
     padding: 12px 14px
-    border: 1px solid #eceef4
+    border: 1px solid var(--surface-2)
     border-radius: 10px
 
     @include mix.laptop-s
@@ -124,21 +124,21 @@
   &__badge
     padding: 2px 7px
     border-radius: 20px
-    background: #eef0f6
-    color: #666
+    background: var(--surface-2)
+    color: var(--text-2)
     font-size: 11px
     font-weight: 400
 
     &.is-warn
-      background: #fdecef
-      color: #d1435b
+      background: var(--danger-soft)
+      color: var(--danger)
 
   &__name
-    color: #888
+    color: var(--text-3)
     font-size: 13px
 
   &__meta
-    color: #999
+    color: var(--text-3)
     font-size: 12px
     white-space: nowrap
 
@@ -149,28 +149,28 @@
 
   &__button
     padding: 6px 12px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    background: #fff
-    color: #666
+    background: var(--surface)
+    color: var(--text-2)
     font-size: 12px
     cursor: pointer
 
     &:hover
-      background: #f4f5f8
+      background: var(--bg)
 
     &.is-danger
-      color: #d1435b
+      color: var(--danger)
 
       &:hover
-        background: #fdecef
+        background: var(--danger-soft)
 
   &__reset
     grid-column: 1 / -1
     display: flex
     gap: 8px
     padding-top: 10px
-    border-top: 1px solid #eceef4
+    border-top: 1px solid var(--surface-2)
 
     @include mix.mobile
       flex-direction: column

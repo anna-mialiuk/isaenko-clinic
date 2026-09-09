@@ -259,12 +259,28 @@ if ($action === 'stats') {
   $stmt->execute(['-' . $days . ' day']);
   $pages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+  // Попередній період такої ж довжини — для дельт у картках.
+  $stmt = $pdo->prepare("
+    SELECT COUNT(*) AS clicks, COUNT(DISTINCT cid) AS visitors
+    FROM attribution_clicks
+    WHERE created_at > datetime('now', ?) AND created_at <= datetime('now', ?)
+  ");
+  $stmt->execute(['-' . ($days * 2) . ' day', '-' . $days . ' day']);
+  $previous = $stmt->fetch(PDO::FETCH_ASSOC) ?: ['clicks' => 0, 'visitors' => 0];
+
+  $leads = leads_stats($days);
+
   admin_json([
-    'leads' => leads_stats($days),
+    'leads' => $leads,
     'events' => $events,
     'by_day' => $byDay,
     'pages' => $pages,
     'days' => $days,
+    'previous' => [
+      'clicks' => (int) $previous['clicks'],
+      'visitors' => (int) $previous['visitors'],
+      'leads' => (int) ($leads['previous'] ?? 0),
+    ],
   ]);
 }
 

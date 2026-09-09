@@ -463,10 +463,19 @@ function leads_stats($days = 30) {
   $stmt->execute(['-' . (int) $days . ' day']);
   $bySource = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+  $stmt = $pdo->prepare("
+    SELECT COUNT(*) FROM leads
+    WHERE created_at > datetime('now', ?) AND created_at <= datetime('now', ?)
+      AND deleted_at IS NULL
+  ");
+  $stmt->execute(['-' . ((int) $days * 2) . ' day', '-' . (int) $days . ' day']);
+  $previous = (int) $stmt->fetchColumn();
+
   return [
     'by_status' => $byStatus,
     'by_day' => $byDay,
     'by_source' => $bySource,
+    'previous' => $previous,
     'total' => (int) $pdo->query(
       'SELECT COUNT(*) FROM leads WHERE deleted_at IS NULL'
     )->fetchColumn(),

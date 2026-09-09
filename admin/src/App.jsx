@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react'
 
 import { api } from './api'
 import Login from './Login'
-import Dashboard from './Dashboard'
 import Kanban from './Kanban'
 import Analytics from './Analytics'
 import Errors from './Errors'
@@ -10,40 +9,63 @@ import CrmSettings from './CrmSettings'
 import Team from './Team'
 import Placeholder from './Placeholder'
 
+// Графіки (recharts) важкі й потрібні тільки на дашборді —
+// не тягнемо їх у бандл для тих, хто працює лише з заявками.
+const Dashboard = lazy(() => import('./Dashboard'))
+import { applyTheme, getInitialTheme } from './theme'
+import {
+  IconBell,
+  IconChart,
+  IconLogout,
+  IconMoon,
+  IconPen,
+  IconPlug,
+  IconPulse,
+  IconServer,
+  IconSliders,
+  IconSun,
+  IconTeam,
+  IconUsers,
+} from './Icons'
+
 import './Layout.sass'
 
 /**
- * Дворівнева навігація. Розділ без підпунктів (Блог) лишається простим
- * пунктом — вкладати його заради однорідності немає сенсу.
+ * Навігація плоска: група — це підпис над пунктами, а не згортка.
+ * Розділів небагато, тому все видно одразу, без кліків по групах.
  */
 const MENU = [
   {
     id: 'crm',
     label: 'CRM',
     items: [
-      { id: 'crm.clients', label: 'Клієнти' },
-      { id: 'crm.settings', label: 'Налаштування' },
-      { id: 'crm.notifications', label: 'Сповіщення' },
+      { id: 'crm.clients', label: 'Клієнти', icon: IconUsers },
+      { id: 'crm.settings', label: 'Налаштування', icon: IconSliders },
+      { id: 'crm.notifications', label: 'Сповіщення', icon: IconBell },
     ],
   },
   {
     id: 'analytics',
     label: 'Аналітика',
     items: [
-      { id: 'analytics.overview', label: 'Огляд' },
-      { id: 'analytics.events', label: 'Події' },
+      { id: 'analytics.overview', label: 'Огляд', icon: IconChart },
+      { id: 'analytics.events', label: 'Події', icon: IconPulse },
     ],
   },
   {
     id: 'settings',
     label: 'Налаштування',
     items: [
-      { id: 'settings.integrations', label: 'Інтеграції' },
-      { id: 'settings.team', label: 'Команда' },
-      { id: 'settings.server', label: 'Життя серверу' },
+      { id: 'settings.integrations', label: 'Інтеграції', icon: IconPlug },
+      { id: 'settings.team', label: 'Команда', icon: IconTeam },
+      { id: 'settings.server', label: 'Життя серверу', icon: IconServer },
     ],
   },
-  { id: 'blog', label: 'Блог' },
+  {
+    id: 'other',
+    label: 'Контент',
+    items: [{ id: 'blog', label: 'Блог', icon: IconPen }],
+  },
 ]
 
 const DEFAULT_SECTION = 'crm.clients'
@@ -52,9 +74,11 @@ function App() {
   const [authorised, setAuthorised] = useState(null)
   const [section, setSection] = useState(DEFAULT_SECTION)
 
-  // Розгорнута група — одна за раз: розділів небагато,
-  // і так завжди видно, де ти зараз.
-  const [openGroup, setOpenGroup] = useState('crm')
+  const [theme, setTheme] = useState(getInitialTheme)
+
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
 
   // Меню на вузьких екранах. На десктопі клас не впливає ні на що —
   // там сайдбар видно завжди.
@@ -105,60 +129,57 @@ function App() {
         <div className={`sidebar__panel ${menuOpen ? 'is-open' : ''}`}>
           <div className="sidebar__panel-inner">
             <nav className="sidebar__nav">
-              {MENU.map((group) =>
-                group.items ? (
-                  <div key={group.id} className="sidebar__group">
-                    <button
-                      type="button"
-                      className={`sidebar__group-title ${openGroup === group.id ? 'is-open' : ''}`}
-                      onClick={() => setOpenGroup(openGroup === group.id ? null : group.id)}
-                    >
-                      {group.label}
-                      <span className="sidebar__chevron" aria-hidden="true" />
-                    </button>
+              {MENU.map((group) => (
+                <div key={group.id} className="sidebar__group">
+                  <span className="sidebar__caption">{group.label}</span>
 
-                    <div className={`sidebar__sub ${openGroup === group.id ? 'is-open' : ''}`}>
-                      <div className="sidebar__sub-inner">
-                        {group.items.map((item) => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            className={`sidebar__link sidebar__link--sub ${
-                              section === item.id ? 'is-active' : ''
-                            }`}
-                            // Згорнута група не має ловити фокус із клавіатури.
-                            tabIndex={openGroup === group.id ? 0 : -1}
-                            onClick={() => select(item.id)}
-                          >
-                            {item.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <button
-                    key={group.id}
-                    type="button"
-                    className={`sidebar__link ${section === group.id ? 'is-active' : ''}`}
-                    onClick={() => select(group.id)}
-                  >
-                    {group.label}
-                  </button>
-                ),
-              )}
+                  {group.items.map((item) => {
+                    const Icon = item.icon
+
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        className={`sidebar__link ${section === item.id ? 'is-active' : ''}`}
+                        aria-current={section === item.id ? 'page' : undefined}
+                        onClick={() => select(item.id)}
+                      >
+                        <Icon className="sidebar__icon" />
+                        {item.label}
+                      </button>
+                    )
+                  })}
+                </div>
+              ))}
             </nav>
 
-            <button type="button" className="sidebar__logout" onClick={handleLogout}>
-              Вийти
-            </button>
+            <div className="sidebar__footer">
+              <button
+                type="button"
+                className="sidebar__theme"
+                aria-label={theme === 'dark' ? 'Світла тема' : 'Темна тема'}
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              >
+                {theme === 'dark' ? <IconSun /> : <IconMoon />}
+                {theme === 'dark' ? 'Світла' : 'Темна'}
+              </button>
+
+              <button type="button" className="sidebar__logout" onClick={handleLogout}>
+                <IconLogout />
+                Вийти
+              </button>
+            </div>
           </div>
         </div>
       </aside>
 
       <main className="content">
         {section === 'crm.clients' && <Kanban />}
-        {section === 'analytics.overview' && <Dashboard />}
+        {section === 'analytics.overview' && (
+          <Suspense fallback={<p className="page__empty">Завантаження…</p>}>
+            <Dashboard />
+          </Suspense>
+        )}
         {section === 'analytics.events' && <Analytics />}
         {section === 'settings.server' && <Errors />}
 

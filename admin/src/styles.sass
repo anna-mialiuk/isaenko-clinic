@@ -1,6 +1,91 @@
-// Глобальне: скидання, типографіка, спільні для всіх розділів класи.
-// Стилі компонентів лежать поруч із самими компонентами.
+// Глобальне: токени тем, скидання, типографіка, спільні класи.
+// Стилі компонентів лежать поруч із самими компонентами і беруть
+// кольори тільки звідси — через var(). Зашитих hex у компонентах немає.
 
+// ── Токени ──────────────────────────────────────────────────────
+:root
+  // Поверхні
+  --bg: #f3f4f9
+  --surface: #ffffff
+  --surface-2: #eef0f6
+  --border: #dfe1ea
+  --overlay: rgba(23, 23, 43, .45)
+
+  // Текст
+  --text: #17172b
+  --text-2: #5c6075
+  --text-3: #8f93a8
+
+  // Бренд і стани
+  --accent: #4d48b4
+  --accent-soft: #ecebfa
+  --accent-contrast: #ffffff
+  --success: #1f9d7a
+  --success-soft: #e3f5ee
+  --warning: #d98c1f
+  --warning-text: #9a6210
+  --danger: #d1435b
+  --danger-soft: #fdecef
+
+  // Серії на графіках
+  --series-1: #4d48b4
+  --series-2: #1f9d7a
+  --series-3: #e8823a
+  --series-4: #d94c7c
+
+  // Сайдбар живе у власній палітрі — темний в обох темах,
+  // це найсильніший впізнаваний елемент панелі.
+  --nav-bg: #1b1b2c
+  --nav-text: rgba(255, 255, 255, .62)
+  --nav-text-strong: #ffffff
+  --nav-hover: rgba(255, 255, 255, .06)
+  --nav-active: #4d48b4
+
+  --shadow-sm: 0 1px 2px rgba(23, 23, 43, .06), 0 1px 3px rgba(23, 23, 43, .05)
+  --shadow-md: 0 8px 24px rgba(23, 23, 43, .1)
+
+  --radius: 12px
+  --radius-sm: 8px
+
+  color-scheme: light
+
+[data-theme='dark']
+  --bg: #12121a
+  --surface: #1b1b27
+  --surface-2: #242434
+  --border: #2d2d3f
+  --overlay: rgba(0, 0, 0, .6)
+
+  --text: #ececf4
+  --text-2: #a4a8bd
+  --text-3: #6f7389
+
+  --accent: #7c77e6
+  --accent-soft: #2a2851
+  --accent-contrast: #ffffff
+  --success: #34c391
+  --success-soft: #16362c
+  --warning: #f0a938
+  --warning-text: #f0a938
+  --danger: #ef6478
+  --danger-soft: #3b1f26
+
+  --series-1: #7c77e6
+  --series-2: #34c391
+  --series-3: #f39a52
+  --series-4: #e8659a
+
+  --nav-bg: #15151f
+  --nav-text: rgba(255, 255, 255, .55)
+  --nav-hover: rgba(255, 255, 255, .05)
+  --nav-active: #5a55d0
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3)
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, .4)
+
+  color-scheme: dark
+
+// ── База ────────────────────────────────────────────────────────
 *,
 *::before,
 *::after
@@ -12,35 +97,46 @@ html
 
 body
   margin: 0
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
   font-size: 14px
-  color: #1f1f29
-  background: #f4f5f8
+  line-height: 1.45
+  color: var(--text)
+  background: var(--bg)
+  // Цифри одної ширини: колонки чисел у картках і таблицях не стрибають.
+  font-variant-numeric: tabular-nums
+  -webkit-font-smoothing: antialiased
 
 button,
 input,
 select,
 textarea
   font: inherit
+  color: inherit
+
+:focus-visible
+  outline: 2px solid var(--accent)
+  outline-offset: 2px
 
 .boot
   padding: 40px
-  color: #777
+  color: var(--text-3)
 
 // Спільні для всіх розділів панелі.
 .page
   &__title
     margin: 0
     font-size: 20px
+    font-weight: 700
+    letter-spacing: -.01em
 
   &__error
     padding: 10px 14px
-    border-radius: 8px
-    background: #fdecef
-    color: #d1435b
+    border-radius: var(--radius-sm)
+    background: var(--danger-soft)
+    color: var(--danger)
 
   &__empty
-    color: #888
+    color: var(--text-3)
 
 button,
 a,

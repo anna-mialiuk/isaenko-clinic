@@ -3,8 +3,8 @@
   overflow-wrap: anywhere
   padding: 11px 12px
   border-radius: 8px
-  background: #fff
-  box-shadow: 0 1px 3px rgba(31, 31, 41, .1)
+  background: var(--surface)
+  box-shadow: var(--shadow-sm)
   cursor: pointer
 
   @media (hover: hover) and (pointer: fine)
@@ -24,19 +24,19 @@
     font-weight: 600
 
   &__date
-    color: #999
+    color: var(--text-3)
     font-size: 12px
     white-space: nowrap
 
   &__phone
     display: block
     margin-bottom: 6px
-    color: #4d48b4
+    color: var(--accent)
     text-decoration: none
 
   &__message
     margin: 0 0 8px
-    color: #555
+    color: var(--text-2)
     font-size: 13px
     display: -webkit-box
     -webkit-line-clamp: 3
@@ -57,26 +57,26 @@
     width: 100%
     margin-bottom: 4px
     padding: 6px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 6px
-    background: #fff
-    color: #4d48b4
+    background: var(--surface)
+    color: var(--accent)
     font-size: 12px
     cursor: pointer
     transition: background .15s ease, border-color .15s ease
 
     &:hover
-      border-color: #4d48b4
-      background: #f4f3fb
+      border-color: var(--accent)
+      background: var(--accent-soft)
 
   &__source,
   &__campaign,
   &__warn
     padding: 2px 7px
     border-radius: 20px
-    background: #eef0f6
-    color: #666
+    background: var(--surface-2)
+    color: var(--text-2)
 
   &__warn
-    background: #fdecef
-    color: #d1435b
+    background: var(--danger-soft)
+    color: var(--danger)

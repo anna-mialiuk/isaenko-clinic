@@ -6,31 +6,31 @@
 
   &__hint
     margin: 0 0 14px
-    color: #888
+    color: var(--text-3)
     font-size: 13px
 
   &__note
     margin: 14px 0 0
     padding: 10px 12px
     border-radius: 8px
-    background: #f4f5f8
-    color: #666
+    background: var(--bg)
+    color: var(--text-2)
     font-size: 12px
     line-height: 1.5
 
   &__add
     margin-top: 12px
     padding: 9px 16px
-    border: 1px dashed #b9bbc9
+    border: 1px dashed var(--text-3)
     border-radius: 8px
     background: transparent
-    color: #4d48b4
+    color: var(--accent)
     font-size: 13px
     cursor: pointer
 
     &:hover
-      border-color: #4d48b4
-      background: #f4f3fb
+      border-color: var(--accent)
+      background: var(--accent-soft)
 
   &__actions
     display: flex
@@ -40,15 +40,15 @@
     margin-top: 18px
 
   &__saved
-    color: #3d9970
+    color: var(--success)
     font-size: 13px
 
   &__save
     padding: 11px 24px
     border: 0
     border-radius: 8px
-    background: #4d48b4
-    color: #fff
+    background: var(--accent)
+    color: var(--accent-contrast)
     cursor: pointer
 
     &:disabled
@@ -71,7 +71,7 @@
     align-items: center
     gap: 10px
     padding: 10px 12px
-    border: 1px solid #eceef4
+    border: 1px solid var(--surface-2)
     border-radius: 10px
 
     @include mix.mobile
@@ -87,7 +87,7 @@
     flex: 1
     min-width: 120px
     padding: 8px 10px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
 
     @include mix.mobile
@@ -111,7 +111,7 @@
       transform: scale(1.15)
 
     &.is-active
-      border-color: #1f1f29
+      border-color: var(--text)
 
   &__actions
     display: flex
@@ -122,20 +122,20 @@
   &__remove
     width: 30px
     height: 30px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    background: #fff
-    color: #666
+    background: var(--surface)
+    color: var(--text-2)
     cursor: pointer
 
     &:hover:not(:disabled)
-      background: #f4f5f8
+      background: var(--bg)
 
     &:disabled
       opacity: .35
       cursor: default
 
   &__remove
-    color: #d1435b
+    color: var(--danger)
     font-size: 18px
     line-height: 1

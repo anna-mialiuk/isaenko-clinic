@@ -12,16 +12,15 @@
     max-width: calc(100vw - 32px)
     padding: 28px
     border-radius: 12px
-    background: #fff
-    box-shadow: 0 8px 32px rgba(31, 31, 41, .1)
+    background: var(--surface)
+    box-shadow: var(--shadow-md)
 
   &__title
     margin: 0 0 8px
     font-size: 18px
 
-  &__input
     padding: 11px 13px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
     // 16px не дає iOS збільшувати сторінку при фокусі в полі.
     font-size: 16px
@@ -30,8 +29,8 @@
     padding: 11px
     border: 0
     border-radius: 8px
-    background: #4d48b4
-    color: #fff
+    background: var(--accent)
+    color: var(--accent-contrast)
     cursor: pointer
 
     &:disabled
@@ -40,5 +39,5 @@
 
   &__error
     margin: 0
-    color: #d1435b
+    color: var(--danger)
     font-size: 13px

@@ -15,7 +15,7 @@
     flex: 1
     max-width: 340px
     padding: 9px 13px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
 
     @include mix.mobile
@@ -25,16 +25,16 @@
 
   &__export
     padding: 8px 14px
-    border: 1px solid #d8dae2
+    border: 1px solid var(--border)
     border-radius: 8px
-    background: #fff
-    color: #4d48b4
+    background: var(--surface)
+    color: var(--accent)
     font-size: 13px
     text-decoration: none
     white-space: nowrap
 
     &:hover
-      background: #f4f5f8
+      background: var(--bg)
 
 .board
   display: grid
@@ -46,13 +46,13 @@
   min-width: 0
   padding: 10px
   border-radius: 10px
-  background: #e9eaf0
+  background: var(--border)
   min-height: 80px
   transition: background .15s ease
 
   &.is-over
-    background: #dcdef0
-    outline: 2px dashed #4d48b4
+    background: var(--border)
+    outline: 2px dashed var(--accent)
 
   &__header
     display: flex
@@ -76,11 +76,11 @@
       width: 8px
       height: 8px
       border-radius: 50%
-      background: var(--status-color, #8a8aa3)
+      background: var(--status-color, var(--text-3))
       flex-shrink: 0
 
   &__count
-    color: #888
+    color: var(--text-3)
 
   &__body
     display: flex
@@ -91,11 +91,11 @@
     padding: 8px
     border: 0
     border-radius: 8px
-    background: rgba(255, 255, 255, .6)
-    color: #4d48b4
+    background: var(--surface-2)
+    color: var(--accent)
     font-size: 13px
     cursor: pointer
     transition: background .15s ease
 
     &:hover
-      background: #fff
+      background: var(--surface)
