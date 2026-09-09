@@ -88,9 +88,12 @@ function ga4_send_event($eventName, $clientId, $sessionId, $params) {
 
   $body = [
     'client_id' => $clientId,
+    // Згода на рекламні сигнали — інакше GA4 не передає конверсію
+    // в Google Ads для атрибуції. Має збігатись із consent default
+    // в index.html.
     'consent' => [
-      'ad_user_data' => 'DENIED',
-      'ad_personalization' => 'DENIED',
+      'ad_user_data' => 'GRANTED',
+      'ad_personalization' => 'GRANTED',
     ],
     'events' => [[
       'name' => $eventName,
