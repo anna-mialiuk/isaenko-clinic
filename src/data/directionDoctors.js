@@ -308,7 +308,7 @@ export const directionDoctors = [
 
   {
     slug: 'bandeliani-iryna',
-    name: 'Банделіані Ірина Елгуджівна',
+    name: 'Бенделіані Ірина Елгуджівна',
     image: '/images/doctors/doctor-16.webp',
     cities: ['kharkiv'],
     online: true,

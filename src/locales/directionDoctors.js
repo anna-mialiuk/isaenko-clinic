@@ -213,7 +213,7 @@ export default {
     },
 
     'bandeliani-iryna': {
-      name: 'Банделіані Ірина Елгуджівна',
+      name: 'Бенделіані Ірина Елгуджівна',
       experienceText: 'років досвіду',
       position: 'Лікар-психіатр, лікар-нарколог',
       description:
