@@ -1,5 +1,5 @@
 export const logos = {
-  uk: '/images/logos/logo-uk.jpg?v=3',
+  uk: '/images/logos/logo-uk.png?v=4',
   ru: '/images/logos/logo-ru.webp?v=3',
   en: '/images/logos/logo-en.webp?v=3',
 }
