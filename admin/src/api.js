@@ -64,4 +64,37 @@ export const api = {
   errors: (filters = {}) => request('errors', { query: toQuery(filters) }),
 
   resolveError: (id, resolved) => request('errors', { method: 'PATCH', body: { id, resolved } }),
+
+  doctors: () => request('doctors'),
+
+  doctor: (id) => request('doctor', { query: `&id=${id}` }),
+
+  saveDoctor: (data) => request('doctors', { method: 'POST', body: data }),
+
+  setDoctorActive: (id, active) =>
+    request('doctors', { method: 'PATCH', body: { id, is_active: active } }),
+
+  reorderDoctors: (ids) => request('doctors', { method: 'PATCH', body: { order: ids } }),
+
+  // Файл іде multipart, тому не через request(): той шле JSON.
+  uploadDoctorPhoto: async (file, slug) => {
+    const form = new FormData()
+    form.append('photo', file)
+    form.append('slug', slug)
+
+    const response = await fetch(`${BASE}?action=doctor_photo`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      body: form,
+    })
+
+    // 413 віддає nginx, а не PHP: відповідь буде HTML, не JSON.
+    if (response.status === 413) throw new Error('Файл завеликий для сервера')
+
+    const data = await response.json().catch(() => null)
+
+    if (!response.ok) throw new Error(data?.error || 'Не вдалося завантажити фото')
+
+    return data
+  },
 }

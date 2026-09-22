@@ -1,0 +1,348 @@
+@use 'mixins' as mix
+
+.doctor-form
+  &__header
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 6px
+    margin-bottom: 16px
+
+  &__back
+    padding: 0
+    border: 0
+    background: none
+    color: var(--accent)
+    font-size: 13px
+    cursor: pointer
+
+  &__grid
+    display: grid
+    // Налаштування вузькою колонкою, тексти — широкою: текстів більше
+    // і їх зручніше читати в ширшому полі.
+    grid-template-columns: 300px minmax(0, 1fr)
+    gap: 14px
+    align-items: start
+
+    @include mix.laptop
+      grid-template-columns: minmax(0, 1fr)
+
+  &__side,
+  &__main
+    display: flex
+    flex-direction: column
+    gap: 14px
+    min-width: 0
+
+  // Липкий низ: на довгій формі кнопка «Зберегти» завжди під рукою.
+  &__footer
+    position: sticky
+    bottom: 0
+    z-index: 5
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    flex-wrap: wrap
+    gap: 10px
+    margin-top: 16px
+    padding: 12px 0
+    background: var(--bg)
+    border-top: 1px solid var(--border)
+
+  &__error
+    flex: 1 1 100%
+    margin: 0
+
+.panel__subtitle
+  margin-left: 6px
+  color: var(--text-3)
+  font-size: 12px
+  font-weight: 400
+
+// ── Поля ──────────────────────────────────────────
+
+.fields-grid
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 12px
+
+  @include mix.mobile
+    grid-template-columns: minmax(0, 1fr)
+
+  // ПІБ у три колонки, під ним відступ до решти полів.
+  &--name
+    grid-template-columns: repeat(3, minmax(0, 1fr))
+    margin-bottom: 12px
+
+    @include mix.mobile
+      grid-template-columns: minmax(0, 1fr)
+
+.field
+  display: flex
+  flex-direction: column
+  gap: 6px
+  color: var(--text-2)
+  font-size: 13px
+
+  &--wide
+    grid-column: 1 / -1
+
+  &__required
+    color: var(--text-3)
+    font-size: 11px
+
+.input
+  width: 100%
+  padding: 9px 11px
+  border: 1px solid var(--border)
+  border-radius: var(--radius-sm)
+  background: var(--surface)
+  color: var(--text)
+  font: inherit
+  resize: vertical
+  transition: border-color .15s ease
+
+  &:focus
+    outline: none
+    border-color: var(--accent)
+
+  &--mono
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace
+    font-size: 13px
+
+  // 16px не дає iOS збільшувати сторінку при фокусі в полі.
+  @include mix.mobile
+    font-size: 16px
+
+.form-note
+  margin: 10px 0 0
+  color: var(--text-3)
+  font-size: 12px
+  line-height: 1.5
+
+.checks
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+  &--columns
+    display: grid
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 8px 12px
+
+.check
+  display: flex
+  align-items: center
+  gap: 8px
+  color: var(--text)
+  font-size: 13px
+  cursor: pointer
+
+  input
+    width: 16px
+    height: 16px
+    margin: 0
+    accent-color: var(--accent)
+    flex-shrink: 0
+
+// ── Кнопки ────────────────────────────────────────
+
+.button
+  padding: 10px 18px
+  border: 1px solid var(--border)
+  border-radius: var(--radius-sm)
+  background: var(--surface)
+  color: var(--text)
+  font-size: 13px
+  cursor: pointer
+
+  &:hover:not(:disabled)
+    background: var(--surface-2)
+
+  &:disabled
+    opacity: .5
+    cursor: default
+
+  &--primary
+    border-color: var(--accent)
+    background: var(--accent)
+    color: var(--accent-contrast)
+
+    &:hover:not(:disabled)
+      background: var(--accent)
+      filter: brightness(1.08)
+
+  &--dashed
+    margin-top: 10px
+    border-style: dashed
+    color: var(--accent)
+
+.icon-button
+  width: 30px
+  height: 30px
+  border: 1px solid var(--border)
+  border-radius: var(--radius-sm)
+  background: var(--surface)
+  color: var(--text-2)
+  cursor: pointer
+
+  &:hover:not(:disabled)
+    background: var(--surface-2)
+
+  &:disabled
+    opacity: .3
+    cursor: default
+
+  &.is-danger
+    color: var(--danger)
+
+// ── Фото ──────────────────────────────────────────
+
+.photo
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  gap: 10px
+
+  &__preview
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 140px
+    height: 170px
+    overflow: hidden
+    border-radius: var(--radius)
+    background: var(--surface-2)
+    color: var(--text-3)
+    font-size: 12px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  &__input
+    display: none
+
+  &__hint
+    margin: 0
+    color: var(--text-3)
+    font-size: 12px
+    line-height: 1.4
+
+// ── Мови ──────────────────────────────────────────
+
+.langs
+  display: flex
+  gap: 4px
+  margin-bottom: 16px
+  padding: 4px
+  border-radius: var(--radius-sm)
+  background: var(--surface-2)
+
+  &__tab
+    position: relative
+    flex: 1
+    padding: 8px 10px
+    border: 0
+    border-radius: 6px
+    background: transparent
+    color: var(--text-2)
+    font-size: 13px
+    cursor: pointer
+    transition: background .15s ease, color .15s ease
+
+    &.is-active
+      background: var(--surface)
+      color: var(--text)
+      box-shadow: var(--shadow-sm)
+
+  // Крапка на вкладці: на цій мові не заповнене імʼя,
+  // і без нього зберегти не вийде.
+  &__dot
+    position: absolute
+    top: 6px
+    right: 8px
+    width: 7px
+    height: 7px
+    border-radius: 50%
+    background: var(--danger)
+
+.home-texts
+  margin-top: 16px
+  padding-top: 14px
+  border-top: 1px solid var(--border)
+
+  &__summary
+    color: var(--accent)
+    font-size: 13px
+    cursor: pointer
+
+  .fields-grid
+    margin-top: 12px
+
+// ── Ціни ──────────────────────────────────────────
+
+.prices
+  margin: 0
+  padding: 0
+  list-style: none
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+  &__row
+    display: grid
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto
+    gap: 8px
+    align-items: center
+
+    @include mix.mobile
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+      padding-bottom: 10px
+      border-bottom: 1px solid var(--border)
+
+  &__service
+    @include mix.mobile
+      grid-column: 1 / -1
+
+  &__actions
+    display: flex
+    gap: 4px
+
+    @include mix.mobile
+      grid-column: 1 / -1
+      justify-content: flex-end
+
+// ── Де показувати ─────────────────────────────────
+
+.placement
+  margin-top: 14px
+
+  &__intro
+    margin: 0 0 14px
+
+  &__grid
+    display: grid
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)
+    gap: 20px
+
+    @include mix.laptop
+      grid-template-columns: minmax(0, 1fr)
+
+  &__title
+    margin: 0 0 10px
+    color: var(--text-2)
+    font-size: 12px
+    font-weight: 600
+    letter-spacing: .04em
+    text-transform: uppercase
+
+  &__tech
+    margin-top: 18px
+    padding-top: 14px
+    border-top: 1px solid var(--border)
+
+  &__slug
+    margin-top: 10px
+    max-width: 360px

@@ -1,0 +1,2186 @@
+[
+  {
+    "slug": "isaenko-svitlana",
+    "image": "/images/doctors/doctor-1.webp",
+    "cities": ["kharkiv", "kyiv"],
+    "online": false,
+    "experience": "10+",
+    "isFounder": true,
+    "showInTeam": false,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": [],
+    "prices": [],
+    "i18n": {
+      "uk": {
+        "name": "Ісаєнко Світлана Володимирівна",
+        "experienceText": "років досвіду",
+        "position": "",
+        "description": "",
+        "homePosition": "Кандидат медичних наук, лікар-психіатр, дитячий психіатр, психотерапевт",
+        "homeAbout": "Автор он-лайн курсів «Лабораторія щасливих людей», «Дилер щастя», «Сейчастье» «Світлячок», «Любов ON», «Мечтайнік». Психотерапевтичного курсу «OnBaza». Психоосвітнього курсу «Академія доктора Ісаєнко». Автор книг, що змінюють життя : «Невигадані історії вигаданих людей», «Монстри, з якими ми живемо», «Любов Л», «Мила Міла».",
+        "lastName": "Ісаєнко",
+        "firstName": "Світлана",
+        "middleName": "Володимирівна"
+      },
+      "ru": {
+        "name": "Исаенко Светлана Владимировна",
+        "experienceText": "лет опыта",
+        "position": "",
+        "description": "",
+        "homePosition": "Кандидат медицинских наук, врач - психиатр, детский психиатр, психотерапевт",
+        "homeAbout": "Автор онлайн-курсов «Лаборатория счастливых людей», «Дилер счастья», «Сейчастье», «Светлячок», «Любовь ON», «Мечтайник». Психотерапевтического курса «OnBaza». Психопросветительского курса «Академия доктора Исаенко». Автор книг, меняющих жизнь: «Не выдуманные истории выдуманных людей», «Монстры, с которыми мы живем», «Любовь Л», «Мила Мила».",
+        "lastName": "Исаенко",
+        "firstName": "Светлана",
+        "middleName": "Владимировна"
+      },
+      "en": {
+        "name": "Isaenko Svitlana Volodymyrivna",
+        "experienceText": "years of experience",
+        "position": "",
+        "description": "",
+        "homePosition": "Candidate of medical sciences, Psychiatrist, Child Psychiatrist, Psychotherapist",
+        "homeAbout": "Author of online courses \"Laboratory of Happy People\", \"Happiness Dealer\", \"Seychastye\", \"Svitlyachok\", \"Love ON\", \"Mechtaynik\". Psychotherapeutic course \"OnBaza\". Psychoeducational course \"Dr. Isaenko's Academy\". Author of life-changing books: \"True Stories of Imaginary People\", \"Monsters We Live With\", \"Love L\", \"Dear Mila\".",
+        "lastName": "Isaenko",
+        "firstName": "Svitlana",
+        "middleName": "Volodymyrivna"
+      }
+    },
+    "position": 0
+  },
+  {
+    "slug": "kozhyna-anna",
+    "image": "/images/doctors/doctor-8.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "30+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "psychotherapy", "psychologist", "childpsychiatry"],
+    "prices": [
+      {
+        "price": "4000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "50 Minutes"
+          }
+        }
+      },
+      {
+        "price": "3200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація та корекція лікування",
+            "duration": "30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация и коррекция лечения",
+            "duration": "30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation and treatment adjustment",
+            "duration": "30 Minutes"
+          }
+        }
+      },
+      {
+        "price": "4000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Кожина Анна Михайлівна",
+        "experienceText": "років досвіду",
+        "position": "Доктор медичних наук, професор, академік НАНВО України, психіатр, психотерапевт, дитячий психіатр, медичний психолог",
+        "description": "Провідний фахівець у галузі терапії стрес-асоційованих розладів або розладів пов'язаних з травмою та стресом. Експерт у галузі психоосвіти та медико-психологічного супроводу.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Кожина",
+        "firstName": "Анна",
+        "middleName": "Михайлівна"
+      },
+      "ru": {
+        "name": "Кожина Анна Михайловна",
+        "experienceText": "лет опыта",
+        "position": "Доктор медицинских наук, профессор, академик НАНВО Украины, психиатр, психотерапевт, детский психиатр, медицинский психолог",
+        "description": "Ведущий специалист в области терапии стрессовых расстройств или расстройств, связанных с травмой и стрессом. Эксперт в области психообразования и медико-психологического сопровождения",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Кожина",
+        "firstName": "Анна",
+        "middleName": "Михайловна"
+      },
+      "en": {
+        "name": "Kozhina Anna Mykhailivna",
+        "experienceText": "years of experience",
+        "position": "Doctor of Medical Sciences, Professor, Member of the National Academy of Medical Sciences of Ukraine, psychiatrist, psychotherapist, child psychiatrist, medical psychologist",
+        "description": "A leading specialist in the treatment of stress-related disorders and trauma- and stress-related disorders. An expert in psychoeducation and medical-psychological support.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Kozhina",
+        "firstName": "Anna",
+        "middleName": "Mykhailivna"
+      }
+    },
+    "position": 1
+  },
+  {
+    "slug": "heorhievska-natalia",
+    "image": "/images/doctors/doctor-3.webp",
+    "cities": [""],
+    "online": true,
+    "experience": "20+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": true,
+    "directions": ["psychiatry", "psychotherapy", "sexologist", "narcologist"],
+    "prices": [
+      {
+        "price": "2200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2900 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "до 50 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "до 50 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "up to 50 Minutes"
+          }
+        }
+      },
+      {
+        "price": "5000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Сімейна консультація",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Семейная консультация",
+            "duration": "до 50 минут"
+          },
+          "en": {
+            "service": "Family consultation",
+            "duration": "up to 50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Георгієвська Наталія Володимирівна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат медичних наук, доцент, психіатр, психотерапевт, нарколог, сексопатолог",
+        "description": "Провідний фахівець у галузі терапії невротичних та сексуальних розладів, лікування алкогольної та наркотичної залежності, лудоманії. Проводить сімейну психотерапію та консультування з питань подружньої дезадаптації.",
+        "homePosition": "Відомий фахівець у галузі психотерапії, сексології та сексопатології.",
+        "homeAbout": "Отримайте професійну допомогу у вирішенні сексуальних проблем",
+        "lastName": "Георгієвська",
+        "firstName": "Наталія",
+        "middleName": "Володимирівна"
+      },
+      "ru": {
+        "name": "Георгиевская Наталья Владимировна",
+        "experienceText": "лет опыта",
+        "position": "Кандидат медицинских наук, доцент, психиатр, психотерапевт, нарколог, сексопатолог",
+        "description": "Ведущий специалист в области терапии невротических и сексуальных расстройств, лечения алкогольной и наркотической зависимости, лудомании. Проводит семейную психотерапию и консультирование по вопросам супружеской дезадаптации.",
+        "homePosition": "Известный специалист в области психотерапии, сексологии и сексопатологии.",
+        "homeAbout": "Получите профессиональную помощь в решении сексуальных проблем.",
+        "lastName": "Георгиевская",
+        "firstName": "Наталья",
+        "middleName": "Владимировна"
+      },
+      "en": {
+        "name": "Heorhiyevska Nataliya Volodymyrivna",
+        "experienceText": "years of experience",
+        "position": "Candidate of Medical Sciences, Associate Professor, Psychiatrist, Psychotherapist, Addiction Specialist, Sexologist",
+        "description": "A leading specialist in the treatment of neurotic and sexual disorders, as well as alcohol and drug addiction and compulsive gambling. Provides family psychotherapy and counseling on marital problems.",
+        "homePosition": "Renowned specialist in psychotherapy, sexology, and sexopathology.",
+        "homeAbout": "Get professional help in solving sexual problems.",
+        "lastName": "Heorhiyevska",
+        "firstName": "Nataliya",
+        "middleName": "Volodymyrivna"
+      }
+    },
+    "position": 2
+  },
+  {
+    "slug": "tsebriuk-kateryna",
+    "image": "/images/doctors/doctor-4.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "5+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": true,
+    "directions": ["psychiatry"],
+    "prices": [
+      {
+        "price": "1200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "40 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "40 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "40 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "30 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "до 50 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "до 50 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "up to 50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Цебрюк Катерина Олегівна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр",
+        "description": "Фахівець у галузі терапії тривожно-депресивних розладів, розладів адаптації, шизофренії та біполярного афективного розладу.",
+        "homePosition": "Лікар-психіатр",
+        "homeAbout": "Фахівець у галузі терапії тривожно-депресивних розладів, розладів адаптації, шизофренії та біполярного афективного розладу.",
+        "lastName": "Цебрюк",
+        "firstName": "Катерина",
+        "middleName": "Олегівна"
+      },
+      "ru": {
+        "name": "Цебрюк Екатерина Олеговна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр",
+        "description": "Специалист в области лечения тревожно-депрессивных расстройств, расстройств адаптации, шизофрении и биполярного аффективного расстройства.",
+        "homePosition": "Врач-психиатр",
+        "homeAbout": "Специалист в области лечения тревожно-депрессивных расстройств, расстройств адаптации, шизофрении и биполярного аффективного расстройства.",
+        "lastName": "Цебрюк",
+        "firstName": "Екатерина",
+        "middleName": "Олеговна"
+      },
+      "en": {
+        "name": "Tsebriuk Kateryna Olehivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist",
+        "description": "A specialist in the treatment of anxiety-depressive disorders, adaptation disorders, schizophrenia and bipolar affective disorder.",
+        "homePosition": "Psychiatrist",
+        "homeAbout": "A specialist in the treatment of anxiety and depressive disorders, adjustment disorders, schizophrenia, and bipolar affective disorder.",
+        "lastName": "Tsebriuk",
+        "firstName": "Kateryna",
+        "middleName": "Olehivna"
+      }
+    },
+    "position": 3
+  },
+  {
+    "slug": "shylina-natalia",
+    "image": "/images/doctors/doctor-9.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "30+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "childpsychiatry"],
+    "prices": [
+      {
+        "price": "2500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 40 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 40 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 40 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Шиліна Наталія Сергіївна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат медичних наук, лікар-психіатр, психотерапевт",
+        "description": "Фахівець у галузі терапії невротичних розладів та поведінкових залежностей, зокрема комп'ютерної та інтернет-залежності. Практикує арт-терапію та сімейну психотерапію.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Шиліна",
+        "firstName": "Наталія",
+        "middleName": "Сергіївна"
+      },
+      "ru": {
+        "name": "Шилина Наталья Сергеевна",
+        "experienceText": "лет опыта",
+        "position": "Психиатр, детский психиатр",
+        "description": "Ведущий специалист в области лечения острых психозов, шизофрении, биполярного аффективного расстройства, когнитивных нарушений и деменции, тревожно-депрессивных расстройств, психосоматических заболеваний и нарушений сна.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Шилина",
+        "firstName": "Наталья",
+        "middleName": "Сергеевна"
+      },
+      "en": {
+        "name": "Shylina Nataliya Serhiivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, child psychiatrist",
+        "description": "A leading specialist in the treatment of acute psychoses, schizophrenia, bipolar affective disorder, cognitive impairments and dementia, anxiety and depressive disorders, psychosomatic illnesses, and sleep disorders.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Shylina",
+        "firstName": "Nataliya",
+        "middleName": "Serhiivna"
+      }
+    },
+    "position": 4
+  },
+  {
+    "slug": "sharpan-yulia",
+    "image": "/images/doctors/doctor-10.webp",
+    "cities": [""],
+    "online": true,
+    "experience": "11+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "psychotherapy"],
+    "prices": [
+      {
+        "price": "1700 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 45 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 45 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 45 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "50 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "30 Minutes"
+          }
+        }
+      },
+      {
+        "price": "3000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Сімейна психотерапія",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Семейная психотерапия",
+            "duration": ""
+          },
+          "en": {
+            "service": "Family psychotherapy",
+            "duration": ""
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Шарпан Юлія Андріївна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат медичних наук, лікар-психіатр, психотерапевт",
+        "description": "Фахівець у галузі терапії невротичних розладів та поведінкових залежностей, зокрема комп'ютерної та інтернет-залежності. Практикує арт-терапію та сімейну психотерапію.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Шарпан",
+        "firstName": "Юлія",
+        "middleName": "Андріївна"
+      },
+      "ru": {
+        "name": "Шапран Юлия Андреевна",
+        "experienceText": "лет опыта",
+        "position": "Кандидат медицинских наук, врач-психиатр, психотерапевт",
+        "description": "Специалист в области терапии невротических расстройств и поведенческих зависимостей, в частности компьютерной и интернет-зависимости. Занимается арт-терапией и семейной психотерапией.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Шапран",
+        "firstName": "Юлия",
+        "middleName": "Андреевна"
+      },
+      "en": {
+        "name": "Shapran Yuliya Andriivna",
+        "experienceText": "years of experience",
+        "position": "Candidate of Medical Sciences, psychiatrist, psychotherapist",
+        "description": "A specialist in the treatment of neurotic disorders and behavioral addictions, particularly computer and internet addiction. Practices art therapy and family psychotherapy.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Shapran",
+        "firstName": "Yuliya",
+        "middleName": "Andriivna"
+      }
+    },
+    "position": 5
+  },
+  {
+    "slug": "shvets-yulia",
+    "image": "/images/doctors/doctor-11.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "19",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry"],
+    "prices": [
+      {
+        "price": "2500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 40 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 40 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 40 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": "до 40 хвилин"
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": "до 40 минут"
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": "up to 40 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Швець Юлія Олексіївна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр вищої категорії",
+        "description": "Провідний фахівець у галузі терапії першого психотичного епізоду, шизофренії, БАР, шизотипових та шизоафективних розладів, психічних розладів у вагітних та в післяпологовому періоді, тривожні та депресивні розлади.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Швець",
+        "firstName": "Юлія",
+        "middleName": "Олексіївна"
+      },
+      "ru": {
+        "name": "Швец Юлия Алексеевна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр высшей категории",
+        "description": "Ведущий специалист в области лечения первого психотического эпизода, шизофрении, биполярного расстройства, шизотипических и шизоаффективных расстройств, психических расстройств у беременных и в послеродовом периоде, тревожных и депрессивных расстройств.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Швец",
+        "firstName": "Юлия",
+        "middleName": "Алексеевна"
+      },
+      "en": {
+        "name": "Shvets Yuliya Oleksiivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, highest category",
+        "description": "A leading specialist in the treatment of first-episode psychosis, schizophrenia, bipolar disorder, schizotypal and schizoaffective disorders, mental disorders in pregnant women and during the postpartum period, and anxiety and depressive disorders.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Shvets",
+        "firstName": "Yuliya",
+        "middleName": "Oleksiivna"
+      }
+    },
+    "position": 6
+  },
+  {
+    "slug": "korovina-lilia",
+    "image": "/images/doctors/doctor-13.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "20",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "pathopsychology", "psychotherapy", "psychologist"],
+    "prices": [
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "50 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Корекція лікування",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Коррекция лечения",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Treatment adjustment",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Патопсихологічне дослідження",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Патопсихологическое исследование",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Pathopsychological examination",
+            "duration": "50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Коровіна Лілія Дмитрівна",
+        "experienceText": "років досвіду",
+        "position": "Доцент, кандидат медичних наук, лікар-психіатр, психотерапевт, медичний психолог, членкиня ІРСГП, УСП",
+        "description": "Фахівець у галузі діагностики та лікування психічних розладів (невротичного, органічного, особистісного спектрів) у дорослих, індивідуальної та сімейної психотерапії, патопсихологічної діагностики. Практикує в інтегративному підході, психодинамічному (КІТ/ Символдрама) підході з урахуванням індивідуальних особистісних особливостей та запитів пацієнта.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Коровіна",
+        "firstName": "Лілія",
+        "middleName": "Дмитрівна"
+      },
+      "ru": {
+        "name": "Коровина Лилия Дмитриевна",
+        "experienceText": "лет опыта",
+        "position": "Доцент, кандидат медицинских наук, врач-психиатр, психотерапевт, медицинский психолог, член ИРСГП, УСП",
+        "description": "Специалист в области диагностики и лечения психических расстройств (невротического, органического и личностного спектров) у взрослых, индивидуальной и семейной психотерапии, патопсихологической диагностики. Практикует интегративный подход, психодинамический (КИТ/символдрама) подход с учетом индивидуальных личностных особенностей и запросов пациента.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Коровина",
+        "firstName": "Лилия",
+        "middleName": "Дмитриевна"
+      },
+      "en": {
+        "name": "Korovina Liliya Dmytrivna",
+        "experienceText": "years of experience",
+        "position": "Associate Professor, Candidate of Medical Sciences, psychiatrist, psychotherapist, medical psychologist, member of the IRSGP and the USP",
+        "description": "A specialist in the diagnosis and treatment of mental disorders (neurotic, organic, and personality-related) in adults, as well as in individual and family psychotherapy and pathopsychological diagnosis. Practices using an integrative approach and a psychodynamic approach (CIT/Symbol Drama), taking into account the patient’s individual personality traits and needs.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Korovina",
+        "firstName": "Liliya",
+        "middleName": "Dmytrivna"
+      }
+    },
+    "position": 7
+  },
+  {
+    "slug": "matsiuk-anna",
+    "image": "/images/doctors/doctor-2.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "5+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": true,
+    "directions": ["psychiatry", "psychotherapy"],
+    "prices": [
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "60 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "60 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "60 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": ""
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "1800 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Мацюк Анна Романівна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр, лікар-психотерапевт",
+        "description": "Фахівець у галузі терапії тривожно-депресивних розладів, ПТСР, розладів адаптації, біполярного афективного розладу та шизофренії. Консультант у методі позитивної психотерапії, когнітивно-поведінковий психотерапевт у процесі навчання, сертифікований схематерапевт у процесі акредитації.",
+        "homePosition": "Фахівець у галузі терапії тривожно-депресивних розладів, ПТСР.",
+        "homeAbout": "Професійне лікування паніки, тривоги та депресії з індивідуальним підходом.",
+        "lastName": "Мацюк",
+        "firstName": "Анна",
+        "middleName": "Романівна"
+      },
+      "ru": {
+        "name": "Мацюк Анна Романовна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр, врач-психотерапевт",
+        "description": "Специалист в области терапии тревожно-депрессивных расстройств, ПТСР, расстройств адаптации, биполярного аффективного расстройства и шизофрении. Консультант по методу позитивной психотерапии, когнитивно-поведенческий психотерапевт, проходящий обучение, сертифицированный схематерапевт, проходящий аккредитацию.",
+        "homePosition": "Специалист в области терапии тревожно-депрессивных расстройств, ПТСР.",
+        "homeAbout": "Профессиональное лечение паники, тревоги и депрессии с индивидуальным подходом.",
+        "lastName": "Мацюк",
+        "firstName": "Анна",
+        "middleName": "Романовна"
+      },
+      "en": {
+        "name": "Matsiuk Anna Romanivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, Psychotherapist",
+        "description": "Specialist in the treatment of anxiety and depressive disorders, PTSD, adjustment disorders, bipolar affective disorder, and schizophrenia. Consultant in positive psychotherapy, cognitive-behavioral psychotherapist in training, and certified schema therapist in the process of accreditation.",
+        "homePosition": "Specialist in the therapy of anxiety-depressive disorders, PTSD.",
+        "homeAbout": "Professional treatment of panic, anxiety, and depression with an individual approach.",
+        "lastName": "Matsiuk",
+        "firstName": "Anna",
+        "middleName": "Romanivna"
+      }
+    },
+    "position": 8
+  },
+  {
+    "slug": "mykhailov-borys",
+    "image": "/images/doctors/doctor-14.webp",
+    "cities": [""],
+    "online": true,
+    "experience": "40+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry"],
+    "prices": [
+      {
+        "price": "4000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": ""
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": ""
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Михайлов Борис Володимирович",
+        "experienceText": "років досвіду",
+        "position": "Доктор медичних наук професор, академік Національної академії наук вищої освіти України, лікар психіатр, психотерапевт",
+        "description": "Доктор медичних наук професор, академік Національної академії наук вищої освіти України, лікар психіатр, психотерапевт, лікарський стаж понад 40 років, відомий фахівець у галузі психотерапії, терапії тривожно-депресивних розладів, шизофренії, БАР.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Михайлов",
+        "firstName": "Борис",
+        "middleName": "Володимирович"
+      },
+      "ru": {
+        "name": "Михайлов Борис Владимирович",
+        "experienceText": "лет опыта",
+        "position": "Доктор медицинских наук, профессор, академик Национальной академии высшего образования Украины, врач психиатр, психотерапевт",
+        "description": "Доктор медицинских наук профессор, академик Национальной академии наук высшего образования Украины, врач психиатр, психотерапевт, врачебный стаж более 40 лет, известный специалист в области психотерапии, терапии тревожно-депрессивных расстройств, шизофрении, БАР.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Михайлов",
+        "firstName": "Борис",
+        "middleName": "Владимирович"
+      },
+      "en": {
+        "name": "Mykhaylov Borys Volodymyrovych",
+        "experienceText": "years of experience",
+        "position": "Doctor of Medical Sciences, Professor, Academician of the National Academy of Higher Education of Ukraine, Psychiatrist, Psychotherapist",
+        "description": "Doctor of Medical Sciences Professor, Academician of the National Academy of Sciences of Higher Education of Ukraine, doctor psychiatrist, psychotherapist, medical experience of more than 40 years, a well-known expert in the field of psychotherapy, therapy of anxiety-depressive disorders, schizophrenia, BAR.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Mykhaylov",
+        "firstName": "Borys",
+        "middleName": "Volodymyrovych"
+      }
+    },
+    "position": 9
+  },
+  {
+    "slug": "scrynnyk-olha",
+    "image": "/images/doctors/doctor-15.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "25+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "psychotherapy", "childpsychiatry"],
+    "prices": [
+      {
+        "price": "2500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 60 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 60 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 60 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "до 60 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "до 60 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "up to 60 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Скринник Ольга Вячеславівна",
+        "experienceText": "років досвіду",
+        "position": "Доцент, кандидат медичних наук, лікар-психіатр, дитячий психіатр, психотерапевт",
+        "description": "Провідний фахівець у галузі дитячої психіатрії, терапії дитячого аутизму, синдрому дефіциту уваги з гіперактивністю та тривожно-депресивних розладів у дітей та дорослих.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Скринник",
+        "firstName": "Ольга",
+        "middleName": "Вячеславівна"
+      },
+      "ru": {
+        "name": "Скрынник Ольга Вячеславовна",
+        "experienceText": "лет опыта",
+        "position": "Доцент, кандидат медицинских наук, врач-психиатр, детский психиатр, психотерапевт",
+        "description": "Ведущий специалист в области детской психиатрии, терапии детского аутизма, синдрома дефицита внимания с гиперактивностью и тревожно-депрессивных расстройств у детей и взрослых.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Скрынник",
+        "firstName": "Ольга",
+        "middleName": "Вячеславовна"
+      },
+      "en": {
+        "name": "Skrynnyk Olha Vyacheslavivna",
+        "experienceText": "years of experience",
+        "position": "Associate Professor, Candidate of Medical Sciences, Psychiatrist, Child Psychiatrist, Psychotherapist",
+        "description": "A leading specialist in the field of child psychiatry, the treatment of childhood autism, attention-deficit/hyperactivity disorder, and anxiety and depressive disorders in children and adults.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Skrynnyk",
+        "firstName": "Olha",
+        "middleName": "Vyacheslavivna"
+      }
+    },
+    "position": 10
+  },
+  {
+    "slug": "bandeliani-iryna",
+    "image": "/images/doctors/doctor-16.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "20+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "narcologist"],
+    "prices": [
+      {
+        "price": "2500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 45 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 45 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 45 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1600 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Бенделіані Ірина Елгуджівна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр, лікар-нарколог",
+        "description": "Фахівець у галузі лікування алкогольної та наркотичної залежності, медикаментозного кодування.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Бенделіані",
+        "firstName": "Ірина",
+        "middleName": "Елгуджівна"
+      },
+      "ru": {
+        "name": "Бенделиани Ирина Элгуджиевна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр, врач-нарколог",
+        "description": "Специалист в области лечения алкогольной и наркотической зависимости, медикаментозного кодирования.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Бенделиани",
+        "firstName": "Ирина",
+        "middleName": "Элгуджиевна"
+      },
+      "en": {
+        "name": "Bendeliani Iryna Elgudzhivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, Addiction Specialist",
+        "description": "A specialist in the treatment of alcohol and drug addiction and in pharmacological coding.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Bendeliani",
+        "firstName": "Iryna",
+        "middleName": "Elgudzhivna"
+      }
+    },
+    "position": 11
+  },
+  {
+    "slug": "dorozhko-yulia",
+    "image": "/images/doctors/doctor-17.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "15",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "psychotherapy"],
+    "prices": [
+      {
+        "price": "2500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 50 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 50 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 50 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "до 50 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "до 50 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "up to 50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Дорожко Юлія Олексіївна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр, психотерапевт",
+        "description": "Фахівець у галузі терапії непсихотичних психічних розладів. Практикує інтегративний підхід, поєднуючи різні методи психотерапії для індивідуального супроводу кожного пацієнта.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Дорожко",
+        "firstName": "Юлія",
+        "middleName": "Олексіївна"
+      },
+      "ru": {
+        "name": "Дорожко Юлия Алексеевна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр, психотерапевт",
+        "description": "Специалист в области терапии непсихотических психических расстройств. Применяет интегративный подход, сочетая различные методы психотерапии для индивидуального сопровождения каждого пациента.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Дорожко",
+        "firstName": "Юлия",
+        "middleName": "Алексеевна"
+      },
+      "en": {
+        "name": "Dorozhko Yuliya Oleksiivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, psychotherapist",
+        "description": "A specialist in the treatment of non-psychotic mental disorders. She employs an integrative approach, combining various psychotherapy methods to provide individualized care for each patient.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Dorozhko",
+        "firstName": "Yuliya",
+        "middleName": "Oleksiivna"
+      }
+    },
+    "position": 12
+  },
+  {
+    "slug": "iavorska-maria",
+    "image": "/images/doctors/doctor-18.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "3+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychiatry", "psychotherapy"],
+    "prices": [
+      {
+        "price": "1200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "до 45 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "до 45 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "up to 45 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "до 30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "до 30 минут"
+          },
+          "en": {
+            "service": "Follow-up consultation",
+            "duration": "up to 30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Яворська Марія Вадимівна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр, психотерапевт",
+        "description": "Фахівець у галузі терапії тривожних та депресивних розладів, ПТСР та наслідків хронічної травматизації, емоційної дисрегуляції, порушень сну.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Яворська",
+        "firstName": "Марія",
+        "middleName": "Вадимівна"
+      },
+      "ru": {
+        "name": "Яворская Мария Вадимовна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр, психотерапевт",
+        "description": "Специалист в области лечения тревожных и депрессивных расстройств, ПТСР и последствий хронической травматизации, эмоциональной дисрегуляции, нарушений сна.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Яворская",
+        "firstName": "Мария",
+        "middleName": "Вадимовна"
+      },
+      "en": {
+        "name": "Yavorska Mariya Vadymivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, psychotherapist",
+        "description": "A specialist in the treatment of anxiety and depressive disorders, PTSD, and the effects of chronic trauma, emotional dysregulation, and sleep disorders.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Yavorska",
+        "firstName": "Mariya",
+        "middleName": "Vadymivna"
+      }
+    },
+    "position": 13
+  },
+  {
+    "slug": "kozhevnikova-viktiriia",
+    "image": "/images/doctors/doctor-6.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "30+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": true,
+    "directions": ["pathopsychology", "psychotherapy", "psychologist", "childpsychiatry"],
+    "prices": [
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Патопсихологічне дослідження",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Патопсихологическое исследование",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Pathopsychological examination",
+            "duration": "50 Minutes"
+          }
+        }
+      },
+      {
+        "price": "3500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Сімейна консультація",
+            "duration": "60 хвилин"
+          },
+          "ru": {
+            "service": "Семейная консультация",
+            "duration": "60 минут"
+          },
+          "en": {
+            "service": "Family consultation",
+            "duration": "60 Minutes"
+          }
+        }
+      },
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": ""
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": ""
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Кожевнікова Вікторія Анатоліївна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат психологічних наук, медичний психолог",
+        "description": "Фахівець у галузі поведінкової та сімейної психотерапії, патопсихологічної та нейропсихологічної діагностики, диференційної діагностики. Практикує в інтегративному підході з урахуванням індивідуальних особистісних особливостей пацієнта.",
+        "homePosition": "Визнаний фахівець в галузі психологічної діагностики, психотерапії",
+        "homeAbout": "Багаторічний досвід у психодіагностиці та сімейних консультаціях для всебічної допомоги.",
+        "lastName": "Кожевнікова",
+        "firstName": "Вікторія",
+        "middleName": "Анатоліївна"
+      },
+      "ru": {
+        "name": "Кожевникова Виктория Анатольевна",
+        "experienceText": "лет опыта",
+        "position": "Кандидат психологических наук, медицинский психолог",
+        "description": "Специалист в области поведенческой и семейной психотерапии, патопсихологической и нейропсихологической диагностики, дифференциальной диагностики. Практикует с использованием интегративного подхода с учетом индивидуальных личностных особенностей пациента.",
+        "homePosition": "Признанный специалист в области психологической диагностики, психотерапии.",
+        "homeAbout": "Многолетний опыт в психодиагностике и семейном консультировании для всесторонней поддержки.",
+        "lastName": "Кожевникова",
+        "firstName": "Виктория",
+        "middleName": "Анатольевна"
+      },
+      "en": {
+        "name": "Kozhevnikova Viktoriya Anatoliivna",
+        "experienceText": "years of experience",
+        "position": "Candidate of Psychological Sciences, Medical Psychologist",
+        "description": "A specialist in behavioral and family psychotherapy, pathopsychological and neuropsychological assessment, and differential diagnosis. Practices using an integrative approach that takes into account the patient’s individual personality traits.",
+        "homePosition": "Recognized specialist in psychological diagnostics, psychotherapy.",
+        "homeAbout": "Years of experience in psychodiagnostics and family counseling for comprehensive support.",
+        "lastName": "Kozhevnikova",
+        "firstName": "Viktoriya",
+        "middleName": "Anatoliivna"
+      }
+    },
+    "position": 14
+  },
+  {
+    "slug": "hytsal-kateryna",
+    "image": "/images/doctors/doctor-19.webp",
+    "cities": [""],
+    "online": true,
+    "experience": "5+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychologist", "childpsychiatry"],
+    "prices": [
+      {
+        "price": "2200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": ""
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "2200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Психотерапія",
+            "duration": "50 хвилин"
+          },
+          "ru": {
+            "service": "Психотерапия",
+            "duration": "50 минут"
+          },
+          "en": {
+            "service": "Psychotherapy",
+            "duration": "50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Гуцал Катерина Віталіївна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр, психотерапевт",
+        "description": "Фахівець у галузі терапії тривожних розладів, депресій, горя та втрати, стресових і кризових станів. Практикує в інтегративному підході, поєднуючи інструменти КПТ, арт-терапії та гештальт-терапії, а також проводить групові психологічні тренінги та арт-терапевтичні програми. Працює з дітьми та дорослими.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Гуцал",
+        "firstName": "Катерина",
+        "middleName": "Віталіївна"
+      },
+      "ru": {
+        "name": "Гуцал Екатерина Витальевна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр, психотерапевт",
+        "description": "Специалист в области терапии тревожных расстройств, депрессий, горя и утраты, стрессовых и кризисных состояний. Практикует интегративный подход, сочетая методы когнитивно-поведенческой терапии (КПТ), арт-терапии и гештальт-терапии, а также проводит групповые психологические тренинги и арт-терапевтические программы. Работает с детьми и взрослыми.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Гуцал",
+        "firstName": "Екатерина",
+        "middleName": "Витальевна"
+      },
+      "en": {
+        "name": "Hutsal Kateryna Vitaliivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist, psychotherapist",
+        "description": "A specialist in the treatment of anxiety disorders, depression, grief and loss, and stress and crisis situations. Practices an integrative approach, combining CBT, art therapy, and Gestalt therapy techniques, and conducts group psychological training sessions and art therapy programs. Works with children and adults.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Hutsal",
+        "firstName": "Kateryna",
+        "middleName": "Vitaliivna"
+      }
+    },
+    "position": 15
+  },
+  {
+    "slug": "marchenko-maryna",
+    "image": "/images/doctors/doctor-20.webp",
+    "cities": ["kharkiv"],
+    "online": false,
+    "experience": "16+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": true,
+    "directions": ["psychiatry"],
+    "prices": [
+      {
+        "price": "2200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "45 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "45 минут"
+          },
+          "en": {
+            "service": "Initial Consultation",
+            "duration": "45 Minutes"
+          }
+        }
+      },
+      {
+        "price": "1400 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Повторна консультація",
+            "duration": "30 хвилин"
+          },
+          "ru": {
+            "service": "Повторная консультация",
+            "duration": "30 минут"
+          },
+          "en": {
+            "service": "Follow-up Consultation",
+            "duration": "30 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Марченко Марина Миколаївна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-психіатр",
+        "description": "Провідний фахівець у галузі терапії тривожно-депресивних розладів, ПТСР,  психосоматичних та соматоформних розладів, порушень сну.",
+        "homePosition": "Психіатр. Консультації. Лікування паніки, РХП, порушень сну, депресії. Лікар стаціонарного лікування у Харкові",
+        "homeAbout": "Лікування панічних атак і депресії з індивідуальним підходом для вашого спокою.",
+        "lastName": "Марченко",
+        "firstName": "Марина",
+        "middleName": "Миколаївна"
+      },
+      "ru": {
+        "name": "Марченко Марина Николаевна",
+        "experienceText": "лет опыта",
+        "position": "Врач-психиатр",
+        "description": "Ведущий специалист в области лечения тревожно-депрессивных расстройств, ПТСР, психосоматических и соматоформных расстройств, нарушений сна.",
+        "homePosition": "Психиатр. Консультации. Лечение паники, РПП, нарушений сна, депрессии. Врач стационарного лечения в Харькове.",
+        "homeAbout": "Лечение панических атак и депрессии с индивидуальным подходом для вашего спокойствия.",
+        "lastName": "Марченко",
+        "firstName": "Марина",
+        "middleName": "Николаевна"
+      },
+      "en": {
+        "name": "Marcenko Maryna Mykolaivna",
+        "experienceText": "years of experience",
+        "position": "Psychiatrist",
+        "description": "A leading specialist in the treatment of anxiety and depressive disorders, PTSD, psychosomatic and somatoform disorders, and sleep disorders.",
+        "homePosition": "Psychiatrist. Consultations. Treatment of panic, eating disorders, sleep disturbances, depression. Inpatient treatment doctor in Kharkiv.",
+        "homeAbout": "Treatment of panic attacks and depression with an individual approach for your peace of mind.",
+        "lastName": "Marcenko",
+        "firstName": "Maryna",
+        "middleName": "Mykolaivna"
+      }
+    },
+    "position": 16
+  },
+  {
+    "slug": "kovsh-vladyslava",
+    "image": "/images/doctors/doctor-21.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "3+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychologist"],
+    "prices": [
+      {
+        "price": "1100 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": "до 50 хвилин"
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": "до 50 минут"
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": "up to 50 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Ковш Владислава Олегівна",
+        "experienceText": "років досвіду",
+        "position": "Психолог",
+        "description": "Фахівець у галузі когнітивно-поведінкової терапії, тілесно-орієнтованого підходу та коучінгу. Практикує в інтегративному підході, поєднуючи різні методи для досягнення індивідуального результату клієнта.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Ковш",
+        "firstName": "Владислава",
+        "middleName": "Олегівна"
+      },
+      "ru": {
+        "name": "Ковш Владислава Олеговна",
+        "experienceText": "лет опыта",
+        "position": "Психолог",
+        "description": "Специалист в области когнитивно-поведенческой терапии, телесно-ориентированного подхода и коучинга. Работает в рамках интегративного подхода, сочетая различные методы для достижения индивидуального результата клиента.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Ковш",
+        "firstName": "Владислава",
+        "middleName": "Олеговна"
+      },
+      "en": {
+        "name": "Kovsh Vladyslava Olehivna",
+        "experienceText": "years of experience",
+        "position": "Psychologist",
+        "description": "A specialist in cognitive-behavioral therapy, body-oriented approaches, and coaching. She practices using an integrative approach, combining various methods to achieve individual results for each client.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Kovsh",
+        "firstName": "Vladyslava",
+        "middleName": "Olehivna"
+      }
+    },
+    "position": 17
+  },
+  {
+    "slug": "tovazhnianska-olena",
+    "image": "/images/doctors/doctor-22.webp",
+    "cities": ["kyiv"],
+    "online": true,
+    "experience": "34+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["psychotherapy", "neurologist", "neurophysiologist"],
+    "prices": [
+      {
+        "price": "1000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": "60 хвилин"
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": "60 минут"
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": "60 Minutes"
+          }
+        }
+      },
+      {
+        "price": "600 грн.",
+        "i18n": {
+          "uk": {
+            "service": "ЕЕГ",
+            "duration": ""
+          },
+          "ru": {
+            "service": "ЭЭГ",
+            "duration": ""
+          },
+          "en": {
+            "service": "EEG",
+            "duration": ""
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Товажнянська Олена Леонідівна",
+        "experienceText": "років досвіду",
+        "position": "Доктор медичних наук, професор, невролог, психотерапевт",
+        "description": "Провідний фахівець у галузі терапії мігрені, больового синдрому, судинних захворювань головного мозку та захворювань периферичної нервової системи. Проводить психотерапевтичний супровід пацієнтів з неврологічними захворюваннями.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Товажнянська",
+        "firstName": "Олена",
+        "middleName": "Леонідівна"
+      },
+      "ru": {
+        "name": "Товажнянская Елена Леонидовна",
+        "experienceText": "лет опыта",
+        "position": "Доктор медицинских наук, профессор, невролог, психотерапевтг",
+        "description": "Ведущий специалист в области лечения мигрени, болевого синдрома, сосудистых заболеваний головного мозга и заболеваний периферической нервной системы. Осуществляет психотерапевтическое сопровождение пациентов с неврологическими заболеваниями.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Товажнянская",
+        "firstName": "Елена",
+        "middleName": "Леонидовна"
+      },
+      "en": {
+        "name": "Tovazhnyanska Olena Leonidivna",
+        "experienceText": "years of experience",
+        "position": "Doctor of Medical Sciences, Professor, Neurologist, Psychotherapist",
+        "description": "A leading specialist in the treatment of migraines, pain syndromes, cerebrovascular diseases, and disorders of the peripheral nervous system. Provides psychotherapeutic support to patients with neurological disorders.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Tovazhnyanska",
+        "firstName": "Olena",
+        "middleName": "Leonidivna"
+      }
+    },
+    "position": 18
+  },
+  {
+    "slug": "bovt-yuliia",
+    "image": "/images/doctors/doctor-23.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "30+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["neurologist"],
+    "prices": [
+      {
+        "price": "900 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "45 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "45 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "45 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Бовт Юлія Вікторівна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат медичних наук, лікар-невролог",
+        "description": "Провідний фахівець у галузі неврології.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Бовт",
+        "firstName": "Юлія",
+        "middleName": "Вікторівна"
+      },
+      "ru": {
+        "name": "Бовт Юлия Викторовна",
+        "experienceText": "лет опыта",
+        "position": "Кандидат медицинских наук, врач-невролог",
+        "description": "Ведущий специалист в области неврологии.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Бовт",
+        "firstName": "Юлия",
+        "middleName": "Викторовна"
+      },
+      "en": {
+        "name": "Bovt Yuliya Viktorivna",
+        "experienceText": "years of experience",
+        "position": "Candidate of Medical Sciences, Neurologist",
+        "description": "A leading specialist in the field of neurology.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Bovt",
+        "firstName": "Yuliya",
+        "middleName": "Viktorivna"
+      }
+    },
+    "position": 19
+  },
+  {
+    "slug": "bilyk-liudmyla",
+    "image": "/images/doctors/doctor-24.webp",
+    "cities": [""],
+    "online": true,
+    "experience": "12",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["neurologist"],
+    "prices": [
+      {
+        "price": "700 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": ""
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": ""
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Білик Людмила Ігорівна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-невролог",
+        "description": "Фахівець у галузі терапії судинних захворювань головного мозку, мігрені та хвороби Паркінсона.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Білик",
+        "firstName": "Людмила",
+        "middleName": "Ігорівна"
+      },
+      "ru": {
+        "name": "Билык Людмила Игоревна",
+        "experienceText": "лет опыта",
+        "position": "Врач-невролог",
+        "description": "Специалист в области лечения сосудистых заболеваний головного мозга, мигрени и болезни Паркинсона.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Билык",
+        "firstName": "Людмила",
+        "middleName": "Игоревна"
+      },
+      "en": {
+        "name": "Bilyk Lyudmyla Ihorivna",
+        "experienceText": "years of experience",
+        "position": "Neurologist",
+        "description": "A specialist in the treatment of cerebrovascular diseases, migraines, and Parkinson's disease.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Bilyk",
+        "firstName": "Lyudmyla",
+        "middleName": "Ihorivna"
+      }
+    },
+    "position": 20
+  },
+  {
+    "slug": "zabrodina-liudmyla",
+    "image": "/images/doctors/doctor-25.webp",
+    "cities": ["kharkiv"],
+    "online": false,
+    "experience": "35+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["neurophysiologist"],
+    "prices": [
+      {
+        "price": "600 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Первинна консультація",
+            "duration": "60 хвилин"
+          },
+          "ru": {
+            "service": "Первичная консультация",
+            "duration": "60 минут"
+          },
+          "en": {
+            "service": "Initial consultation",
+            "duration": "60 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Забродіна Людмила Петрівна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат біологічних наук, нейрофізіолог",
+        "description": "Провідний фахівець у галузі нейрофізіологічної діагностики.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Забродіна",
+        "firstName": "Людмила",
+        "middleName": "Петрівна"
+      },
+      "ru": {
+        "name": "Забродина Людмила Петровна",
+        "experienceText": "лет опыта",
+        "position": "Кандидат биологических наук, нейрофизиолог",
+        "description": "Ведущий специалист в области нейрофизиологической диагностики.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Забродина",
+        "firstName": "Людмила",
+        "middleName": "Петровна"
+      },
+      "en": {
+        "name": "Zabrodina Lyudmyla Petrivna",
+        "experienceText": "years of experience",
+        "position": "Candidate of Biological Sciences, neurophysiologist",
+        "description": "A leading specialist in the field of neurophysiological diagnostics.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Zabrodina",
+        "firstName": "Lyudmyla",
+        "middleName": "Petrivna"
+      }
+    },
+    "position": 21
+  },
+  {
+    "slug": "rudenko-tetiana",
+    "image": "/images/doctors/doctor-7.webp",
+    "cities": ["kharkiv"],
+    "online": false,
+    "experience": "15+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": true,
+    "directions": ["therapist", "ultrasound"],
+    "prices": [
+      {
+        "price": "2000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": ""
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "500 грн.",
+        "i18n": {
+          "uk": {
+            "service": "ЕКГ",
+            "duration": ""
+          },
+          "ru": {
+            "service": "ЭКГ",
+            "duration": ""
+          },
+          "en": {
+            "service": "ECG",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "3200 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Комплекс УЗД (УЗД ОБП, УЗД серця, УЗД сосудів шиї)",
+            "duration": ""
+          },
+          "ru": {
+            "service": "Комплекс УЗИ (УЗИ ОБП, УЗИ сердца, УЗИ сосудов шеи)",
+            "duration": ""
+          },
+          "en": {
+            "service": "Ultrasound complex (abdominal ultrasound, heart ultrasound, neck vessels ultrasound)",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "800 грн.",
+        "i18n": {
+          "uk": {
+            "service": "УЗД ОБП",
+            "duration": ""
+          },
+          "ru": {
+            "service": "УЗИ ОБП",
+            "duration": ""
+          },
+          "en": {
+            "service": "Abdominal ultrasound",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "800 грн.",
+        "i18n": {
+          "uk": {
+            "service": "УЗД серця",
+            "duration": ""
+          },
+          "ru": {
+            "service": "УЗИ сердца",
+            "duration": ""
+          },
+          "en": {
+            "service": "Heart ultrasound",
+            "duration": ""
+          }
+        }
+      },
+      {
+        "price": "800 грн.",
+        "i18n": {
+          "uk": {
+            "service": "УЗД сосудів шиї",
+            "duration": ""
+          },
+          "ru": {
+            "service": "УЗИ сосудов шеи",
+            "duration": ""
+          },
+          "en": {
+            "service": "Neck vessels ultrasound",
+            "duration": ""
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Руденко Тетяна Анатоліївна",
+        "experienceText": "років досвіду",
+        "position": "Кандидат медичних наук, доцент, лікар-терапевт, лікар УЗД, лікар-кардіолог",
+        "description": "Провідний фахівець у галузі профілактики, діагностики, лікування та реабілітації пацієнтів кардіологічного та терапевтичного профілів.",
+        "homePosition": "Кандидат медичних наук, доцент, лікар терапевт, лікар ультразвукової діагностики",
+        "homeAbout": "Довірте своє серце досвідченому кардіологу для комплексної діагностики та лікування.",
+        "lastName": "Руденко",
+        "firstName": "Тетяна",
+        "middleName": "Анатоліївна"
+      },
+      "ru": {
+        "name": "Руденко Татьяна Анатольевна",
+        "experienceText": "лет опыта",
+        "position": "Кандидат медицинских наук, доцент, врач-терапевт, врач УЗИ, врач-кардиолог",
+        "description": "Ведущий специалист в области профилактики, диагностики, лечения и реабилитации пациентов кардиологического и терапевтического профилей.",
+        "homePosition": "Кандидат медицинских наук, доцент, врач терапевт, врач ультразвуковой диагностики.",
+        "homeAbout": "Доверьте свое сердце опытному кардиологу для комплексной диагностики и лечения.",
+        "lastName": "Руденко",
+        "firstName": "Татьяна",
+        "middleName": "Анатольевна"
+      },
+      "en": {
+        "name": "Rudenko Tetyana Anatoliivna",
+        "experienceText": "years of experience",
+        "position": "Candidate of Medical Sciences, Associate Professor, Therapist, Ultrasonography Doctor",
+        "description": "A leading specialist in the prevention, diagnosis, treatment, and rehabilitation of patients with cardiac and internal medicine conditions.",
+        "homePosition": "Candidate of Medical Sciences, Associate Professor, Therapist, Ultrasound Diagnostic Doctor.",
+        "homeAbout": "Trust your heart to an experienced cardiologist for comprehensive diagnostics and treatment.",
+        "lastName": "Rudenko",
+        "firstName": "Tetyana",
+        "middleName": "Anatoliivna"
+      }
+    },
+    "position": 22
+  },
+  {
+    "slug": "medianyk-nataliia",
+    "image": "/images/doctors/doctor-26.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "7",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["therapist"],
+    "prices": [
+      {
+        "price": "1000 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": "60 хвилин"
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": "60 минут"
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": "60 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Медяник Наталія Сергіївна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-терапевт",
+        "description": "Фахівець у галузі діагностики, лікування та профілактики захворювань терапевтичного, кардіологічного, гастроентерологічного та пульмонологічного профілів. Проводить терапію больового синдрому, зокрема мігрені.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Медяник",
+        "firstName": "Наталія",
+        "middleName": "Сергіївна"
+      },
+      "ru": {
+        "name": "Медяник Наталья Сергеевна",
+        "experienceText": "лет опыта",
+        "position": "Врач-терапевт",
+        "description": "Специалист в области диагностики, лечения и профилактики заболеваний терапевтического, кардиологического, гастроэнтерологического и пульмонологического профилей. Занимается лечением болевого синдрома, в частности мигрени.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Медяник",
+        "firstName": "Наталья",
+        "middleName": "Сергеевна"
+      },
+      "en": {
+        "name": "Medyanik Nataliya Serhiivna",
+        "experienceText": "years of experience",
+        "position": "Therapist",
+        "description": "A specialist in the diagnosis, treatment, and prevention of diseases in the fields of internal medicine, cardiology, gastroenterology, and pulmonology. Provides treatment for pain syndromes, including migraines.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Medyanik",
+        "firstName": "Nataliya",
+        "middleName": "Serhiivna"
+      }
+    },
+    "position": 23
+  },
+  {
+    "slug": "khilchevska-kateryna",
+    "image": "/images/doctors/doctor-27.webp",
+    "cities": ["kharkiv"],
+    "online": true,
+    "experience": "3+",
+    "isFounder": false,
+    "showInTeam": true,
+    "hasHover": true,
+    "showOnHomeMobile": false,
+    "directions": ["therapist"],
+    "prices": [
+      {
+        "price": "700 грн.",
+        "i18n": {
+          "uk": {
+            "service": "Консультація",
+            "duration": "до 60 хвилин"
+          },
+          "ru": {
+            "service": "Консультация",
+            "duration": "до 60 минут"
+          },
+          "en": {
+            "service": "Consultation",
+            "duration": "up to 60 Minutes"
+          }
+        }
+      }
+    ],
+    "i18n": {
+      "uk": {
+        "name": "Хільчевська Катерина Олександрівна",
+        "experienceText": "років досвіду",
+        "position": "Лікар-терапевт",
+        "description": "Фахівець у галузі комплексної терапії пацієнтів із серцево-судинними, гастроентерологічними, ендокринологічними та пульмонологічними захворюваннями на тлі психіатричних діагнозів. Проводить диференційну діагностику та оцінку ризиків перед призначенням психофармакотерапії.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Хільчевська",
+        "firstName": "Катерина",
+        "middleName": "Олександрівна"
+      },
+      "ru": {
+        "name": "Хильчевская Екатерина Александровна",
+        "experienceText": "лет опыта",
+        "position": "Врач-терапевт",
+        "description": "Специалист в области комплексной терапии пациентов с сердечно-сосудистыми, гастроэнтерологическими, эндокринологическими и пульмонологическими заболеваниями на фоне психиатрических диагнозов. Проводит дифференциальную диагностику и оценку рисков перед назначением психофармакотерапии.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Хильчевская",
+        "firstName": "Екатерина",
+        "middleName": "Александровна"
+      },
+      "en": {
+        "name": "Khilchevska Kateryna Oleksandrivna",
+        "experienceText": "years of experience",
+        "position": "Therapist",
+        "description": "A specialist in the comprehensive treatment of patients with cardiovascular, gastroenterological, endocrinological, and pulmonological conditions complicated by psychiatric diagnoses. Performs differential diagnosis and risk assessment prior to prescribing psychopharmacotherapy.",
+        "homePosition": "",
+        "homeAbout": "",
+        "lastName": "Khilchevska",
+        "firstName": "Kateryna",
+        "middleName": "Oleksandrivna"
+      }
+    },
+    "position": 24
+  }
+]

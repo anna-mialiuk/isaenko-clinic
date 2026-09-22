@@ -28,6 +28,10 @@ export default defineConfig({
     port: 5174,
     proxy: {
       '/api': 'http://localhost:8877',
+      // Фото лікарів: наявні лежать у public/images, завантажені —
+      // у public/uploads (локально). Обидва віддає той самий PHP-сервер.
+      '/images': 'http://localhost:8877',
+      '/uploads': 'http://localhost:8877',
     },
   },
 })

@@ -127,3 +127,11 @@ export const IconTarget = (props) => (
     <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
   </svg>
 )
+
+export const IconDoctor = (props) => (
+  <svg {...base} {...props}>
+    <circle cx="12" cy="7" r="3.5" />
+    <path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" />
+    <path d="M12 14v3M10.5 15.5h3" />
+  </svg>
+)

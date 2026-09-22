@@ -7,6 +7,7 @@
 require_once __DIR__ . '/admin-auth.php';
 require_once __DIR__ . '/leads-store.php';
 require_once __DIR__ . '/users-store.php';
+require_once __DIR__ . '/doctors-store.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -275,6 +276,54 @@ if ($action === 'events') {
     'by_source' => $bySource,
     'days' => $days,
   ]);
+}
+
+if ($action === 'doctors') {
+  if ($method === 'GET') {
+    admin_json(['items' => doctors_list(true)]);
+  }
+
+  $body = admin_body();
+
+  if ($method === 'POST') {
+    $result = doctors_save($body);
+    admin_json($result, isset($result['error']) ? 400 : 200);
+  }
+
+  if ($method === 'PATCH') {
+    // Порядок і видимість — окремо від повного збереження,
+    // щоб перетягування в списку не гонило весь документ.
+    if (isset($body['order'])) {
+      admin_json(['ok' => doctors_reorder($body['order'])]);
+    }
+
+    if (isset($body['id'], $body['is_active'])) {
+      admin_json(['ok' => doctors_set_active($body['id'], $body['is_active'])]);
+    }
+
+    admin_json(['error' => 'nothing to update'], 400);
+  }
+
+  admin_json(['error' => 'method not allowed'], 405);
+}
+
+if ($action === 'doctor') {
+  $doctor = doctors_find((int) ($_GET['id'] ?? 0));
+
+  if (!$doctor) admin_json(['error' => 'not found'], 404);
+
+  admin_json($doctor);
+}
+
+if ($action === 'doctor_photo') {
+  if ($method !== 'POST') admin_json(['error' => 'method not allowed'], 405);
+
+  $result = doctors_upload_photo($_FILES['photo'] ?? [], $_POST['slug'] ?? '');
+  admin_json($result, isset($result['error']) ? 400 : 200);
+}
+
+if ($action === 'doctors_publish') {
+  admin_json(['ok' => doctors_publish()]);
 }
 
 if ($action === 'stats') {

@@ -6,6 +6,7 @@ import Kanban from './Kanban'
 import Errors from './Errors'
 import CrmSettings from './CrmSettings'
 import Team from './Team'
+import Doctors from './Doctors'
 import Placeholder from './Placeholder'
 
 // Графіки (recharts) важкі й потрібні тільки на дашборді —
@@ -16,6 +17,7 @@ import { applyTheme, getInitialTheme } from './theme'
 import {
   IconBell,
   IconChart,
+  IconDoctor,
   IconLogout,
   IconMoon,
   IconPen,
@@ -64,7 +66,10 @@ const MENU = [
   {
     id: 'other',
     label: 'Контент',
-    items: [{ id: 'blog', label: 'Блог', icon: IconPen }],
+    items: [
+      { id: 'doctors', label: 'Лікарі', icon: IconDoctor },
+      { id: 'blog', label: 'Блог', icon: IconPen },
+    ],
   },
 ]
 
@@ -208,6 +213,7 @@ function App() {
         )}
 
         {section === 'settings.team' && <Team />}
+        {section === 'doctors' && <Doctors />}
 
         {section === 'blog' && (
           <Placeholder

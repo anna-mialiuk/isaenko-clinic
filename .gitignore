@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .DS_Store
+
+# Фото, завантажені через панель при локальній розробці.
+# На сервері вони лежать поза репозиторієм, у /var/lib/isaenko/uploads.
+public/uploads/
