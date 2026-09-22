@@ -2,13 +2,19 @@ import DirectionDoctorColumn from '../../components/DirectionDoctorColumn/Direct
 import { directionDoctors } from '../../data/directionDoctors'
 import { useLocale } from '../../hooks/useLocale'
 import { translateDoctors } from '../../utils/translateDoctors'
+import { useRemoteDoctors } from '../../hooks/useRemoteDoctors'
 
 import './HospitalDoctors.sass'
 
 function HospitalDoctors() {
   const { directionDoctors: directionDoctorsLocale, hospitalDoctors } = useLocale()
 
-  const doctors = translateDoctors(directionDoctors, directionDoctorsLocale)
+  const remoteDoctors = useRemoteDoctors()
+
+  // Засновниця тут не показувалась і раніше: у старому списку її не було.
+  const doctors = remoteDoctors
+    ? remoteDoctors.filter((doctor) => !doctor.isFounder)
+    : translateDoctors(directionDoctors, directionDoctorsLocale)
 
   return (
     <section className="hospital-doctors">

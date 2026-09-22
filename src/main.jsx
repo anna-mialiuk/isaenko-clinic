@@ -7,7 +7,11 @@ import App from './App.jsx'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx'
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx'
 
+import { loadDoctors } from './data/doctorsSource.js'
+
 import './styles/index.sass'
+
+loadDoctors()
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -8,6 +8,7 @@ import { getDirectionsNavigation } from '../../data/navigation'
 import { useLanguage } from '../../hooks/useLanguage'
 import { useLocale } from '../../hooks/useLocale'
 import { translateDoctors } from '../../utils/translateDoctors'
+import { useRemoteDoctors } from '../../hooks/useRemoteDoctors'
 
 import './TeamDoctors.sass'
 
@@ -20,7 +21,12 @@ function TeamDoctors({ variant = 'kharkiv' }) {
   const { directionDoctors: directionDoctorsLocale, teamDoctors } = useLocale()
 
   const directionsNavigation = getDirectionsNavigation(variant, language)
-  const translatedDoctors = translateDoctors(directionDoctors, directionDoctorsLocale)
+  const remoteDoctors = useRemoteDoctors()
+
+  // Дані з панелі, якщо завантажились; інакше — зі збірки сайту.
+  const translatedDoctors = remoteDoctors
+    ? remoteDoctors.filter((doctor) => doctor.showInTeam)
+    : translateDoctors(directionDoctors, directionDoctorsLocale)
 
   const cityFilters = [
     { id: 'all', label: teamDoctors.filters.all },
@@ -42,9 +48,15 @@ function TeamDoctors({ variant = 'kharkiv' }) {
   }
 
   if (directionFilter) {
+    // У даних з панелі напрями записані в самого лікаря;
+    // у старих — окремою картою directionDoctorsMap.
     const doctorSlugs = directionDoctorsMap[directionFilter] || []
 
-    filteredDoctors = filteredDoctors.filter((doctor) => doctorSlugs.includes(doctor.slug))
+    filteredDoctors = filteredDoctors.filter((doctor) =>
+      remoteDoctors
+        ? doctor.directions.includes(directionFilter)
+        : doctorSlugs.includes(doctor.slug),
+    )
   }
 
   return (

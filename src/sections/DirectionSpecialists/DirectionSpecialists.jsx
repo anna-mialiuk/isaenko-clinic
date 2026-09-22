@@ -6,6 +6,7 @@ import TreatmentsGrid from '../../components/Treatments/TreatmentsGrid'
 import { getDoctorsByDirection } from '../../data/getDoctorsByDirection'
 import { useLocale } from '../../hooks/useLocale'
 import { translateDoctors } from '../../utils/translateDoctors'
+import { useRemoteDoctors } from '../../hooks/useRemoteDoctors'
 
 import './DirectionSpecialists.sass'
 
@@ -14,7 +15,11 @@ function DirectionSpecialists({ directionSlug }) {
 
   const { directionDoctors, directionSpecialists, directionTreatments } = useLocale()
 
-  const doctors = translateDoctors(getDoctorsByDirection(directionSlug), directionDoctors)
+  const remoteDoctors = useRemoteDoctors()
+
+  const doctors = remoteDoctors
+    ? remoteDoctors.filter((doctor) => doctor.directions.includes(directionSlug))
+    : translateDoctors(getDoctorsByDirection(directionSlug), directionDoctors)
 
   return (
     <section className="direction-specialists">

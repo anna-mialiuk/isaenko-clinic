@@ -3,11 +3,23 @@ import { useMemo } from 'react'
 import { doctorsCatalog, HOME_MOBILE_DOCTOR_SLUGS } from '../data/doctorsCatalog'
 import { useLocale } from './useLocale'
 import { translateDoctors } from '../utils/translateDoctors'
+import { toHomeCard } from '../utils/localizeDoctor'
+import { useRemoteDoctors } from './useRemoteDoctors'
 
 export function useDoctorsCatalog() {
   const { doctorsTranslations, directionDoctors: directionTranslations } = useLocale()
+  const remoteDoctors = useRemoteDoctors()
 
   return useMemo(() => {
+    if (remoteDoctors) {
+      const cards = remoteDoctors.map(toHomeCard)
+
+      return {
+        allDoctors: cards.filter((doctor) => doctor.showInTeam),
+        mobileDoctors: cards.filter((doctor) => doctor.showOnHomeMobile),
+      }
+    }
+
     const translations = {
       ...directionTranslations,
       ...doctorsTranslations,
@@ -21,5 +33,5 @@ export function useDoctorsCatalog() {
       allDoctors,
       mobileDoctors: HOME_MOBILE_DOCTOR_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean),
     }
-  }, [directionTranslations, doctorsTranslations])
+  }, [directionTranslations, doctorsTranslations, remoteDoctors])
 }

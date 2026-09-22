@@ -27,3 +27,4 @@ dist-ssr
 # Фото, завантажені через панель при локальній розробці.
 # На сервері вони лежать поза репозиторієм, у /var/lib/isaenko/uploads.
 public/uploads/
+public/data/
