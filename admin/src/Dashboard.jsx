@@ -47,6 +47,14 @@ function Kpi({ icon: Icon, label, value, change, series, dataKey, color }) {
   )
 }
 
+// Людські назви подій для графіка. Невідомі події показуються як є.
+const EVENT_LABELS = {
+  booking_click: 'Запис на прийом',
+  phone_click: 'Дзвінок',
+  form_submit: 'Відправка форми',
+  email_click: 'Клік на email',
+}
+
 function Bars({ items, labelKey, valueKey, labels }) {
   const max = Math.max(1, ...items.map((item) => Number(item[valueKey])))
 
@@ -116,7 +124,7 @@ function Dashboard() {
   const sources = data.leads.by_source.slice(0, 6)
 
   const events = data.events.map((event) => ({
-    label: event.event_name || '—',
+    label: EVENT_LABELS[event.event_name] || event.event_name || '—',
     count: Number(event.count),
   }))
 

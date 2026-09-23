@@ -109,24 +109,47 @@ export function TrendChart({ data }) {
   )
 }
 
-/** Стовпчики: події або будь-який список «назва — кількість». */
-export function ColumnChart({ data, color = '--series-1' }) {
+/**
+ * Горизонтальні смуги: події або будь-який список «назва — кількість».
+ * Підписи ліворуч, а не під стовпчиками: у вузькій панелі назви на кшталт
+ * booking_click налазили одна на одну.
+ */
+export function ColumnChart({ data, color = '--series-1', labelWidth = 120 }) {
+  const rowHeight = 36
+  const height = data.length * rowHeight + 32
+
   return (
-    <ResponsiveContainer width="100%" height={220}>
+    <ResponsiveContainer width="100%" height={height}>
       <BarChart
         data={data}
-        margin={{ top: 8, right: 8, bottom: 0, left: -18 }}
-        barCategoryGap="30%"
+        layout="vertical"
+        margin={{ top: 0, right: 16, bottom: 0, left: 0 }}
+        barCategoryGap="25%"
       >
-        <CartesianGrid vertical={false} stroke={token('--border')} strokeDasharray="3 3" />
-        <XAxis dataKey="label" tick={axisTick()} tickLine={false} axisLine={false} interval={0} />
-        <YAxis tick={axisTick()} tickLine={false} axisLine={false} allowDecimals={false} />
+        <CartesianGrid horizontal={false} stroke={token('--border')} strokeDasharray="3 3" />
+        <XAxis
+          type="number"
+          tick={axisTick()}
+          tickLine={false}
+          axisLine={false}
+          allowDecimals={false}
+        />
+        <YAxis
+          type="category"
+          dataKey="label"
+          width={labelWidth}
+          tick={axisTick()}
+          tickLine={false}
+          axisLine={false}
+          interval={0}
+        />
         <Tooltip contentStyle={tooltipStyle()} cursor={{ fill: token('--surface-2') }} />
         <Bar
           dataKey="count"
           name="Кількість"
           fill={token(color)}
-          radius={[6, 6, 0, 0]}
+          radius={[0, 6, 6, 0]}
+          minPointSize={2}
           isAnimationActive={false}
         />
       </BarChart>
