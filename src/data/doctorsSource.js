@@ -29,7 +29,7 @@ export function loadDoctors() {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
-  request = fetch(SOURCE_URL, { signal: controller.signal })
+  request = fetch(SOURCE_URL, { signal: controller.signal, cache: 'no-cache' })
     .then((response) => (response.ok ? response.json() : null))
     .then((payload) => {
       // Порожній або битий файл — лишаємося на даних зі збірки,
