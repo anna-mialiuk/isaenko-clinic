@@ -276,3 +276,122 @@
     text-align: right
     color: var(--text-2)
     font-weight: 600
+
+// ── Найпопулярніші сторінки ─────────────────────────────────────
+.pages
+  margin: 0
+  padding: 0
+  list-style: none
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr))
+  gap: 4px 32px
+
+  @include mix.mobile
+    grid-template-columns: 1fr
+
+  &__item
+    display: flex
+    align-items: flex-start
+    gap: 14px
+    min-width: 0
+    padding: 12px 0
+    border-bottom: 1px solid var(--border)
+
+  &__rank
+    flex: none
+    width: 22px
+    padding-top: 2px
+    color: var(--text-3)
+    font-size: 12px
+    font-weight: 600
+    font-variant-numeric: tabular-nums
+
+  &__main
+    flex: 1
+    min-width: 0
+    display: flex
+    flex-direction: column
+    gap: 6px
+
+  &__head
+    display: flex
+    align-items: baseline
+    justify-content: space-between
+    gap: 12px
+
+  &__name
+    min-width: 0
+    color: var(--text)
+    font-size: 14px
+    font-weight: 600
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  &__count
+    flex: none
+    color: var(--text)
+    font-size: 15px
+    font-weight: 700
+    font-variant-numeric: tabular-nums
+
+  &__meta
+    display: flex
+    align-items: center
+    gap: 8px
+    min-width: 0
+    font-size: 12px
+    color: var(--text-3)
+
+  &__path
+    min-width: 0
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  &__city
+    flex: none
+    padding: 1px 7px
+    border-radius: 999px
+    font-size: 11px
+    font-weight: 600
+    background: var(--surface-2)
+    color: var(--text-2)
+
+    &--kyiv
+      background: var(--accent-soft)
+      color: var(--accent)
+
+  &__share
+    flex: none
+    margin-left: auto
+    font-variant-numeric: tabular-nums
+
+  &__track
+    display: block
+    height: 4px
+    border-radius: 2px
+    background: var(--surface-2)
+    overflow: hidden
+
+  &__fill
+    display: block
+    height: 100%
+    border-radius: 2px
+    background: var(--accent)
+
+  &__more
+    margin-top: 14px
+    padding: 8px 14px
+    border: 1px solid var(--border)
+    border-radius: var(--radius-sm)
+    background: transparent
+    color: var(--text-2)
+    font: inherit
+    font-size: 13px
+    font-weight: 600
+    cursor: pointer
+
+    &:hover
+      color: var(--text)
+      background: var(--surface-2)

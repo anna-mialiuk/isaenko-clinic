@@ -9,14 +9,86 @@ import './Dashboard.sass'
 
 const SERIES = ['--series-1', '--series-2', '--series-3', '--series-4']
 
-/** Повний URL у підписі нечитабельний — лишаємо шлях і мітки. */
-const shortenUrl = (value) => {
-  try {
-    const url = new URL(value)
-    return (url.pathname === '/' ? '/' : url.pathname) + url.search
-  } catch {
-    return value
+// Назви сторінок сайту для списку «Найпопулярніші сторінки».
+// Київські сторінки мають префікс /kyiv, харківські — без нього.
+const PAGE_NAMES = {
+  '': 'Головна',
+  about: 'Про нас',
+  team: 'Наша команда',
+  hospital: 'Стаціонар / клініка',
+  contacts: 'Контакти',
+  multimodal: 'Мультимодальний підхід',
+  psychiatry: 'Психіатр',
+  pathopsychology: 'Патопсихолог',
+  psychotherapy: 'Психотерапевт',
+  psychologist: 'Психолог',
+  'child-psychiatry': 'Дитяча психіатрія',
+  neurologist: 'Невролог',
+  neurophysiologist: 'Нейрофізіолог',
+  therapist: 'Терапевт',
+  sexologist: 'Сексолог',
+  narcologist: 'Нарколог',
+  ultrasound: 'УЗД',
+}
+
+/** /kyiv/team → { name: 'Наша команда', city: 'Київ' } */
+const describePage = (path) => {
+  const isKyiv = path === '/kyiv' || path.startsWith('/kyiv/')
+  const rest = (isKyiv ? path.slice('/kyiv'.length) : path).replace(/^\//, '')
+  const hospital = isKyiv ? 'Клініка у Києві' : 'Стаціонар у Харкові'
+  return {
+    name: rest === 'hospital' ? hospital : PAGE_NAMES[rest] || path,
+    city: isKyiv ? 'Київ' : 'Харків',
   }
+}
+
+const PAGES_VISIBLE = 10
+
+function PagesList({ pages, total }) {
+  const [showAll, setShowAll] = useState(false)
+  const max = Math.max(1, ...pages.map((page) => page.count))
+  const visible = showAll ? pages : pages.slice(0, PAGES_VISIBLE)
+
+  if (!pages.length) return <p className="panel__empty">Поки немає переглядів</p>
+
+  return (
+    <>
+      <ol className="pages">
+        {visible.map((page, index) => {
+          const { name, city } = describePage(page.path)
+          const share = total ? Math.round((page.count / total) * 100) : 0
+          return (
+            <li key={page.path} className="pages__item">
+              <span className="pages__rank">{String(index + 1).padStart(2, '0')}</span>
+              <div className="pages__main">
+                <div className="pages__head">
+                  <span className="pages__name">{name}</span>
+                  <span className="pages__count">{page.count}</span>
+                </div>
+                <div className="pages__meta">
+                  <span className="pages__path">{page.path}</span>
+                  <span
+                    className={`pages__city pages__city--${city === 'Київ' ? 'kyiv' : 'kharkiv'}`}
+                  >
+                    {city}
+                  </span>
+                  <span className="pages__share">{share}%</span>
+                </div>
+                <span className="pages__track">
+                  <span className="pages__fill" style={{ width: `${(page.count / max) * 100}%` }} />
+                </span>
+              </div>
+            </li>
+          )
+        })}
+      </ol>
+      {pages.length > PAGES_VISIBLE && (
+        <button type="button" className="pages__more" onClick={() => setShowAll((v) => !v)}>
+          {showAll ? 'Згорнути' : `Показати всі (${pages.length})`}
+        </button>
+      )}
+    </>
+  )
 }
 
 function Kpi({ icon: Icon, label, value, change, series, dataKey, color }) {
@@ -254,14 +326,7 @@ function Dashboard() {
 
         <section className="panel panel--wide">
           <h2 className="panel__title">Найпопулярніші сторінки</h2>
-          <Bars
-            items={data.pages.map((page) => ({
-              ...page,
-              page_location: shortenUrl(page.page_location),
-            }))}
-            labelKey="page_location"
-            valueKey="count"
-          />
+          <PagesList pages={data.pages} total={data.pages_total} />
         </section>
       </div>
 

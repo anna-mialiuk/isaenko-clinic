@@ -16,6 +16,13 @@ header('X-Robots-Tag: noindex, nofollow');
 $action = $_GET['action'] ?? '';
 $method = $_SERVER['REQUEST_METHOD'];
 
+/** Шлях сторінки без домену, міток і слеша в кінці: /kyiv/team?utm=… → /kyiv/team */
+function admin_page_path($location) {
+  $path = parse_url((string) $location, PHP_URL_PATH);
+  if (!is_string($path) || $path === '') return '/';
+  return '/' . trim($path, '/');
+}
+
 function admin_body() {
   $raw = file_get_contents('php://input');
   $data = json_decode($raw, true);
@@ -352,14 +359,26 @@ if ($action === 'stats') {
   $stmt->execute(['-' . $days . ' day']);
   $byDay = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+  // Той самий шлях приходить із різними UTM, gclid, www чи слешем у кінці —
+  // без групування одна сторінка розпадалась на кілька рядків.
   $stmt = $pdo->prepare("
     SELECT page_location, COUNT(*) AS count
     FROM attribution_clicks
     WHERE created_at > datetime('now', ?) AND page_location != ''
-    GROUP BY page_location ORDER BY count DESC LIMIT 20
+    GROUP BY page_location
   ");
   $stmt->execute(['-' . $days . ' day']);
-  $pages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $pagesByPath = [];
+  foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+    $path = admin_page_path($row['page_location']);
+    $pagesByPath[$path] = ($pagesByPath[$path] ?? 0) + (int) $row['count'];
+  }
+  arsort($pagesByPath);
+  $pagesTotal = array_sum($pagesByPath);
+  $pages = [];
+  foreach (array_slice($pagesByPath, 0, 20, true) as $path => $count) {
+    $pages[] = ['path' => (string) $path, 'count' => $count];
+  }
 
   // Попередній період такої ж довжини — для дельт у картках.
   $stmt = $pdo->prepare("
@@ -377,6 +396,7 @@ if ($action === 'stats') {
     'events' => $events,
     'by_day' => $byDay,
     'pages' => $pages,
+    'pages_total' => $pagesTotal,
     'days' => $days,
     'previous' => [
       'clicks' => (int) $previous['clicks'],
