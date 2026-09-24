@@ -34,75 +34,117 @@
     flex-direction: column
     gap: 8px
 
-  &__item
-    padding: 14px 16px
-    border-radius: 10px
-    background: var(--surface)
-    border-left: 3px solid var(--border)
 
-    &--error
-      border-left-color: var(--danger)
+// ── Запис у лозі ────────────────────────────────────────────────
+// Картка: джерело й рівень бейджами, дата праворуч, контекст таблицею.
+.issue
+  padding: 16px 18px
+  border: 1px solid var(--border)
+  border-left: 3px solid var(--border)
+  border-radius: var(--radius-sm, 10px)
+  background: var(--surface)
 
-    &--warning
-      border-left-color: var(--warning)
+  &--error
+    border-left-color: var(--danger)
 
-    &--resolved
-      opacity: .55
+  &--warning
+    border-left-color: var(--warning)
 
-  &__top
+  &.is-resolved
+    opacity: .55
+
+  &__head
     display: flex
     align-items: center
     flex-wrap: wrap
     gap: 8px
-    margin-bottom: 6px
+    margin-bottom: 10px
 
   &__source
-    padding: 2px 8px
-    border-radius: 20px
+    padding: 3px 10px
+    border-radius: 999px
     background: var(--surface-2)
-    color: var(--text-2)
-    font-size: 11px
-
-  &__level
-    font-size: 11px
+    color: var(--text)
+    font-size: 12px
     font-weight: 600
 
-    &--error
-      color: var(--danger)
+  &__level
+    padding: 3px 10px
+    border-radius: 999px
+    font-size: 12px
+    font-weight: 600
 
-    &--warning
-      color: var(--warning-text)
+  &--error &__level
+    background: var(--danger-soft)
+    color: var(--danger)
+
+  &--warning &__level
+    background: var(--surface-2)
+    color: var(--warning-text)
 
   &__date
     margin-left: auto
     color: var(--text-3)
     font-size: 12px
+    font-variant-numeric: tabular-nums
     white-space: nowrap
 
   &__message
-    margin: 0 0 8px
-    line-height: 1.4
-
-  &__context
-    margin: 0
-    padding: 8px 10px
-    border-radius: 8px
-    background: var(--bg)
-    color: var(--text-2)
-    font-size: 12px
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace
-    white-space: pre-wrap
+    margin: 0 0 12px
+    color: var(--text)
+    font-size: 14px
+    line-height: 1.45
     overflow-wrap: anywhere
 
+  &__context
+    display: grid
+    gap: 4px
+    margin: 0 0 12px
+    padding: 10px 12px
+    border-radius: 8px
+    background: var(--bg)
+    font-size: 12px
+
+  &__row
+    display: grid
+    grid-template-columns: 140px 1fr
+    gap: 12px
+
+    @include mix.mobile
+      grid-template-columns: 1fr
+      gap: 2px
+
+    dt
+      color: var(--text-3)
+
+    dd
+      margin: 0
+      color: var(--text-2)
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace
+      overflow-wrap: anywhere
+
+  &__foot
+    display: flex
+    align-items: center
+    gap: 12px
+
+  &__lead
+    color: var(--text-2)
+    font-size: 12px
+    font-weight: 600
+
   &__resolve
-    margin-top: 8px
+    margin-left: auto
     padding: 6px 12px
     border: 1px solid var(--border)
     border-radius: 8px
     background: transparent
     color: var(--text-2)
+    font: inherit
     font-size: 12px
+    font-weight: 600
     cursor: pointer
 
     &:hover
-      background: var(--bg)
+      background: var(--surface-2)
+      color: var(--text)

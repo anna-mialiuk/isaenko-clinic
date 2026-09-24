@@ -13,6 +13,18 @@ const SOURCE_LABELS = {
   db: 'База',
 }
 
+// Підписи полів контексту. Невідомі ключі показуються як є.
+const CONTEXT_LABELS = {
+  event_name: 'Подія',
+  chat_id: 'Чат',
+  error_code: 'Код помилки',
+  migrate_to_chat_id: 'Новий id чату',
+  has_token: 'Токен заданий',
+  has_chat_id: 'Chat id заданий',
+}
+
+const formatValue = (value) => (value === true ? 'так' : value === false ? 'ні' : String(value))
+
 const LEVEL_LABELS = {
   error: 'Помилка',
   warning: 'Попередження',
@@ -110,7 +122,10 @@ function Errors() {
           const context = item.context ? JSON.parse(item.context) : null
 
           return (
-            <article key={item.id} className={`issue issue--${item.level}`}>
+            <article
+              key={item.id}
+              className={`issue issue--${item.level}${item.resolved ? ' is-resolved' : ''}`}
+            >
               <header className="issue__head">
                 <span className="issue__source">{SOURCE_LABELS[item.source] || item.source}</span>
                 <span className="issue__level">{LEVEL_LABELS[item.level] || item.level}</span>
@@ -125,8 +140,8 @@ function Errors() {
                     .filter(([, value]) => value !== '' && value != null)
                     .map(([key, value]) => (
                       <div key={key} className="issue__row">
-                        <dt>{key}</dt>
-                        <dd>{String(value)}</dd>
+                        <dt>{CONTEXT_LABELS[key] || key}</dt>
+                        <dd>{formatValue(value)}</dd>
                       </div>
                     ))}
                 </dl>
