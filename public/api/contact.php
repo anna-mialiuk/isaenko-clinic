@@ -104,6 +104,9 @@ if ($token === 'PUT_TELEGRAM_BOT_TOKEN_HERE' || $chatId === 'PUT_TELEGRAM_CHAT_I
   ]);
 
   $context = stream_context_create([
+    // У api.telegram.org є IPv6-адреса, а на сервері IPv6 не працює:
+    // PHP стукав туди й висів до таймауту. bindto 0.0.0.0 змушує йти по IPv4.
+    'socket' => ['bindto' => '0.0.0.0:0'],
     'http' => [
       'method' => 'POST',
       'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
@@ -122,8 +125,10 @@ if ($token === 'PUT_TELEGRAM_BOT_TOKEN_HERE' || $chatId === 'PUT_TELEGRAM_CHAT_I
   if (!$sentToTelegram) {
     if ($result === false) {
       $lastError = error_get_last();
+      // Токен не має потрапляти в лог, який бачать усі користувачі панелі.
+      $reason = str_replace($token, '***', $lastError['message'] ?? 'невідома помилка');
       $telegramError = [
-        'message' => 'Немає зʼєднання з api.telegram.org: ' . ($lastError['message'] ?? 'невідома помилка'),
+        'message' => 'Немає зʼєднання з api.telegram.org: ' . $reason,
         'context' => ['chat_id' => $chatId],
       ];
     } else {
