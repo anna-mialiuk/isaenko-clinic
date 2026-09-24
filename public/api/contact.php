@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 require_once __DIR__ . '/ga4-mp.php';
 require_once __DIR__ . '/leads-store.php';
+require_once __DIR__ . '/errors-store.php';
 
 $rawBody = file_get_contents('php://input');
 $data = json_decode($rawBody, true);
@@ -50,10 +51,10 @@ if (mb_strlen($name) > 120 || mb_strlen($phone) > 60 || mb_strlen($message) > 20
   exit;
 }
 
-$token = getenv('TELEGRAM_BOT_TOKEN') ?: 'PUT_TELEGRAM_BOT_TOKEN_HERE';
-$chatId = getenv('TELEGRAM_CHAT_ID') ?: 'PUT_TELEGRAM_CHAT_ID_HERE';
-$toEmail = getenv('CONTACT_FORM_EMAIL') ?: '';
-$siteUrl = getenv('SITE_URL') ?: '';
+$token = attr_env('TELEGRAM_BOT_TOKEN', 'PUT_TELEGRAM_BOT_TOKEN_HERE');
+$chatId = attr_env('TELEGRAM_CHAT_ID', 'PUT_TELEGRAM_CHAT_ID_HERE');
+$toEmail = attr_env('CONTACT_FORM_EMAIL');
+$siteUrl = attr_env('SITE_URL');
 $referer = $_SERVER['HTTP_REFERER'] ?? '';
 $pageUrl = $siteUrl !== '' && $page !== '' ? rtrim($siteUrl, '/') . '/' . ltrim($page, '/') : $referer;
 
@@ -82,8 +83,19 @@ $text .= "📋 Форма: {$safeFormName}\n" .
   "🔗 Сторінка: {$safePageUrl}";
 
 $sentToTelegram = false;
+$telegramError = null;
 
-if ($token !== 'PUT_TELEGRAM_BOT_TOKEN_HERE' && $chatId !== 'PUT_TELEGRAM_CHAT_ID_HERE') {
+if ($token === 'PUT_TELEGRAM_BOT_TOKEN_HERE' || $chatId === 'PUT_TELEGRAM_CHAT_ID_HERE') {
+  // Раніше цей випадок мовчки пропускався: змінні зникли з конфігу — і заявки
+  // перестають падати в чат, а ніхто про це не знає.
+  $telegramError = [
+    'message' => 'TELEGRAM_BOT_TOKEN або TELEGRAM_CHAT_ID не задані в конфігу сервера',
+    'context' => [
+      'has_token' => $token !== 'PUT_TELEGRAM_BOT_TOKEN_HERE',
+      'has_chat_id' => $chatId !== 'PUT_TELEGRAM_CHAT_ID_HERE',
+    ],
+  ];
+} else {
   $telegramUrl = "https://api.telegram.org/bot{$token}/sendMessage";
   $payload = http_build_query([
     'chat_id' => $chatId,
@@ -97,11 +109,38 @@ if ($token !== 'PUT_TELEGRAM_BOT_TOKEN_HERE' && $chatId !== 'PUT_TELEGRAM_CHAT_I
       'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
       'content' => $payload,
       'timeout' => 8,
+      // Без цього на 4xx file_get_contents повертає false і текст помилки
+      // Telegram («chat not found», «bot was kicked»…) губиться.
+      'ignore_errors' => true,
     ],
   ]);
 
   $result = @file_get_contents($telegramUrl, false, $context);
-  $sentToTelegram = $result !== false;
+  $response = $result !== false ? json_decode($result, true) : null;
+  $sentToTelegram = is_array($response) && !empty($response['ok']);
+
+  if (!$sentToTelegram) {
+    if ($result === false) {
+      $lastError = error_get_last();
+      $telegramError = [
+        'message' => 'Немає зʼєднання з api.telegram.org: ' . ($lastError['message'] ?? 'невідома помилка'),
+        'context' => ['chat_id' => $chatId],
+      ];
+    } else {
+      $description = $response['description'] ?? mb_substr($result, 0, 300);
+      $errorContext = [
+        'chat_id' => $chatId,
+        'error_code' => $response['error_code'] ?? null,
+      ];
+      // Група стала супергрупою — у неї новий id, старий більше не працює.
+      $newChatId = $response['parameters']['migrate_to_chat_id'] ?? null;
+      if ($newChatId) {
+        $errorContext['migrate_to_chat_id'] = $newChatId;
+        $description .= " — новий TELEGRAM_CHAT_ID: {$newChatId}";
+      }
+      $telegramError = ['message' => 'Telegram відхилив заявку: ' . $description, 'context' => $errorContext];
+    }
+  }
 }
 
 $sentToEmail = false;
@@ -141,7 +180,7 @@ if (!isset($attribution['client_id']) && $gaClientId !== '') {
   $attribution['client_id'] = $gaClientId;
 }
 
-leads_save([
+$leadId = leads_save([
   'name' => $name,
   'phone' => $phone,
   'message' => $message,
@@ -155,6 +194,10 @@ leads_save([
   'ip' => $_SERVER['HTTP_CF_CONNECTING_IP'] ?? $_SERVER['REMOTE_ADDR'] ?? '',
   'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
 ]);
+
+if ($telegramError) {
+  errors_log('telegram', $telegramError['message'], $telegramError['context'], 'error', $leadId ?: null);
+}
 
 // --- GA4: generate_lead ---
 $deduplicated = false;

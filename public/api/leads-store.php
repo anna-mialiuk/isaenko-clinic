@@ -4,6 +4,8 @@
  * так лід можна зіставити з кліком за cid і подивитись, з якої реклами прийшов.
  */
 
+require_once __DIR__ . '/errors-store.php';
+
 require_once __DIR__ . '/attr-store.php';
 
 function leads_db() {

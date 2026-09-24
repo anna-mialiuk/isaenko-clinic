@@ -8,6 +8,7 @@ require_once __DIR__ . '/admin-auth.php';
 require_once __DIR__ . '/leads-store.php';
 require_once __DIR__ . '/users-store.php';
 require_once __DIR__ . '/doctors-store.php';
+require_once __DIR__ . '/errors-store.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -331,6 +332,27 @@ if ($action === 'doctor_photo') {
 
 if ($action === 'doctors_publish') {
   admin_json(['ok' => doctors_publish()]);
+}
+
+// Лог серверних помилок для розділу «Життя серверу».
+if ($action === 'errors') {
+  if ($method === 'GET') {
+    admin_json(['items' => errors_list([
+      'source' => $_GET['source'] ?? '',
+      'resolved' => $_GET['resolved'] ?? '',
+    ])]);
+  }
+
+  if ($method === 'PATCH') {
+    $body = admin_body();
+    $id = (int) ($body['id'] ?? 0);
+
+    if (!$id) admin_json(['error' => 'id required'], 400);
+
+    admin_json(['ok' => errors_resolve($id, !empty($body['resolved']) ? 1 : 0)]);
+  }
+
+  admin_json(['error' => 'method not allowed'], 405);
 }
 
 if ($action === 'stats') {

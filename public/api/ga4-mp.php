@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/errors-store.php';
 define('GA4_MAX_PARAMS', 25);
 define('GA4_MAX_NAME_LEN', 40);
 define('GA4_MAX_VALUE_LEN', 100);
